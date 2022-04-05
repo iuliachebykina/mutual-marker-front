@@ -1,0 +1,46 @@
+.wrapper {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.b-form > div:first-child,
+.b-form > div:nth-child(2),
+.b-form > div:last-child {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.b-form {
+    &__email_field {
+        margin-top: 110px;
+        width: 592px;
+        height: 120px;
+        border-radius: 0;
+    }
+
+    &__password_field {
+        margin-top: -40px;
+        width: 592px;
+        height: 120px;
+        border-radius: 0; 
+    }
+
+    &__bottom_panel {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__bottom_panel > div {
+        cursor: pointer;
+    }
+
+    &__button_login {
+        border-radius: 0;
+        width: 592px;
+        height: 120px;
+        margin-top: 72px;
+        background: #7256FD;
+    }
+    
+}
