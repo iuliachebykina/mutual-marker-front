@@ -1,0 +1,16 @@
+<div class='container'>
+    <div class='container__left'>
+        <div class='container__actions'>
+            <div (click)="currentComponent = 'login'" [ngClass]="{'container__current': currentComponent === 'login', 'container__unable': currentComponent === 'registration'}">Вход</div>
+            <div (click)="currentComponent = 'registration'" [ngClass]="{'container__current': currentComponent === 'registration', 'container__unable': currentComponent === 'login'}">Регистрация</div>
+        </div>
+        <ng-container *ngIf="currentComponent === 'login'">
+            <login-component></login-component>
+        </ng-container>
+        <ng-container *ngIf="currentComponent === 'registration'">
+            <registration-component (onRegistration)="submitRegistration()"></registration-component>
+        </ng-container>
+    </div>
+    <div class='container__right' [ngClass]="{'container__right_small': currentComponent === 'login' }">
+    </div>
+</div>

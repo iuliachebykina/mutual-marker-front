@@ -1,0 +1,35 @@
+.header {
+    padding-top: 60px;
+    position: relative;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    padding-bottom: 60px;
+    z-index: 1;
+    background-color: #fff;
+
+    &__menu {
+        font-size: 24px;
+        width: 240px;
+        margin: 0 auto;
+
+        &__current {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+
+    &__menu>div:first-child {
+        margin-right: 35px;
+    }
+
+    &__menu>div:last-child {
+        margin-left: 35px;
+    }
+
+    &__username {
+        position: absolute;
+        font-size: 24px;
+        left: 10%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
