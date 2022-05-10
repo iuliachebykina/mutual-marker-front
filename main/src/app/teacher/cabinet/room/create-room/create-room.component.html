@@ -1,0 +1,20 @@
+<div class="room" [formGroup]="controlsGroup">
+    <h1>Создать комнату</h1>
+    <div>
+        <tui-input class='room__name_field' formControlName="projectName">
+            Название проекта
+            <input tuiTextfield placeholder="" type="text" />
+        </tui-input>
+    </div>
+    <div>
+        <tui-input class='room__description_field' formControlName="projectDescription">
+            Описание проекта
+            <input tuiTextfield placeholder="" type="text" />
+        </tui-input>
+    </div>
+    <div>
+        <button tuiButton type="button" [disabled]="!controlsGroup.valid" appearance="accent" class="room__button" (click)="createRoom()">
+            Создать комнату
+        </button>
+    </div>
+</div>

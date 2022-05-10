@@ -1,3 +1,8 @@
 <tui-root>
+    <div class="notification-container" *ngIf="notificationOptions && showNotification">
+        <tui-notification [status]="notificationOptions.status === 'success' ? 'success' : 'error'">
+            {{ notificationOptions.text }}
+        </tui-notification>
+    </div>
     <router-outlet></router-outlet>
 </tui-root>

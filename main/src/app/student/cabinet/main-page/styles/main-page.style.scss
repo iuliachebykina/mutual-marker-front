@@ -1,0 +1,28 @@
+.room {
+    &__empty {
+        margin: 100px auto;
+        width: 65%;
+
+        &__alert {
+            font-weight: bold;
+            font-size: 80px;
+            line-height: 1;
+        }
+
+        &__container {
+            width: 60%;
+            margin: 40px auto;
+        }
+
+        &__code_field {
+            border-radius: 0;
+            width: 100%;
+        }
+
+        &__button_login {
+            border-radius: 0;
+            width: 100%;
+            margin-top: 40px;
+        }
+    }
+}
