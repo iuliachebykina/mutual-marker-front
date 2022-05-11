@@ -1,0 +1,40 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+
+    &__menu {
+        height: 80vh;
+        background-color: #fff;
+        position: relative;
+
+        ul {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 60px;
+        }
+
+        ul li {
+            font-size: 24px;
+            line-height: 64px;
+        }
+
+        &__current {
+            font-weight: bold;
+        }
+    }
+
+    &__info {
+        margin: 12px auto;
+        width: 80%;
+        font-size: 35px;
+        line-height: 80px;
+        text-align: left;
+
+        &__add_task {
+            color: #FE7451;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+}

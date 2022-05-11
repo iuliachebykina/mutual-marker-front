@@ -4,6 +4,7 @@ import { CanActivateCabinet } from "./cabinet-teacher.guard";
 import { MainPageComponent } from "./main-page/main-page.component";
 import { NotFoundErrorComponent } from "./not-found-error/not-found-error.component";
 import { CreateRoomComponent } from "./room/create-room/create-room.component";
+import { RoomDetailsInfoComponent } from "./room/room-details-info/room-details-info.component";
 
 export const routes: Routes = [
     {
@@ -23,6 +24,10 @@ export const routes: Routes = [
             {
                 path: 'create',
                 component: CreateRoomComponent
+            },
+            {
+                path: 'info/:id',
+                component: RoomDetailsInfoComponent
             },
             {
                 path: '**',

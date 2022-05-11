@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
-import { Observable, Subscriber } from "rxjs";
+import { filter, Observable, Subscriber } from "rxjs";
 import { IUser } from "../account/interfaces/user-registration.interface";
 import { UserBaseService } from "../../services/user.base.service";
 
@@ -15,11 +15,19 @@ export class CanActivateCabinet implements CanActivate {
     public canActivate(): Observable<boolean> {
         return new Observable((observer: Subscriber<boolean>): void => {
             this._userBaseSerice.getUser()
-                .subscribe((user: IUser): void => {
-                    if (user && user.role === 'ROLE_TEACHER') {
-                        observer.next(true);
-                    } else {
-                        this._router.navigate(['login', 'teacher']);
+                .pipe(
+                    filter((data: IUser): boolean => data !== null)
+                )
+                .subscribe({
+                    next: (user: IUser): void => {
+                        if (user && user.role === 'ROLE_TEACHER') {
+                            observer.next(true);
+                        } else {
+                            this._router.navigate(['login', 'teacher']);
+                        }
+                    },
+                    error: () => {
+                        console.log("+")
                     }
                 });
         })

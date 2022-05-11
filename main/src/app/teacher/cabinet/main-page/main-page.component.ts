@@ -26,6 +26,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
         this._router.navigate(['rooms', 'create']);
     }
 
+    public toDetails(id: number): void {
+        this._router.navigate(['rooms', 'info', id])
+    }
+
     public ngOnInit(): void {
         this.allRooms$ = this._roomService.getRooms(0, 100)
             .pipe(

@@ -9,12 +9,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { TuiButtonModule } from "@taiga-ui/core";
 import { TuiInputModule } from "@taiga-ui/kit";
 import { NotFoundErrorComponent } from "./not-found-error/not-found-error.component";
+import { RoomItemComponent } from "./room/room-item/room-item.component";
 
 @NgModule({
     declarations: [
         CabinetLayoutHeaderComponent,
         MainPageComponent,
-        NotFoundErrorComponent
+        NotFoundErrorComponent,
+        RoomItemComponent
     ],
     imports: [
         CommonModule,

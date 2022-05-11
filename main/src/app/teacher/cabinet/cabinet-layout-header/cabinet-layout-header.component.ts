@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, isDevMode } from "@angular/core";
+import { ChangeDetectionStrategy, Component, isDevMode, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { UserBaseService } from "src/app/services/user.base.service";
@@ -9,7 +9,7 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./styles/cabinet-layout-header.style.scss']
 })
-export class CabinetLayoutHeaderComponent {
+export class CabinetLayoutHeaderComponent implements OnInit {
     public user$: Observable<IUser>;
 
     constructor(
@@ -17,6 +17,10 @@ export class CabinetLayoutHeaderComponent {
         private _router: Router
     ) {
         this.user$ = this._userBaseService.getUser();
+    }
+
+    public ngOnInit(): void {
+        document.querySelector('body').style.background = "rgba(254, 116, 81, 0.05)";
     }
 
     public exit(): void {

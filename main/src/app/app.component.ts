@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { Subject, takeUntil } from 'rxjs';
-import { IUser } from './student/account/interfaces/user-registration.interface';
-import { UserBaseService } from './services/user.base.service';
 import { GlobalNotificationService, INotificationOptions } from './services/global-notification.service';
+import { UserBaseService } from './services/user.base.service';
+import { IUser } from './student/account/interfaces/user-registration.interface';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -24,7 +23,7 @@ export class AppComponent implements OnDestroy, OnInit {
             const user: IUser = JSON.parse(localStorage.getItem('user'));
             this._userBaseService.login(user, `${user.role}\\` + user.username)
                 .pipe(
-                    takeUntil(this._onDestroyEvent$)
+                    takeUntil(this._onDestroyEvent$),
                 )
                 .subscribe((success: IUser): void => {
                     if (!success.role) {

@@ -1,21 +1,31 @@
-<div class="room">
-    <div class="room__empty" [formGroup]="controlsGroup">
-        <div class="room__empty__alert">
-            УПС! У Вас еще нет ни одной комнаты
-        </div>
-        <div class="room__empty__container">
-            <div>
-                <tui-input class='room__empty__code_field' formControlName="code">
-                    Введите код комнаты
-                    <input tuiTextfield placeholder="" type="text" />
-                </tui-input>
+<ng-container *ngIf="allRooms$ | async as room">
+    <div class="room">
+        <div *ngIf="room.length">
+            <div *ngFor="let i of room; last as l" class="room__item">
+                <div [ngClass]="{'room__last': l}">
+                    <room-item [roomCount]="i.id" [studentCount]="0" [title]="i.title">
+                    </room-item>
+                </div>
             </div>
+        </div>
+        <div class="room__empty" [formGroup]="controlsGroup" *ngIf="!room.length">
+            <div class="room__empty__alert">
+                УПС! У Вас еще нет ни одной комнаты
+            </div>
+            <div class="room__empty__container">
+                <div>
+                    <tui-input class='room__empty__code_field' formControlName="code">
+                        Введите код комнаты
+                        <input tuiTextfield placeholder="" type="text" />
+                    </tui-input>
+                </div>
 
-            <div>
-                <button tuiButton type="button" appearance="primary" class="room__empty__button_login">
-                    Войти
-                </button>
+                <div>
+                    <button tuiButton type="button" appearance="primary" class="room__empty__button_login" (click)="joinRoom()">
+                        Войти
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</ng-container>

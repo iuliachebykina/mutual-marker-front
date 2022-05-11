@@ -11,6 +11,8 @@ import { TuiInputModule } from "@taiga-ui/kit";
 import { NotFoundErrorComponent } from "./not-found-error/not-found-error.component";
 import { CreateRoomComponent } from "./room/create-room/create-room.component";
 import { RoomItemComponent } from "./room/room-item/room-item.component";
+import { RoomDetailsInfoComponent } from "./room/room-details-info/room-details-info.component";
+import { AddTaskComponent } from "./room/add-task/add-task.component";
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import { RoomItemComponent } from "./room/room-item/room-item.component";
         MainPageComponent,
         NotFoundErrorComponent,
         CreateRoomComponent,
-        RoomItemComponent
+        RoomItemComponent,
+        RoomDetailsInfoComponent,
+        AddTaskComponent
     ],
     imports: [
         CommonModule,

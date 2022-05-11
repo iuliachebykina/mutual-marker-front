@@ -1,8 +1,9 @@
 <ng-container *ngIf="allRooms$ | async as room">
-    <div class="container">
+    <div class="container" *ngIf="room.length">
+        <div class="container__create" (click)="createRoom()">Создать комнату</div>
         <div *ngFor="let i of room; last as l" class="container__item">
             <div [ngClass]="{'container__last': l}">
-                <room-item [roomCount]=" i.id" [studentCount]="0" [title]="i.title">
+                <room-item [roomCount]="i.id" [studentCount]="0" [title]="i.title" (click)="toDetails(i.id)">
                 </room-item>
             </div>
         </div>

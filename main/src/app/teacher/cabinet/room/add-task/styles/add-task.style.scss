@@ -1,0 +1,18 @@
+.container {
+    margin: 12px auto;
+    width: 80%;
+    
+    &__name_field,
+    &__description_field,
+    &__deadline_field,
+    &__count_mark_field,
+    &__description_mark_field {
+        border-radius: 0;
+        margin-bottom: 18px;
+    }
+
+    &__button {
+        width: 100%;
+        border-radius: 0;
+    }
+}
