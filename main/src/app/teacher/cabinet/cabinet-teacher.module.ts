@@ -13,6 +13,8 @@ import { CreateRoomComponent } from "./room/create-room/create-room.component";
 import { RoomItemComponent } from "./room/room-item/room-item.component";
 import { RoomDetailsInfoComponent } from "./room/room-details-info/room-details-info.component";
 import { AddTaskComponent } from "./room/add-task/add-task.component";
+import { TaskItemComponent } from "./room/task-item/task-item.component";
+import { ModulesModule } from "src/app/modules/modules.module";
 
 @NgModule({
     declarations: [
@@ -22,7 +24,8 @@ import { AddTaskComponent } from "./room/add-task/add-task.component";
         CreateRoomComponent,
         RoomItemComponent,
         RoomDetailsInfoComponent,
-        AddTaskComponent
+        AddTaskComponent,
+        TaskItemComponent
     ],
     imports: [
         CommonModule,
@@ -30,6 +33,7 @@ import { AddTaskComponent } from "./room/add-task/add-task.component";
         ReactiveFormsModule,
         TuiInputModule,
         TuiButtonModule,
+        ModulesModule
     ],
     exports: [],
     providers: [CanActivateCabinet]

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 import { map, Observable, Subject, switchMap, takeUntil } from "rxjs";
-import { IBasicRoom, RoomService } from "src/app/services/room.service";
+import { IBasicRoom, ITaskResponse, RoomService } from "src/app/services/room.service";
 
 @Component({
     templateUrl: './room-details-info.component.html',
@@ -10,6 +10,7 @@ import { IBasicRoom, RoomService } from "src/app/services/room.service";
 export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
     public roomId: string;
     public room$: Observable<IBasicRoom>;
+    public tasks$: Observable<ITaskResponse[]>;
     public currentMenu: 'room' | 'members' | 'works' | 'addTask' = 'room';
     private _destroySubj$: Subject<void> = new Subject<void>();
 
@@ -19,20 +20,27 @@ export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
     ) { }
 
     public ngOnInit(): void {
-        this.room$ = this._activatedRouter.params
-            .pipe(
-                takeUntil(this._destroySubj$),
-                map((params: Params): any => params['id']),
-                switchMap((data: any): Observable<IBasicRoom> => {
-                    this.roomId = data;
+        this.roomId = this._activatedRouter.snapshot.paramMap.get('id');
 
-                    return this._roomService.getRoomById(data)
-                })
-            );  
+        this.room$ = this._roomService.getRoomById(parseInt(this.roomId))
+            .pipe(
+                takeUntil(this._destroySubj$)
+            );
+
+        this.tasks$ = this._roomService.getTasks(parseInt(this.roomId))
+            .pipe(
+                takeUntil(this._destroySubj$)
+            );
     }
 
+    /** обновление данных при успешном запросе связанным с тасками (удаление, добавление, etc) */
     public taskSuccessHandler(): void {
         this.currentMenu = 'room';
+
+        this.tasks$ = this._roomService.getTasks(parseInt(this.roomId))
+            .pipe(
+                takeUntil(this._destroySubj$)
+            );
     }
 
     public createTask(): void {

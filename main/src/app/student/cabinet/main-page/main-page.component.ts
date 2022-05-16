@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Observable, Subject, takeUntil } from "rxjs";
 import { RoomService } from "src/app/services/room.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 
 @Component({
     templateUrl: './main-page.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./styles/main-page.style.scss']
 })
 export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDestroy {
@@ -15,9 +15,11 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
     private _subjectDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
-        private _roomService: RoomService
+        private _roomService: RoomService,
+        private _router: Router
     ) {
         super();
+        document.querySelector('body').style.background = "#fff";
     }
 
     public ngOnDestroy(): void {
@@ -26,6 +28,10 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
 
     public joinRoom(): void {
         this._roomService.joinStudentToRoom(this.getFormValue('code')).subscribe();
+    }
+
+    public navigateToRoom(id: number): void {
+        this._router.navigate(['cabinet', 'room', id]);
     }
 
     public ngOnInit(): void {

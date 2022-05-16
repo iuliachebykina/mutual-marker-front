@@ -1,7 +1,7 @@
 <div *ngIf="user$ | async as user" class="header">
     <div class="header__menu">
-        <div class="header__menu__current">Мои комнаты</div>
-        <div>Мои работы</div>
+        <div [ngClass]="{'header__menu__current': currentItem === 'rooms'}" (click)="navigatePage('rooms')">Мои комнаты</div>
+        <div [ngClass]="{'header__menu__current': currentItem === 'works'}" (click)="navigatePage('works')">Мои работы</div>
     </div>
     <div class="header__username">
         <div (click)="exit()">

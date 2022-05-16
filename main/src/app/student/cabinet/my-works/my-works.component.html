@@ -1,0 +1,6 @@
+<div *ngFor="let task of tasks">
+    {{task.id}}
+    <div *ngFor="let project of task.tasks">
+        {{project.title}}
+    </div>
+</div>

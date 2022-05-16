@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, isDevMode, OnInit } from "@angular/core";
+import { Component, isDevMode, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { UserBaseService } from "src/app/services/user.base.service";
@@ -6,11 +6,11 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
 
 @Component({
     templateUrl: './cabinet-layout-header.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./styles/cabinet-layout-header.style.scss']
 })
 export class CabinetLayoutHeaderComponent implements OnInit {
     public user$: Observable<IUser>;
+    public currentItem: 'rooms' | 'works' = 'rooms';
 
     constructor(
         private _userBaseService: UserBaseService,
@@ -22,7 +22,20 @@ export class CabinetLayoutHeaderComponent implements OnInit {
     public ngOnInit(): void {
         document.querySelector('body').style.background = "#fff";
     }
-    
+
+    public navigatePage(value: 'rooms' | 'works'): void {
+        this.currentItem = value;
+
+        switch (value) {
+            case 'rooms':
+                this._router.navigate(['cabinet', 'main']);
+                break;
+            case 'works':
+                this._router.navigate(['cabinet', 'works']);
+                break;
+        }
+    }
+
     public exit(): void {
         if (isDevMode()) {
             console.log('выход из аккаунта');

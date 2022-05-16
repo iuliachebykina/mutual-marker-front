@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, Output } from "@angular/core";
+import { Component, EventEmitter, OnDestroy, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
@@ -10,7 +10,6 @@ import { IUser } from "../../interfaces/user-registration.interface";
     selector: 'registration-component',
     templateUrl: './registration.component.html',
     styleUrls: ['./styles/registration.style.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegistrationComponent extends FormBaseViewModel implements OnDestroy {
     @Output()

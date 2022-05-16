@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, Subject, takeUntil } from "rxjs";
 import { RoomService } from "src/app/services/room.service";
@@ -7,7 +6,6 @@ import { UserBaseService } from "src/app/services/user.base.service";
 
 @Component({
     templateUrl: './main-page.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./styles/main-page.style.scss']
 })
 export class MainPageComponent implements OnInit, OnDestroy {

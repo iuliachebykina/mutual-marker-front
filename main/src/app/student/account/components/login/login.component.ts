@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
@@ -9,7 +9,6 @@ import { IUser } from "../../interfaces/user-registration.interface";
 @Component({
     selector: 'login-component',
     templateUrl: './login.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./styles/login.style.scss']
 })
 export class LoginComponent extends FormBaseViewModel {
@@ -20,6 +19,7 @@ export class LoginComponent extends FormBaseViewModel {
         private _notificationService: GlobalNotificationService
     ) {
         super();
+        document.querySelector('body').style.background = "#fff";
     }
 
     public toTeacherForm(): void {

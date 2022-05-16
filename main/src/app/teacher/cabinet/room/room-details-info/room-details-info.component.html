@@ -16,6 +16,14 @@
         <div *ngIf="currentMenu === 'room'">
             <h1>{{room.title}}</h1>
             <span class="container__info__add_task" (click)="createTask()">Добавить задание</span>
+
+            <ng-container *ngIf="tasks$ | async as tasks">
+                <div *ngIf="tasks.length" class="container__current_task">Текущие задания:</div>
+                <div *ngIf="!tasks.length" class="container__current_task">В этой комнате еще нет ни одного задания</div>
+                <div *ngFor="let task of tasks; let i = index">
+                    <task-item [task]="task" [index]="i" (onDeleted)="taskSuccessHandler()"></task-item>
+                </div>
+            </ng-container>
         </div>
 
         <div *ngIf="currentMenu === 'addTask'">

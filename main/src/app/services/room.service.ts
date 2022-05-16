@@ -13,8 +13,8 @@ export class RoomService {
      * @param size кол-во элементов на каждой странице
      * @returns 
      */
-    public getRooms(page: number, size: number): Observable<IBasicRoom> {
-        return this._httpRequestService.get<IBasicRoom>('/api/rooms/rooms', { params: { page, size: 100 } });
+    public getRooms(page: number, size: number): Observable<IBasicRoom[]> {
+        return this._httpRequestService.get<IBasicRoom[]>('/api/rooms/rooms', { params: { page, size: 100 } });
     }
 
     /**
@@ -64,20 +64,24 @@ export class RoomService {
     }
 
     /**
-     * получение всех заданий для комнаты
-     * @returns 
-     */
-    public getRoomTasks(page: number, size: number, roomId: string): Observable<any> {
-        return this._httpRequestService.get<any>('/api/task', { params: { page, size, room_id: roomId } });
-    }
-
-    /**
      * создание задания
      * @param task 
      * @returns 
      */
-    public createTask(task: ITask): Observable<any> {
-        return this._httpRequestService.post<any>('/api/task', task);
+    public createTask(task: ITaskRequest): Observable<ITaskRequest> {
+        return this._httpRequestService.post<ITaskRequest>('/api/task', task);
+    }
+
+    public getTasks(room_id: number): Observable<ITaskResponse[]> {
+        return this._httpRequestService.get<ITaskResponse[]>('/api/task', { params: { page: 0, size: 1000, room_id } })
+    }
+
+    public getTaskById(task_id: string): Observable<ITaskResponse> {
+        return this._httpRequestService.get<ITaskResponse>('/api/task/' + task_id);
+    }
+
+    public deleteTask(task_id: number): Observable<void> {
+        return this._httpRequestService.delete<void>(`/api/task/${task_id}`);
     }
 
     /**
@@ -95,17 +99,36 @@ export interface IBasicRoom {
     title: string
 }
 
-export interface ITask {
-    "Название задания"?: string;
-    "Описание задания"?: string;
-    "Дата старта"?: Date;
-    "Дедлайн"?: Date;
-    "ИД комнаты"?: number;
-    "Минимальное количество оценок"?: number;
-    "Ступени оценивания"?: Array<{
-        "Заголовок шага"?: string;
-        "Описание шага"?: string;
-        "Градация оценки"?: Array<number>
+export interface ITaskRequest {
+    "title": string,
+    "description": string,
+    "openDate": string | Date,
+    "closeDate": string | Date,
+    "roomId": number,
+    "minNumberOfGraded": number,
+    "markSteps": [
+        {
+            "title": string,
+            "description": string,
+            "values": number[]
+        }
+    ],
+    "owner": string
+}
+
+export interface ITaskResponse {
+    closeDate?: string;
+    deleted?: boolean;
+    description?: string;
+    id?: number;
+    openDate?: string;
+    roomId?: number;
+    title?: string;
+    markSteps?: Array<{
+        deleted: boolean;
+        description: string;
+        id: number;
+        title: string;
+        values: number[];
     }>;
-    "Создатель"?: string;
 }

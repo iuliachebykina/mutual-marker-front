@@ -1,0 +1,19 @@
+<div class="container" *ngIf="room$ | async as room">
+    <div class="container__menu">
+        <ul>
+            <li [ngClass]="{'container__menu__current' : currentMenu === 'room'}" (click)="changeStateHandler('room')">
+                Комната
+            </li>
+            <li [ngClass]="{'container__menu__current' : currentMenu === 'members'}"
+                (click)="changeStateHandler('members')">
+                Участники</li>
+            <li [ngClass]="{'container__menu__current' : currentMenu === 'evaluate'}"
+                (click)="changeStateHandler('evaluate')">Оценить работы</li>
+            <li [ngClass]="{'container__menu__current' : currentMenu === 'evaluatedWorks'}"
+                (click)="changeStateHandler('evaluatedWorks')">Оцененные работы</li>
+        </ul>
+    </div>
+    <div class="container__info">
+        <router-outlet></router-outlet>
+    </div>
+</div>

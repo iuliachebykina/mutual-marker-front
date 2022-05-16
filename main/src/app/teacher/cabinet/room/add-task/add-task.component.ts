@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { switchMap } from "rxjs";
+import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { RoomService } from "src/app/services/room.service";
-import { UserBaseService } from "src/app/services/user.base.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 
 @Component({
@@ -11,37 +10,41 @@ import { FormBaseViewModel } from "src/libraries/form-base-view-model";
     templateUrl: './add-task.component.html',
     styleUrls: ['./styles/add-task.style.scss']
 })
-export class AddTaskComponent extends FormBaseViewModel {
-
+export class AddTaskComponent extends FormBaseViewModel implements OnDestroy {
     @Output()
     public addedTask: EventEmitter<void> = new EventEmitter<void>();
 
     @Input()
     public id: string;
 
+    private _onDestroy$: Subject<void> = new Subject<void>();
+
     constructor(
         private _roomService: RoomService,
-        private _userBaseService: UserBaseService,
         private _notificationService: GlobalNotificationService
     ) {
         super();
     }
 
     public createTask(): void {
-        this._userBaseService.getUser()
+        this._roomService.createTask({
+            closeDate: "2022-03-20T00:00:00.000Z",
+            description: this.getFormValue('description'),
+            markSteps: [
+                {
+                    "title": "test",
+                    "description": "testtest",
+                    "values": [1, 4, 5]
+                }
+            ],
+            title: this.getFormValue('name'),
+            owner: null,
+            openDate: new Date(),
+            roomId: parseInt(this.id),
+            minNumberOfGraded: parseInt(this.getFormValue('countMarks'))
+        })
             .pipe(
-                switchMap(user => {
-                    return this._roomService.createTask({
-                        "Название задания": this.getFormValue('name'),
-                        "Описание задания": this.getFormValue('description'),
-                        "Дата старта": new Date(),
-                        "Дедлайн": new Date(this.getFormValue('deadline').toString()),
-                        "ИД комнаты": parseInt(this.id),
-                        "Минимальное количество оценок": parseInt(this.getFormValue('countMarks')),
-                        "Ступени оценивания": [{}],
-                        "Создатель": user.email.toString()
-                    })
-                })
+                takeUntil(this._onDestroy$)
             )
             .subscribe({
                 next: () => {
@@ -52,8 +55,11 @@ export class AddTaskComponent extends FormBaseViewModel {
 
                     this.addedTask.emit();
                 }
-            })
+            });
+    }
 
+    public ngOnDestroy(): void {
+        this._onDestroy$.next();
     }
 
     protected override getControls(): FormGroup {

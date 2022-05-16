@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { catchError } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { UserBaseService } from "src/app/services/user.base.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
@@ -9,7 +10,6 @@ import { IUser } from "../../interfaces/user-registration.interface";
 @Component({
     selector: 'login-component',
     templateUrl: './login.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./styles/login.style.scss']
 })
 export class LoginComponent extends FormBaseViewModel {
@@ -20,6 +20,7 @@ export class LoginComponent extends FormBaseViewModel {
         private _notificationService: GlobalNotificationService
     ) {
         super();
+        document.querySelector('body').style.background = "#fff";
     }
 
     public toStudentForm(): void {
@@ -48,9 +49,9 @@ export class LoginComponent extends FormBaseViewModel {
                         this._route.navigate(['rooms', 'main']);
                     }
                 },
-                error: () => {
+                error: (error: string): void => {
                     this._notificationService.subject$.next({
-                        text: 'Ошибка при входе в аккаунт',
+                        text: error || 'Ошибка при входе в аккаунт',
                         status: 'error'
                     });
                 }

@@ -1,0 +1,25 @@
+<div *ngIf="task$ | async as task">
+    <h1>Задание {{projectIndex}}</h1>
+    <div class="title">{{task.title}}</div>
+
+    <div *ngIf="project.length" class="grade">
+        <div class="grade__current">Текущая оценка</div>
+        <div class="grade__percent">85/10</div>
+    </div>
+    <div *ngIf="project.length" class="scale">
+        <div class="scale__linear"></div>
+    </div>
+    <div *ngIf="project.length" class="actions">
+        <div class="actions__edit">Редактировать</div>
+        <div class="actions__delete">Удалить</div>
+    </div>
+    <div *ngIf="!project.length">
+        <label for="file">Choose File</label>
+        <input #input id="file" accept="application/pdf" (change)="uploadWork($event.target)" type="file">
+    </div>
+    <div *ngFor="let proj of project">
+        <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false" style="width: 780px; height: 500px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);">
+        </pdf-viewer>
+    </div>
+
+</div>

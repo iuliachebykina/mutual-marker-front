@@ -1,9 +1,9 @@
 <ng-container *ngIf="allRooms$ | async as room">
     <div class="container" *ngIf="room.length">
         <div class="container__create" (click)="createRoom()">Создать комнату</div>
-        <div *ngFor="let i of room; last as l" class="container__item">
+        <div *ngFor="let i of room; last as l; let ind = index" class="container__item">
             <div [ngClass]="{'container__last': l}">
-                <room-item [roomCount]="i.id" [studentCount]="0" [title]="i.title" (click)="toDetails(i.id)">
+                <room-item [roomCount]="ind" [title]="i.title" [roomId]="i.id" (click)="toDetails(i.id)">
                 </room-item>
             </div>
         </div>
@@ -11,19 +11,17 @@
 
     <div class="room">
         <div class="room__empty">
-            <div *ngIf="!room.length">
+            <ng-container *ngIf="!room.length">
                 <div class="room__empty__alert">
                     У Вас еще нет ни одной комнаты
                 </div>
                 <div class="room__empty__container">
-                    <div>
-                        <button tuiButton type="button" appearance="accent" class="room__empty__button_login"
-                            (click)="createRoom()">
-                            Создать комнату
-                        </button>
-                    </div>
+                    <button tuiButton type="button" appearance="accent" class="room__empty__button_login"
+                        (click)="createRoom()">
+                        Создать комнату
+                    </button>
                 </div>
-            </div>
+            </ng-container>
         </div>
     </div>
 </ng-container>

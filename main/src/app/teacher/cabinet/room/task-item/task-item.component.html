@@ -1,0 +1,12 @@
+<div class="room">
+    <popup-menu>
+        <div>Редактировать</div>
+        <div style="color: red" (click)="deleteTask()">Удалить</div>
+    </popup-menu>
+    <div class="room__id">
+        Задание {{index + 1}}
+    </div>
+    <div class="room__title">
+        {{task.title}}
+    </div>
+</div>

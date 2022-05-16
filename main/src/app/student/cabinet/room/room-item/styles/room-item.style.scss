@@ -3,11 +3,19 @@
     background-color: #fff;
     padding: 50px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
 
     &__id {
         font-size: 18px;
         color: #767676;
         margin-bottom: 18px;
+    }
+
+    &__arrow {
+        position: absolute;
+        top: 120px;
+        right: 70px;
+        cursor: pointer;
     }
 
     &__title {

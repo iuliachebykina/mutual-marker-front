@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, isDevMode, OnInit } from "@angular/core";
+import { Component, isDevMode, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { UserBaseService } from "src/app/services/user.base.service";
@@ -6,7 +6,6 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
 
 @Component({
     templateUrl: './cabinet-layout-header.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./styles/cabinet-layout-header.style.scss']
 })
 export class CabinetLayoutHeaderComponent implements OnInit {
