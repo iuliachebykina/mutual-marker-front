@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev-web-https": "ng serve --proxy-config proxy.conf.json --ssl",
-    "deploy": "ng build --prod"
+    "ng": "ng",
+    "build": "ng build --prod"
   },
   "private": true,
   "dependencies": {
