@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { map, Observable, switchMap, take } from "rxjs";
+import { IMark, MarksService } from "src/app/services/marks.service";
 import { IAttachment, ProjectFileManagerService } from "src/app/services/project-file-manager.service";
 import { ITaskResponse, RoomService } from "src/app/services/room.service";
 
@@ -9,8 +10,11 @@ import { ITaskResponse, RoomService } from "src/app/services/room.service";
     styleUrls: ['./styles/task-details.style.scss']
 })
 export class TaskDetailsComponent implements OnInit {
-    public pdfSrc: string;
 
+    @ViewChild('grade')
+    public rangeControl: ElementRef;
+    public pdfSrc: string;
+    public mark: string = '0';
     @ViewChild('input')
     public input: any;
     //айди комнаты в котором расположено задание на которое студент загружает работу
@@ -29,7 +33,9 @@ export class TaskDetailsComponent implements OnInit {
     constructor(
         private _activatedRouter: ActivatedRoute,
         private _roomService: RoomService,
-        private _fileManager: ProjectFileManagerService
+        private _fileManager: ProjectFileManagerService,
+        private _markService: MarksService,
+        private _renderer: Renderer2
     ) { }
 
     public ngOnInit(): void {
@@ -54,8 +60,16 @@ export class TaskDetailsComponent implements OnInit {
                     if (data) {
                         this.openWork(data[0].attachments[0]);
                     }
+                    this._markService.getProjectMark(data[0].id)
+                        .subscribe({
+                            next: (mark: IMark[]): void => {
+                                this.mark = mark[0].markValue.toString();
+                                this._renderer.setStyle(this.rangeControl.nativeElement, 'width', this.mark + '%')
+                            }
+                        });
                 }
             });
+
     }
 
     public uploadWork(element: any): void {
@@ -66,7 +80,17 @@ export class TaskDetailsComponent implements OnInit {
                     return this._fileManager.createProject(this.taskId, data);
                 })
             )
-            .subscribe();
+            .subscribe(() => {
+                this._fileManager.getSelfProjectByTaskId(this.taskId)
+                    .subscribe({
+                        next: (data: IAttachment[]): void => {
+                            this.project = data;
+                            if (data) {
+                                this.openWork(data[0].attachments[0]);
+                            }
+                        }
+                    });
+            });
     }
 
     public openWork(fileName: string): void {

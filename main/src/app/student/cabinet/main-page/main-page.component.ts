@@ -27,7 +27,11 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
     }
 
     public joinRoom(): void {
-        this._roomService.joinStudentToRoom(this.getFormValue('code')).subscribe();
+        this._roomService.joinStudentToRoom(this.getFormValue('code'))
+            .pipe(
+                takeUntil(this._subjectDestroy$)
+            )
+            .subscribe(() => this.updateRoom());
     }
 
     public navigateToRoom(id: number): void {
@@ -35,6 +39,10 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
     }
 
     public ngOnInit(): void {
+        this.updateRoom();
+    }
+
+    public updateRoom(): void {
         this.allRooms$ = this._roomService.getRooms(0, 100)
             .pipe(
                 takeUntil(this._subjectDestroy$)

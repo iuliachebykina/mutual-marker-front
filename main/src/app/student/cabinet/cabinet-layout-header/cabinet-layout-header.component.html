@@ -1,7 +1,9 @@
 <div *ngIf="user$ | async as user" class="header">
     <div class="header__menu">
-        <div [ngClass]="{'header__menu__current': currentItem === 'rooms'}" (click)="navigatePage('rooms')">Мои комнаты</div>
-        <div [ngClass]="{'header__menu__current': currentItem === 'works'}" (click)="navigatePage('works')">Мои работы</div>
+        <a [routerLink]="['/cabinet/main']" routerLinkActive="header__menu__current">Мои
+            комнаты</a>
+        <a [routerLink]="['/cabinet/works']" routerLinkActive="header__menu__current">Мои
+            работы</a>
     </div>
     <div class="header__username">
         <div (click)="exit()">

@@ -5,8 +5,11 @@ import { MainPageComponent } from "./main-page/main-page.component";
 import { MyWorksComponent } from "./my-works/my-works.component";
 import { NotFoundErrorComponent } from "./not-found-error/not-found-error.component";
 import { TaskDetailsComponent } from "./project/project-details/project-details.component";
+import { WorkComponent } from "./room/evaluate-work/components/work.component";
+import { EvaluateWorkComponent } from "./room/evaluate-work/evaluate-work.component";
 import { RoomDetailsInfoComponent } from "./room/room-details-info/room-details-info.component";
 import { RoomInformationsComponent } from "./room/room-informations/room-informations.component";
+import { RoomInviteComponent } from "./room/room-invite/room-invite.component";
 
 export const routes: Routes = [
     {
@@ -21,7 +24,11 @@ export const routes: Routes = [
             },
             {
                 path: 'main',
-                component: MainPageComponent,
+                component: MainPageComponent
+            },
+            {
+                path: 'join',
+                component: RoomInviteComponent
             },
             {
                 path: 'works',
@@ -42,6 +49,14 @@ export const routes: Routes = [
                     {
                         path: 'task/:id',
                         component: TaskDetailsComponent
+                    },
+                    {
+                        path: 'evaluate',
+                        component: EvaluateWorkComponent,
+                    },
+                    {
+                        path: 'work/:workId',
+                        component: WorkComponent
                     }
                 ]
             },

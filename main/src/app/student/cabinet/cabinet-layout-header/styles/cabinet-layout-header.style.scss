@@ -6,6 +6,10 @@
     z-index: 2;
     background-color: #fff;
 
+    a {
+        text-decoration: none;
+        color: #000;
+    }
     &__menu {
         display: flex;
         font-size: 24px;
@@ -17,11 +21,11 @@
         }
     }
 
-    &__menu>div:first-child {
+    &__menu>a:first-child {
         margin-right: 35px;
     }
 
-    &__menu>div:last-child {
+    &__menu>a:last-child {
         margin-left: 35px;
     }
 

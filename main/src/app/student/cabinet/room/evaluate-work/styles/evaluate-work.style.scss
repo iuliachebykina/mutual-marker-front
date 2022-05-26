@@ -1,0 +1,45 @@
+.evaluate {
+    h1 {
+        font-size: 70px;
+    }
+
+    .green {
+        border-right: 5px solid #17F5B3;
+    }
+
+    .red {
+        border-right: 5px solid red;
+    }
+
+    .yellow {
+        border-right: 5px solid #FBF10E;
+    }
+
+    &__container {
+        background: #FFFFFF;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        padding: 0 0 40px 60px;
+        margin-bottom: 30px;
+        position: relative;
+        cursor: pointer;
+
+        &__count {
+            color: #767676;
+            font-size: 18px;
+        }
+
+        &__title {
+            color: #1A1A1A;
+            font-size: 36px;
+            width: 60%;
+            line-height: 42px;
+        }
+
+        &__grade {
+            position: absolute;
+            top: -10px;
+            right: 30px;
+            font-size: 18px;
+        }
+    }
+}

@@ -38,6 +38,18 @@ export class ProjectFileManagerService {
     public openFile(filename: string): Observable<any> {
         return this._httpRequestService.get('/api/attachments/open', { params: { filename }, responseType: 'blob' });
     }
+
+    /**
+     * Рандомный еще не оцененный текущим пользователем проект
+     * @param task_id айди задания
+     * @returns 
+     */
+    public getRandomProject(task_id: number): Observable<IAttachment[]> {
+        return this._httpRequestService.get<any>(`/api/task/${task_id}/project/random`)
+            .pipe(
+                map(response => Array.isArray(response) ? response : [response])
+            );
+    } 
 }
 
 export interface IAttachment {
@@ -45,4 +57,5 @@ export interface IAttachment {
     title?: string,
     description?: string,
     id?: number;
+    grade?: any;
 }

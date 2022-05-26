@@ -1,8 +1,8 @@
 <ng-container *ngIf="allRooms$ | async as room">
     <div class="room">
         <div *ngIf="room.length">
-            <div *ngFor="let i of room; last as l; let ind = index" class="room__item">
-                <div [ngClass]="{'room__last': l}">
+            <div *ngFor="let i of room; last as l; let ind = index">
+                <div class="room__item" [ngClass]="{room__item__last: l}">
                     <room-item [roomId]="i.id" [roomCount]="ind + 1" [title]="i.title"
                         (onArrowClick)="navigateToRoom(i.id)">
                     </room-item>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { forkJoin, map } from "rxjs";
-import { IBasicRoom, ITaskResponse, RoomService } from "src/app/services/room.service";
+import { map } from "rxjs";
+import { ITaskResponse, RoomService } from "src/app/services/room.service";
 
 @Component({
-    templateUrl: './my-works.component.html'
+    templateUrl: './my-works.component.html',
+    styleUrls: ['./styles/my-works.style.scss']
 })
 export class MyWorksComponent implements OnInit {
 
@@ -15,6 +16,7 @@ export class MyWorksComponent implements OnInit {
 
 
     public ngOnInit(): void {
+        document.querySelector('body').style.background = "#866EFF0D";
         this._roomService.getRooms(0, 1000)
             .pipe(
                 map(item => item.map(room => room.id))
@@ -35,7 +37,6 @@ export class MyWorksComponent implements OnInit {
                 }
             })
     }
-
 
 }
 

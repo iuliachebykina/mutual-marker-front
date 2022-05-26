@@ -1,6 +1,13 @@
-<div *ngFor="let task of tasks">
-    {{task.id}}
-    <div *ngFor="let project of task.tasks">
-        {{project.title}}
+<h1>Мои работы</h1>
+<div *ngIf="!tasks.length" class="empty">
+    <h1>У вас еще нет ни одной сданной работы</h1>
+</div>
+<div *ngFor="let task of tasks; let i = index" class="list">
+    <!-- потенциально может сломаться нумерация но отображаем на всех страницах в одинаковом порядке
+    тк на бэке нет нумерации считаем сами и это проблематично -->
+    <div class="list__room">Комната {{i+1}}</div>
+    <div *ngFor="let project of task.tasks; let ind = index" class="list__project">
+        <div class="list__project__count">Задание {{ind + 1}}</div>
+        <div class="list__project__title">{{project.title}}</div>
     </div>
 </div>

@@ -1,17 +1,21 @@
 <div class="container" *ngIf="room$ | async as room">
     <div class="container__menu">
         <ul>
-            <li [ngClass]="{'container__menu__current' : currentMenu === 'room'}" (click)="changeStateHandler('room')">
+            <li [routerLink]="['info']" routerLinkActive="container__menu__current">
                 Комната
             </li>
-            <li [ngClass]="{'container__menu__current' : currentMenu === 'members'}"
-                (click)="changeStateHandler('members')">
+            <li [routerLink]="['info']" routerLinkActive="container__menu__current">
                 Участники</li>
-            <li [ngClass]="{'container__menu__current' : currentMenu === 'evaluate'}"
-                (click)="changeStateHandler('evaluate')">Оценить работы</li>
-            <li [ngClass]="{'container__menu__current' : currentMenu === 'evaluatedWorks'}"
-                (click)="changeStateHandler('evaluatedWorks')">Оцененные работы</li>
+            <li [routerLink]="['evaluate']" routerLinkActive="container__menu__current">
+                Оценить работы
+            </li>
+            <li [routerLink]="['info']" routerLinkActive="container__menu__current">
+                Оцененные работы
+            </li>
         </ul>
+        <div class="container__menu__join" (click)="joinRoom()">
+            Добавить комнату
+        </div>
     </div>
     <div class="container__info">
         <router-outlet></router-outlet>

@@ -1,19 +1,14 @@
 .room {
-    margin-top: 100px;
 
     &__item {
         width: 85%;
         margin: 0 auto;
-        margin-bottom: 30px;
-
-        &__last {
-            margin-bottom: 200px;
-        }
+        margin-top: 100px;
     }
 
-    // &__last {
-    //     margin-bottom: 60px;
-    // }
+    &__last {
+        margin-bottom: 60px;
+    }
 
     &__empty {
         margin: 100px auto;

@@ -17,6 +17,10 @@ import { RoomItemComponent } from "./room/room-item/room-item.component";
 import { TaskItemComponent } from "./room/task-item/task-item.component";
 import { TaskDetailsComponent } from "./project/project-details/project-details.component";
 import { MyWorksComponent } from "./my-works/my-works.component";
+import { RoomInviteComponent } from "./room/room-invite/room-invite.component";
+import { EvaluateWorkComponent } from "./room/evaluate-work/evaluate-work.component";
+import { MarksService } from "src/app/services/marks.service";
+import { WorkComponent } from "./room/evaluate-work/components/work.component";
 
 @NgModule({
     declarations: [
@@ -28,7 +32,10 @@ import { MyWorksComponent } from "./my-works/my-works.component";
         TaskItemComponent,
         TaskDetailsComponent,
         MyWorksComponent,
-        RoomInformationsComponent
+        RoomInformationsComponent,
+        RoomInviteComponent,
+        EvaluateWorkComponent,
+        WorkComponent
     ],
     imports: [
         CommonModule,
@@ -39,6 +46,6 @@ import { MyWorksComponent } from "./my-works/my-works.component";
         PdfViewerModule
     ],
     exports: [],
-    providers: [CanActivateCabinet, ProjectFileManagerService]
+    providers: [CanActivateCabinet, ProjectFileManagerService, MarksService]
 })
 export class CabinetStudentModule {}
