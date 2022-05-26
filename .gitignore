@@ -3,6 +3,7 @@
 /out-tsc
 /bazel-out
 /node_modules
+/dist
 npm-debug.log
 yarn-error.log
 .idea/
