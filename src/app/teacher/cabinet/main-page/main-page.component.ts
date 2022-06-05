@@ -21,11 +21,11 @@ export class MainPageComponent implements OnInit, OnDestroy {
     ) { }
 
     public createRoom(): void {
-        this._router.navigate(['rooms', 'create']);
+        this._router.navigate(['account', 'create']);
     }
 
     public toDetails(id: number): void {
-        this._router.navigate(['rooms', 'info', id])
+        this._router.navigate(['account', 'room', id])
     }
 
     public ngOnInit(): void {

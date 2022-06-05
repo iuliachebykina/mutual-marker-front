@@ -27,6 +27,10 @@ export class MarksService {
     public setWorkMark(projectId: string, profileId: string, markStepValues: number[]): Observable<any> {
         return this._httpRequestService.post<any>('/api/marks/mark', { projectId, profileId, markStepValues, comment: '' })
     }
+
+    public getAllMarksByTaskId(taskId: number | string): Observable<any> {
+        return this._httpRequestService.get<any>(`/api/marks/task/${taskId}`);
+    }
 }
 
 export interface IMark {

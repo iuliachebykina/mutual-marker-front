@@ -54,7 +54,11 @@ export class EvaluateWorkComponent implements OnInit {
                             return this._markService.getProjectMark(i[0]?.id)
                                 .pipe(
                                     map((grade: IMark[]): IAttachment[][] => {
-                                        const gradeObject: IAttachment = { grade: grade[0]?.markValue | 0 };
+                                        let gradeCount: number = 0;
+                                        if (grade.length) {
+                                            gradeCount = grade.map(item => item.markValue).reduce((prev, curr) => prev + curr) / grade.length;
+                                        }
+                                        const gradeObject: IAttachment = { grade: gradeCount | 0 };
 
                                         return [[Object.assign(value[index][0], gradeObject)]];
                                     })

@@ -12,7 +12,7 @@ export class CanActivateLogin implements CanActivate {
     public canActivate(): Observable<boolean> {
         return new Observable((observer: Subscriber<boolean>): void => {
             if (localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))?.role === 'ROLE_TEACHER') {
-                this._router.navigate(['rooms']);
+                this._router.navigate(['account']);
             } else if (localStorage.getItem('user') && JSON.parse(localStorage.getItem('user'))?.role !== 'ROLE_TEACHER') {
                 this._router.navigate(['cabinet', 'main']);
             } else {

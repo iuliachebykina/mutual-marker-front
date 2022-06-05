@@ -5,6 +5,7 @@
                 ФИО
                 <input tuiTextfield placeholder="" type="text" />
             </tui-input>
+            <tui-error formControlName="username" [error]="[] | tuiFieldError | async"></tui-error>
         </div>
 
         <div>
@@ -64,7 +65,8 @@
         </div>
 
         <div>
-            <button tuiButton type="submit" [disabled]="!controlsGroup.valid" appearance="primary" class="b-form__button_login" (click)="submitForm()">
+            <button tuiButton type="submit" [disabled]="!controlsGroup.valid" appearance="primary"
+                class="b-form__button_login" (click)="submitForm()">
                 Зарегистрироваться
             </button>
         </div>

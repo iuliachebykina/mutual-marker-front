@@ -46,7 +46,7 @@ export class LoginComponent extends FormBaseViewModel {
                             text: 'Успешный вход в аккаунт',
                             status: 'success'
                         });
-                        this._route.navigate(['rooms', 'main']);
+                        this._route.navigate(['account', 'main']);
                     }
                 },
                 error: (error: string): void => {
@@ -62,6 +62,7 @@ export class LoginComponent extends FormBaseViewModel {
         return new FormGroup({
             email: new FormControl('', [
                 Validators.required,
+                Validators.email
             ]),
             passwordValue: new FormControl('', [
                 Validators.required,

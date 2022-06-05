@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
+import { ValidationService } from "src/app/services/validation.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 import { UserBaseService } from "../../../../services/user.base.service";
 import { IUser } from "../../interfaces/user-registration.interface";
@@ -19,7 +20,7 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
 
     constructor(
         private _userBaseService: UserBaseService,
-        private _notificationService: GlobalNotificationService
+        private _notificationService: GlobalNotificationService,
     ) {
         super();
     }
@@ -68,6 +69,7 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
         return new FormGroup({
             username: new FormControl('', [
                 Validators.required,
+                ValidationService.checkFioFormat
             ]),
             universityName: new FormControl('', [
                 Validators.required,
@@ -80,6 +82,7 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
             ]),
             email: new FormControl('', [
                 Validators.required,
+                Validators.email
             ]),
             password: new FormControl('', [
                 Validators.required,

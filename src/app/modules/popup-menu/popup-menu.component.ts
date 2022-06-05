@@ -1,9 +1,11 @@
 import { ChangeDetectorRef, Component } from "@angular/core";
+import { getFadeInAnimation } from "../animation";
 
 @Component({
     selector: 'popup-menu',
     templateUrl: './popup-menu.component.html',
-    styleUrls: ['./style/popup-menu.style.scss']
+    styleUrls: ['./style/popup-menu.style.scss'],
+    animations: [getFadeInAnimation()],
 })
 export class PopupMenuComponent {
     public visible: boolean = false;

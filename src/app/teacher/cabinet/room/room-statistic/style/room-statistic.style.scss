@@ -1,0 +1,28 @@
+table {
+    border-collapse: collapse;
+    text-align: left;
+    overflow: hidden;
+    margin-top: 60px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    thead {
+    }
+
+    th {
+        padding: 0.8rem 5rem 0.8rem 2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        font-size: 18px;
+        color: #767676;
+        border: 1px solid #76767640;
+
+    }
+
+    td {
+        padding: 0.8rem 5rem 0.8rem 2rem;
+        line-height: 25px;
+        border: 1px solid #76767640;
+        color: #767676;
+        font-size: 18px;
+    }
+}

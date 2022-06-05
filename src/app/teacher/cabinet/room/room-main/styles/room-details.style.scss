@@ -1,0 +1,23 @@
+.container {
+    &__info {
+        margin: 12px auto;
+        width: 80%;
+        line-height: 80px;
+        text-align: left;
+
+        &__add_task {
+            color: #FE7451;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    }
+
+    &__current_task {
+        font-size: 24px;
+        margin-top: 25px;
+    }
+
+    h1 {
+        font-size: 80px;
+    }
+}

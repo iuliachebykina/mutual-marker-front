@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { IUser } from "../student/account/interfaces/user-registration.interface";
 
 @Injectable()
 export class RoomService {
@@ -41,7 +42,7 @@ export class RoomService {
      * @param id айди комнаты
      * @returns 
      */
-    public getStudentsByRoomId(id: number, page: number, size: number): Observable<any> {
+    public getStudentsByRoomId(id: number | string, page: number, size: number): Observable<IUser[]> {
         return this._httpRequestService.get<any>('/api/profile/room/students/' + id.toString(), { params: { page, size } });
     }
 

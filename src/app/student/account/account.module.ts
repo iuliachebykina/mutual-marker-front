@@ -4,7 +4,8 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { TuiErrorModule } from "@taiga-ui/core";
 import { TuiButtonModule } from "@taiga-ui/core/components/button";
-import { TuiInputModule } from "@taiga-ui/kit";
+import { TuiFieldErrorPipeModule, TuiInputModule } from "@taiga-ui/kit";
+import { ValidationService } from "src/app/services/validation.service";
 import { CanActivateLogin } from "./account.guard";
 import { routes } from "./account.routing";
 import { LayoutComponent } from "./components/layout/layout.component";
@@ -23,9 +24,10 @@ import { RegistrationComponent } from "./components/registration/registration.co
         ReactiveFormsModule,
         TuiInputModule,
         TuiButtonModule,
-        TuiErrorModule
+        TuiErrorModule,
+        TuiFieldErrorPipeModule
     ],
     exports: [],
-    providers: [CanActivateLogin]
+    providers: [CanActivateLogin, ValidationService]
 })
 export class StudentAccountModule { }

@@ -10,7 +10,7 @@ export const routes: Routes = [
         loadChildren: () => import('./student/cabinet/cabinet-student.module').then(m => m.CabinetStudentModule)
     },
     {
-        path: 'rooms',
+        path: 'account',
         loadChildren: () => import('./teacher/cabinet/cabinet-teacher.module').then(m => m.CabinetTeacherModule)
     },
     {

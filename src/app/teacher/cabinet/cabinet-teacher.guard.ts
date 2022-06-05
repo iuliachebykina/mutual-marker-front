@@ -27,7 +27,6 @@ export class CanActivateCabinet implements CanActivate {
                         }
                     },
                     error: () => {
-                        console.log("+")
                     }
                 });
         })

@@ -14,7 +14,7 @@ export class TaskDetailsComponent implements OnInit {
     @ViewChild('grade')
     public rangeControl: ElementRef;
     public pdfSrc: string;
-    public mark: string = '0';
+    public mark: number = 0;
     @ViewChild('input')
     public input: any;
     //айди комнаты в котором расположено задание на которое студент загружает работу
@@ -63,7 +63,8 @@ export class TaskDetailsComponent implements OnInit {
                     this._markService.getProjectMark(data[0].id)
                         .subscribe({
                             next: (mark: IMark[]): void => {
-                                this.mark = mark[0].markValue.toString();
+                                const markValue = mark.map(item => item.markValue).reduce((prev, curr) => prev + curr, 0) / mark.length;
+                                this.mark = markValue || 0;
                                 this._renderer.setStyle(this.rangeControl.nativeElement, 'width', this.mark + '%')
                             }
                         });

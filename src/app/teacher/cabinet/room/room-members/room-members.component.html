@@ -1,0 +1,41 @@
+<div class="container">
+    <h1>Участники</h1>
+
+    <div *ngIf="user$ | async as user">
+        <div class="container__teacher">Преподаватель</div>
+        <div class="container__teacher__block">
+            <div class="container__teacher__block__avatar">
+            </div>
+            <div class="container__teacher__block__info">
+                <div style="display: flex; flex-direction: column;">
+                    <span class="container__teacher__block__info__username">
+                        {{user.name.firstName}}
+                        {{user.name.lastName}}
+                        {{user.name.patronymic}}
+                    </span>
+                    <span class="container__teacher__block__info__contacts">Контакты</span>
+                    <div class="container__teacher__block__info__phone">{{user.phoneNumber}}</div>
+                    <div class="container__teacher__block__info__email">{{user.email}}</div>
+                    <div class="container__teacher__block__info__social">{{user.socialNetwork}}</div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div *ngIf="students.length">
+        <div class="container__student">Студенты</div>
+        <div style="display: flex; flex-wrap: wrap;">
+            <ng-container *ngFor="let student of students" class="content">
+                <div class="container__student__profile">
+                    <div style="width: 80%; line-height: 30px; margin-left: 30px; margin-top: 20px;">
+                        {{student.firstName}}
+                        {{student.lastName}}
+                        {{student.patronymic}}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

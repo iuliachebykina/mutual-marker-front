@@ -37,6 +37,6 @@ export class CabinetLayoutHeaderComponent implements OnInit {
     }
 
     public goToMyRooms(): void {
-        this._router.navigate(['rooms', 'main']);
+        this._router.navigate(['account', 'main']);
     }
 }

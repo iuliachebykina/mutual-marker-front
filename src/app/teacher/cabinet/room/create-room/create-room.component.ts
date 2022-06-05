@@ -33,7 +33,7 @@ export class CreateRoomComponent extends FormBaseViewModel implements OnDestroy 
                 )
                 .subscribe({
                     next: () => {
-                        this._router.navigate(['rooms', 'main']);
+                        this._router.navigate(['account', 'main']);
 
                         this._notificationService.subject$.next({
                             status: 'success',

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { RoomService } from "src/app/services/room.service";
@@ -10,20 +11,26 @@ import { FormBaseViewModel } from "src/libraries/form-base-view-model";
     templateUrl: './add-task.component.html',
     styleUrls: ['./styles/add-task.style.scss']
 })
-export class AddTaskComponent extends FormBaseViewModel implements OnDestroy {
-    @Output()
-    public addedTask: EventEmitter<void> = new EventEmitter<void>();
-
-    @Input()
+export class AddTaskComponent extends FormBaseViewModel implements OnDestroy, OnInit {
     public id: string;
 
     private _onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private _roomService: RoomService,
-        private _notificationService: GlobalNotificationService
+        private _notificationService: GlobalNotificationService,
+        private _activatedRoute: ActivatedRoute,
+        private _router: Router
     ) {
         super();
+    }
+
+    public ngOnInit(): void {
+        this._activatedRoute.parent.params.subscribe({
+            next: (params) => {
+                this.id = params['id'];
+            }
+        });
     }
 
     public createTask(): void {
@@ -53,7 +60,7 @@ export class AddTaskComponent extends FormBaseViewModel implements OnDestroy {
                         text: 'Задание успешно создано'
                     });
 
-                    this.addedTask.emit();
+                    this._router.navigate(['account', 'room', this.id, 'info']);
                 }
             });
     }

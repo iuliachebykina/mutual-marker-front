@@ -79,6 +79,7 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
             ]),
             email: new FormControl('', [
                 Validators.required,
+                Validators.email
             ]),
             password: new FormControl('', [
                 Validators.required,

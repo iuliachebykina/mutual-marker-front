@@ -20,7 +20,7 @@ export class CanActivateCabinet implements CanActivate {
                 )
                 .subscribe({
                     next: (user: IUser): void => {
-                        if (user) {
+                        if (user && user.role === 'ROLE_STUDENT') {
                             observer.next(true);
                         } else {
                             this._router.navigate(['login', 'student']);

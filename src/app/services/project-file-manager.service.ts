@@ -35,6 +35,13 @@ export class ProjectFileManagerService {
             );
     }
 
+    public getAnotherStudentProject(taskId: string | number, projectId: string | number): Observable<IAttachment[]> {
+        return this._httpRequestService.get<IAttachment[]>(`/api/task/${taskId}/project/${projectId}`)
+            .pipe(
+                map(attachment => Array.isArray(attachment) ? attachment : [attachment])
+            );
+    }
+
     public openFile(filename: string): Observable<any> {
         return this._httpRequestService.get('/api/attachments/open', { params: { filename }, responseType: 'blob' });
     }

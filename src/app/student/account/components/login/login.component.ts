@@ -61,6 +61,7 @@ export class LoginComponent extends FormBaseViewModel {
         return new FormGroup({
             email: new FormControl('', [
                 Validators.required,
+                Validators.email
             ]),
             passwordValue: new FormControl('', [
                 Validators.required,
