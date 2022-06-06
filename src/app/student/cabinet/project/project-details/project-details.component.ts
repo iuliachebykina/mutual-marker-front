@@ -57,6 +57,7 @@ export class TaskDetailsComponent implements OnInit {
             .subscribe({
                 next: (data: IAttachment[]): void => {
                     this.project = data;
+                    this.project = this.project.filter(i => i !== null);
                     if (data) {
                         this.openWork(data[0].attachments[0]);
                     }
@@ -86,6 +87,7 @@ export class TaskDetailsComponent implements OnInit {
                     .subscribe({
                         next: (data: IAttachment[]): void => {
                             this.project = data;
+                            this.project = this.project.filter(i => i !== null);
                             if (data) {
                                 this.openWork(data[0].attachments[0]);
                             }

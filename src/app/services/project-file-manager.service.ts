@@ -51,10 +51,10 @@ export class ProjectFileManagerService {
      * @param task_id айди задания
      * @returns 
      */
-    public getRandomProject(task_id: number): Observable<IAttachment[]> {
+    public getRandomProject(task_id: number): Observable<number> {
         return this._httpRequestService.get<any>(`/api/task/${task_id}/project/random`)
             .pipe(
-                map(response => Array.isArray(response) ? response : [response])
+                map(response => response)
             );
     } 
 }

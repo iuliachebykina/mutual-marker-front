@@ -41,10 +41,17 @@ export class EvaluateWorkComponent implements OnInit {
                     return elem.map(i => i.id);
                 }),
                 //запрашиваем проекты студентов
-                switchMap((task: number[]): Observable<IAttachment[][]> => {
+                switchMap((task: number[]) => {
                     return forkJoin([
-                        ...task.map(item => {
-                            return this._projectService.getRandomProject(item)
+                        ...task.map((item) => {
+                            return this._projectService.getRandomProject(item);
+                        })
+                    ])
+                }),
+                switchMap((projectId: number[]): Observable<IAttachment[][]> => {
+                    return forkJoin([
+                        ...projectId.map((item) => {
+                            return this._projectService.getAnotherStudentProject(null, item)
                         })
                     ])
                 }),
@@ -70,6 +77,7 @@ export class EvaluateWorkComponent implements OnInit {
             .subscribe({
                 next: (v: IAttachment[][][]): void => {
                     this.evaluate = v;
+                    console.log(v);
                 }
             })
     }

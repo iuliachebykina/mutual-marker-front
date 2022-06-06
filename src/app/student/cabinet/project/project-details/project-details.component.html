@@ -1,7 +1,7 @@
 <div *ngIf="task$ | async as task">
     <h1>Задание {{projectIndex}}</h1>
     <div class="title">{{task.title}}</div>
-
+    
     <div *ngIf="project.length" class="grade">
         <div class="grade__current">Текущая оценка</div>
         <div class="grade__percent">{{mark}}/100</div>
