@@ -6,8 +6,8 @@ import { routes } from "./cabinet-teacher.routing";
 import { MainPageComponent } from "./main-page/main-page.component";
 import { CanActivateCabinet } from './cabinet-teacher.guard';
 import { ReactiveFormsModule } from "@angular/forms";
-import { TuiButtonModule, TuiHintModule, TuiManualHintModule } from "@taiga-ui/core";
-import { TuiAvatarModule, TuiInputModule } from "@taiga-ui/kit";
+import { TuiButtonModule, TuiErrorModule, TuiHintControllerModule, TuiHintModule, TuiManualHintModule } from "@taiga-ui/core";
+import { TuiAvatarModule, TuiFieldErrorPipeModule, TuiInputModule } from "@taiga-ui/kit";
 import { NotFoundErrorComponent } from "./not-found-error/not-found-error.component";
 import { CreateRoomComponent } from "./room/create-room/create-room.component";
 import { RoomItemComponent } from "./room/room-item/room-item.component";
@@ -43,7 +43,10 @@ import { RoomMembersComponent } from "./room/room-members/room-members.component
         ModulesModule,
         TuiHintModule,
         TuiAvatarModule,
-        TuiManualHintModule
+        TuiManualHintModule,
+        TuiFieldErrorPipeModule,
+        TuiErrorModule,
+        TuiHintControllerModule
     ],
     exports: [],
     providers: [CanActivateCabinet, MarksService]

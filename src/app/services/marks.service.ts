@@ -28,7 +28,7 @@ export class MarksService {
         return this._httpRequestService.post<any>('/api/marks/mark', { projectId, profileId, markStepValues, comment: '' })
     }
 
-    public getAllMarksByTaskId(taskId: number | string): Observable<any> {
+    public getAllMarksByTaskId(taskId: number | string): Observable<IStatistic[]> {
         return this._httpRequestService.get<any>(`/api/marks/task/${taskId}`);
     }
 }
@@ -37,4 +37,16 @@ export interface IMark {
     comment: string,
     id: number,
     markValue: number
+}
+
+export interface IStatistic {
+    finalMark: number;
+    profileId: number;
+    projectId: number;
+    projectTitle: string;
+    studentName: {
+        firstName: string;
+        lastName: string;
+        patronymic: string;
+    };
 }

@@ -8,19 +8,24 @@
         Описание задания
         <input tuiTextfield placeholder="" type="text" />
     </tui-input>
-    <tui-input class='container__deadline_field' formControlName="deadline">
-        Срок выполнения
-        <input tuiTextfield placeholder="" type="text" />
-    </tui-input>
+    <div class="wrapper" [tuiHintContent]="'Формат даты yyyy-mm-dd'">
+        <tui-input class='container__deadline_field' formControlName="deadline">
+            Срок выполнения
+            <input tuiTextfield placeholder="" type="text" />
+        </tui-input>
+        <tui-error style="margin-bottom: 10px;" formControlName="deadline" [error]="[] | tuiFieldError | async"></tui-error>
+    </div>
     <tui-input class='container__count_mark_field' formControlName="countMarks">
         Количество оценок
         <input tuiTextfield placeholder="" type="text" />
     </tui-input>
+    <tui-error style="margin-bottom: 10px;" formControlName="countMarks" [error]="[] | tuiFieldError | async"></tui-error>
     <tui-input class='container__description_mark_field' formControlName="descriptionMark">
         Описание оценки
         <input tuiTextfield placeholder="" type="text" />
     </tui-input>
-    <button tuiButton type="button" [disabled]="!controlsGroup.valid" appearance="accent" class="container__button" (click)="createTask()">
+    <button tuiButton type="button" [disabled]="!controlsGroup.valid" appearance="accent" class="container__button"
+        (click)="createTask()">
         Добавить задание
     </button>
 </div>

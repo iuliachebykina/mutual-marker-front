@@ -24,7 +24,7 @@
 
     </div>
 
-    <div *ngIf="students.length">
+    <div *ngIf="students && students.length">
         <div class="container__student">Студенты</div>
         <div style="display: flex; flex-wrap: wrap;">
             <ng-container *ngFor="let student of students" class="content">

@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { RoomService } from "src/app/services/room.service";
+import { ValidationService } from "src/app/services/validation.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 
 @Component({
@@ -79,9 +80,11 @@ export class AddTaskComponent extends FormBaseViewModel implements OnDestroy, On
             ]),
             deadline: new FormControl('', [
                 Validators.required,
+                ValidationService.checkDeadline
             ]),
             countMarks: new FormControl('', [
                 Validators.required,
+                Validators.pattern(/^\d+$/)
             ]),
             descriptionMark: new FormControl('', [
                 Validators.required,

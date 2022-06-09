@@ -50,7 +50,7 @@ export class EvaluateWorkComponent implements OnInit {
                 }),
                 switchMap((projectId: number[]): Observable<IAttachment[][]> => {
                     return forkJoin([
-                        ...projectId.map((item) => {
+                        ...projectId.filter(i => i !== null).map((item) => {
                             return this._projectService.getAnotherStudentProject(null, item)
                         })
                     ])
