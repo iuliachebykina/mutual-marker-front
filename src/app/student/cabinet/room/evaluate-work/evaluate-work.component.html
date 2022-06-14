@@ -2,14 +2,9 @@
     <h1>Оценить работы</h1>
     <div style="font-size: 24px;" *ngIf="!evaluate.length">Нет работ для оценивания</div>
     <div *ngFor="let p of evaluate; let i = index">
-            <div class="evaluate__container" [ngClass]="{
-                'green': p[0][0].grade >= 80,
-                'yellow': p[0][0].grade < 80 && p[0][0].grade >= 40,
-                'red': p[0][0].grade < 40
-            }" (click)="toWorkDetails(p[0][0].id)">
-                <div class="evaluate__container__grade">{{p[0][0].grade}}/100</div>
-                <div class="evaluate__container__count">Задание {{i+1}}</div>
-                <div class="evaluate__container__title">{{p[0][0].title}}</div>
-            </div>
+        <div class="evaluate__container" (click)="toWorkDetails(p[0][0].id)">
+            <div class="evaluate__container__count">Задание {{i+1}}</div>
+            <div class="evaluate__container__title">{{p[0][0].title}}</div>
         </div>
+    </div>
 </div>

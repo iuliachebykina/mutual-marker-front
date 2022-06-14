@@ -28,8 +28,20 @@
     &__username {
         position: absolute;
         font-size: 24px;
-        left: 15%;
+        left: 14%;
         top: 50%;
         transform: translate(-50%, -50%);
     }
+}
+
+.hint {
+    position: absolute;
+    background-color: #fff;
+    top: 100px;
+    left: 100px;
+    font-size: 18px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px 10px 35px;
+    line-height: 30px;
+    cursor: pointer;
 }

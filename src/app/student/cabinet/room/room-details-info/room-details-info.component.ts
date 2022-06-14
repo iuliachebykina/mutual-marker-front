@@ -28,10 +28,6 @@ export class RoomDetailsInfoComponent implements OnInit, OnDestroy {
             );
     }
 
-    public joinRoom(): void {
-        this._router.navigate(['cabinet', 'join']);
-    }
-
     public ngOnDestroy(): void {
         this._destroySubj$.next();
     }

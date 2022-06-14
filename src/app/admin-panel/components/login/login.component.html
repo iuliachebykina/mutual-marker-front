@@ -1,0 +1,14 @@
+<div class="container" [formGroup]="controlsGroup">
+    <h1>Для просмотра авторизуйтесь</h1>
+    <tui-input class='container__login' formControlName="login">
+        Логин
+        <input tuiTextfield placeholder="" type="text" />
+    </tui-input>
+    <tui-input class='container__password' formControlName="password">
+        Пароль
+        <input tuiTextfield placeholder="" type="password" />
+    </tui-input>
+    <button tuiButton type="button" appearance="secondary" class="container__button" (click)="submitForm()">
+        Войти
+    </button>
+</div>

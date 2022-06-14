@@ -16,5 +16,9 @@ export const routes: Routes = [
     {
         path: 'login/teacher',
         loadChildren: () => import('./teacher/account/account.module').then(m => m.TeacherAccountModule)
+    },
+    {
+        path: 'admin',
+        loadChildren: () => import('./admin-panel/admin-panel.module').then(m => m.AdminPanelModule)
     }
 ];

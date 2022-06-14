@@ -8,12 +8,11 @@
         Описание задания
         <input tuiTextfield placeholder="" type="text" />
     </tui-input>
-    <div class="wrapper" [tuiHintContent]="'Формат даты yyyy-mm-dd'">
-        <tui-input class='container__deadline_field' formControlName="deadline">
+    <div class="wrapper">
+        <tui-input-date-time class='container__deadline_field' formControlName="deadline">
             Срок выполнения
-            <input tuiTextfield placeholder="" type="text" />
-        </tui-input>
-        <tui-error style="margin-bottom: 10px;" formControlName="deadline" [error]="[] | tuiFieldError | async"></tui-error>
+            <input tuiTextfield placeholder="" />
+        </tui-input-date-time>
     </div>
     <tui-input class='container__count_mark_field' formControlName="countMarks">
         Количество оценок

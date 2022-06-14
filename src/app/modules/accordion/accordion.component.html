@@ -1,0 +1,9 @@
+<div>
+    <div style="font-size: 24px;margin-top: 80px;margin-bottom: 25px;" (click)="isContentVisible = !isContentVisible"
+    [ngClass]="{'dropdown__down': isContentVisible, 'dropdown__top': !isContentVisible}">
+        {{title}}
+    </div>
+    <div *ngIf="isContentVisible">
+        <ng-content></ng-content>
+    </div>
+</div>

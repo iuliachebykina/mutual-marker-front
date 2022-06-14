@@ -4,8 +4,6 @@
             <li [routerLink]="['info']" routerLinkActive="container__menu__current">
                 Комната
             </li>
-            <li routerLinkActive="container__menu__current">
-                Участники</li>
             <li [routerLink]="['evaluate']" routerLinkActive="container__menu__current">
                 Оценить работы
             </li>
@@ -13,9 +11,6 @@
                 Оцененные работы
             </li>
         </ul>
-        <div class="container__menu__join" (click)="joinRoom()">
-            Добавить комнату
-        </div>
     </div>
     <div class="container__info">
         <router-outlet></router-outlet>

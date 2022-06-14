@@ -12,11 +12,10 @@ export class ValidationService {
     }
 
     public static checkDeadline(field: AbstractControl): Validators | null {
-        if (field.value && !(/^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/).exec(field.value)) {
-            return {
-                other: 'Неверный формат',
-            }
-        } else if (new Date(field.value) && new Date(field.value) < new Date()) {
+        if (!field.value?.TuiDay) {
+            return null;
+        }
+        if (new Date(field.value.TuiDay.year, field.value.TuiDay.month - 1, field.value.TuiDay.day) < new Date()) {
             return {
                 other: 'Дата не может быть меньше текущей',
             }

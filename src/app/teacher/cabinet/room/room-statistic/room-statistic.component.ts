@@ -10,6 +10,7 @@ import { ITaskResponse, RoomService } from "src/app/services/room.service";
 })
 export class RoomStatisticComponent {
     public roomId: string;
+    public statistic: IStatistic[] = [];
     constructor(
         private _activatedRouter: ActivatedRoute,
         private _roomService: RoomService,
@@ -36,14 +37,16 @@ export class RoomStatisticComponent {
                 }),
                 map((students: IStatistic[][]): IStatistic[] => {
                     const arr: IStatistic[] = students.flat().filter(i => i !== null);
-
+                    arr.forEach(item => {
+                        item.finalMark = !isFinite(item.finalMark) ? 0 : item.finalMark;
+                    });
                     return arr;
                 })
             )
             .subscribe({
-                next: (data) => {
-                    console.log(data);
+                next: (data: IStatistic[]): void => {
+                    this.statistic = data;
                 }
-            })
+            });
     }
 }

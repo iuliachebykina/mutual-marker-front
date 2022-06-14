@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { map, Observable, switchMap, take } from "rxjs";
-import { IMark, MarksService } from "src/app/services/marks.service";
+import { IMark, IStatistic, MarksService } from "src/app/services/marks.service";
 import { IAttachment, ProjectFileManagerService } from "src/app/services/project-file-manager.service";
 import { ITaskResponse, RoomService } from "src/app/services/room.service";
 
@@ -61,11 +61,12 @@ export class TaskDetailsComponent implements OnInit {
                     if (data) {
                         this.openWork(data[0].attachments[0]);
                     }
-                    this._markService.getProjectMark(data[0].id)
+                    this._markService.getAllMarksByTaskId(this.taskId)
                         .subscribe({
-                            next: (mark: IMark[]): void => {
-                                const markValue = mark.map(item => item.markValue).reduce((prev, curr) => prev + curr, 0) / mark.length;
-                                this.mark = markValue || 0;
+                            
+                            next: (marks: IStatistic[]): void => {
+                                const mark: number = marks.filter(i => i !== null).filter(item => item.projectId === data[0].id)[0]?.finalMark || 0;
+                                this.mark = !isFinite(mark) ? 0 : mark;
                                 this._renderer.setStyle(this.rangeControl.nativeElement, 'width', this.mark + '%')
                             }
                         });

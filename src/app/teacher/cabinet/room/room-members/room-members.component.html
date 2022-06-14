@@ -9,8 +9,8 @@
             <div class="container__teacher__block__info">
                 <div style="display: flex; flex-direction: column;">
                     <span class="container__teacher__block__info__username">
-                        {{user.name.firstName}}
                         {{user.name.lastName}}
+                        {{user.name.firstName}}
                         {{user.name.patronymic}}
                     </span>
                     <span class="container__teacher__block__info__contacts">Контакты</span>
@@ -30,8 +30,8 @@
             <ng-container *ngFor="let student of students" class="content">
                 <div class="container__student__profile">
                     <div style="width: 80%; line-height: 30px; margin-left: 30px; margin-top: 20px;">
-                        {{student.firstName}}
                         {{student.lastName}}
+                        {{student.firstName}}
                         {{student.patronymic}}
                     </div>
                 </div>

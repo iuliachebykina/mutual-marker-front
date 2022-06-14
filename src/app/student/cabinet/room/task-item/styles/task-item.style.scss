@@ -8,6 +8,21 @@
     margin-bottom: 20px;
     position: relative;
 
+    &__green {
+        background-color: #17F5B333;
+        border-left: 0px;
+    }
+
+    &__red {
+        background-color: #FE515133;
+        border-left: 0px;
+    }
+
+    &__yellow {
+        background-color: #FBF10E;
+        border-left: 0px;
+    }
+
     &__id {
         font-size: 18px;
         color: #767676;

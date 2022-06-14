@@ -1,4 +1,8 @@
-<div class="room" (click)="clickTask()">
+<div class="room" (click)="clickTask()" [ngClass]="{
+    'room__green': finalMark >= 80,
+    'room__red': finalMark < 40,
+    'room__yellow': finalMark >= 40 && finalMark < 80
+}">
     <div class="room__id">
         Задание {{index}}
     </div>

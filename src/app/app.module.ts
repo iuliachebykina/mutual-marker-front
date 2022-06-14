@@ -22,7 +22,7 @@ import { RoomService } from './services/room.service';
         TuiNotificationsModule,
         RouterModule.forRoot(routes),
         HttpClientModule,
-        TuiNotificationModule
+        TuiNotificationModule,
     ],
     providers: [
         UserBaseService,

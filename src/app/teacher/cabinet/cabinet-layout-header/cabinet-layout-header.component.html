@@ -3,10 +3,14 @@
         <div class="header__menu">
             <div class="header__menu__current" (click)="goToMyRooms()">Мои комнаты</div>
         </div>
-        <div class="header__username">
-            <div (click)="exit()">
+        <div class="header__username" (mouseover)="onMouseOver()">
+            <div>
                 {{user.name.lastName}} {{user.name.firstName}}
             </div>
+        </div>
+        <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
+            <div (click)="joinRoom()">Создать комнату</div>
+            <div (click)="exit()">Выход</div>
         </div>
     </div>
     <router-outlet></router-outlet>

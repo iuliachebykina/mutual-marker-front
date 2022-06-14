@@ -37,4 +37,9 @@ export class TaskItemComponent implements OnDestroy {
                 }
             });
     }
+
+    /** редактирование таски */
+    public updateTask(): void {
+        
+    }
 }

@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Observable, Subject, takeUntil } from "rxjs";
+import { filter, map, Observable, Subject, takeUntil } from "rxjs";
 import { IBasicRoom, ITaskResponse, RoomService } from "src/app/services/room.service";
 
 @Component({
@@ -35,7 +35,8 @@ export class RoomInformationsComponent {
 
         this.tasks$ = this._roomService.getTasks(parseInt(this.roomId))
             .pipe(
-                takeUntil(this._destroySubj$)
+                takeUntil(this._destroySubj$),
+                map((tasks: ITaskResponse[]): ITaskResponse[] => tasks.filter(i => new Date() < new Date(i.closeDate)))
             );
     }
 

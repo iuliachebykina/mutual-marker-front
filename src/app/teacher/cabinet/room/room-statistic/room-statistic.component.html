@@ -9,12 +9,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Иванов Иван Иванович</td>
-                <td>РИ-390017</td>
-                <td>Разработка приложения под IOS</td>
-                <td>40/100</td>
-            </tr>
+            <ng-container *ngFor="let student of statistic">
+                <tr>
+                    <td>{{student.studentName.firstName}} {{student.studentName.lastName}} {{student.studentName.patronymic}}</td>
+                    <td>{{student.group}}</td>
+                    <td>{{student.projectTitle}}</td>
+                    <td>{{student.finalMark}}/100</td>
+                </tr>
+            </ng-container>
         </tbody>
     </table>
 </div>

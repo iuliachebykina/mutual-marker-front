@@ -3,8 +3,10 @@
 	margin: auto;
 	width: 80%;
     h1 {
-        font-size: 80px;
+        text-align: left;
         font-weight: bold;
+        font-size: 54px;
+        margin-top: 60px;
     }
 
     &__room {
@@ -32,17 +34,8 @@
     }
 }
 
-h1 {
-    text-align: left;
-    font-weight: bold;
-    font-size: 54px;
-    margin-left: 140px;
-}
-
 .empty {
     margin: 150px auto;
     display: block;
     width: 80%;
-    
-   
 }

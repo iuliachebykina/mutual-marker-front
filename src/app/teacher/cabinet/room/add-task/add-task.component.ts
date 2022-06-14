@@ -6,11 +6,16 @@ import { GlobalNotificationService } from "src/app/services/global-notification.
 import { RoomService } from "src/app/services/room.service";
 import { ValidationService } from "src/app/services/validation.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
+import {TUI_DATE_FORMAT, TUI_DATE_SEPARATOR, TuiDay, TuiTime} from '@taiga-ui/cdk';
 
 @Component({
     selector: 'add-task',
     templateUrl: './add-task.component.html',
-    styleUrls: ['./styles/add-task.style.scss']
+    styleUrls: ['./styles/add-task.style.scss'],
+    providers: [
+        {provide: TUI_DATE_FORMAT, useValue: 'YMD'},
+        {provide: TUI_DATE_SEPARATOR, useValue: '-'},
+    ],
 })
 export class AddTaskComponent extends FormBaseViewModel implements OnDestroy, OnInit {
     public id: string;
@@ -21,7 +26,7 @@ export class AddTaskComponent extends FormBaseViewModel implements OnDestroy, On
         private _roomService: RoomService,
         private _notificationService: GlobalNotificationService,
         private _activatedRoute: ActivatedRoute,
-        private _router: Router
+        private _router: Router,
     ) {
         super();
     }
@@ -36,7 +41,7 @@ export class AddTaskComponent extends FormBaseViewModel implements OnDestroy, On
 
     public createTask(): void {
         this._roomService.createTask({
-            closeDate: "2022-03-20T00:00:00.000Z",
+            closeDate: "2022-11-20T00:00:00.000Z",
             description: this.getFormValue('description'),
             markSteps: [
                 {
@@ -78,7 +83,7 @@ export class AddTaskComponent extends FormBaseViewModel implements OnDestroy, On
             description: new FormControl('', [
                 Validators.required,
             ]),
-            deadline: new FormControl('', [
+            deadline: new FormControl([new TuiDay(2022, 6, 15)], [
                 Validators.required,
                 ValidationService.checkDeadline
             ]),

@@ -1,7 +1,7 @@
-<ng-container *ngIf="allRooms$ | async as room">
+<ng-container *ngIf="!loading">
     <div class="room">
-        <div *ngIf="room.length">
-            <div *ngFor="let i of room; last as l; let ind = index">
+        <div *ngIf="allRooms.length">
+            <div *ngFor="let i of allRooms; last as l; let ind = index">
                 <div class="room__item" [ngClass]="{room__item__last: l}">
                     <room-item [roomId]="i.id" [roomCount]="ind + 1" [title]="i.title"
                         (onArrowClick)="navigateToRoom(i.id)">
@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <div class="room__empty" [formGroup]="controlsGroup" *ngIf="!room.length">
+        <div class="room__empty" [formGroup]="controlsGroup" *ngIf="!allRooms.length">
             <div class="room__empty__alert">
                 УПС! У Вас еще нет ни одной комнаты
             </div>
@@ -31,3 +31,4 @@
         </div>
     </div>
 </ng-container>
+<tui-loader style="margin-top: 150px;" [showLoader]="loading"></tui-loader>

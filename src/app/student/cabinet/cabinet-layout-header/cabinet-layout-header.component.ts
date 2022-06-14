@@ -10,11 +10,12 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
 })
 export class CabinetLayoutHeaderComponent implements OnInit {
     public user$: Observable<IUser>;
+    public hintVisible: boolean = false;
     public currentItem: 'rooms' | 'works' = 'rooms';
 
     constructor(
         private _userBaseService: UserBaseService,
-        private _router: Router
+        private _router: Router,
     ) {
         this.user$ = this._userBaseService.getUser();
     }
@@ -47,5 +48,17 @@ export class CabinetLayoutHeaderComponent implements OnInit {
         localStorage.clear();
         this._userBaseService.setUser(null);
         this._router.navigate(['login', 'student']);
+    }
+
+    public onMouseOver(): void {
+        this.hintVisible = true;
+    }
+
+    public onMouseLeave(): void {
+        this.hintVisible = false;
+    }
+
+    public joinRoom(): void {
+        this._router.navigate(['cabinet', 'join']);
     }
 }

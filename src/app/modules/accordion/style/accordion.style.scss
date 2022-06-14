@@ -1,0 +1,17 @@
+.dropdown {
+    &__down {
+        background-image: url('../down.png');
+        background-repeat: no-repeat;
+        background-size: 15px;
+        background-position-x: 135px;
+        background-position-y: 5px;
+    }
+
+    &__top {
+        background-image: url('../top.png');
+        background-repeat: no-repeat;
+        background-size: 15px;
+        background-position-x: 135px;
+        background-position-y: 5px;
+    }
+}

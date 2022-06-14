@@ -10,6 +10,7 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
 })
 export class CabinetLayoutHeaderComponent implements OnInit {
     public user$: Observable<IUser>;
+    public hintVisible: boolean = false;
 
     constructor(
         private _userBaseService: UserBaseService,
@@ -38,5 +39,17 @@ export class CabinetLayoutHeaderComponent implements OnInit {
 
     public goToMyRooms(): void {
         this._router.navigate(['account', 'main']);
+    }
+
+    public joinRoom() {
+        this._router.navigate(['account', 'create']);
+    }
+
+    public onMouseLeave(): void {
+        this.hintVisible = false;
+    }
+
+    public onMouseOver(): void {
+        this.hintVisible = true;
     }
 }
