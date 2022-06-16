@@ -70,4 +70,8 @@ export class UserBaseService {
     public logout(): void {
         this._httpRequestService.get<IUser>(`/api/logout`).subscribe();
     }
+
+    public updateProfileInfo(user: IUser): Observable<any> {
+        return this._httpRequestService.patch<any>('/api/profile', user)
+    }
 }

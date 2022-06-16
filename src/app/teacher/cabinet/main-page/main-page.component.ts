@@ -13,6 +13,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     public sortDown: boolean = true;
     public notFoundRooms: boolean = false;
 
+    public loading: boolean = true;
     private _subjectDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
@@ -37,6 +38,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
                 next: (data) => {
                     this.allRooms = data;
                     this.filteredRooms = data;
+                    this.loading = false;
                 }
             })
     }

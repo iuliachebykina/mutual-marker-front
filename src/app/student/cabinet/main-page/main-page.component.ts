@@ -62,6 +62,10 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
             })
     }
 
+    public joinNewRoom(): void {
+        this._router.navigate(['cabinet', 'join']);
+    }
+
     protected override getControls(): FormGroup {
         return new FormGroup({
             code: new FormControl('', [
@@ -69,4 +73,5 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
             ]),
         })
     }
+
 }

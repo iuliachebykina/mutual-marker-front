@@ -1,6 +1,7 @@
 <ng-container *ngIf="!loading">
     <div class="room">
         <div *ngIf="allRooms.length">
+            <div class="room__join" (click)="joinNewRoom()">Присоединиться к комнате</div>
             <div *ngFor="let i of allRooms; last as l; let ind = index">
                 <div class="room__item" [ngClass]="{room__item__last: l}">
                     <room-item [roomId]="i.id" [roomCount]="ind + 1" [title]="i.title"
@@ -24,11 +25,13 @@
                 <div>
                     <button tuiButton type="button" appearance="primary" class="room__empty__button_login"
                         (click)="joinRoom()">
-                        Войти
+                        Присоединиться
                     </button>
                 </div>
             </div>
         </div>
     </div>
 </ng-container>
-<tui-loader style="margin-top: 150px;" [showLoader]="loading"></tui-loader>
+<ng-container *ngIf="loading">
+    <tui-loader style="margin-top: 150px;" [showLoader]="loading"></tui-loader>
+</ng-container>

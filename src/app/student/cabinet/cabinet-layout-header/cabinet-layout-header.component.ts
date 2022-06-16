@@ -61,4 +61,8 @@ export class CabinetLayoutHeaderComponent implements OnInit {
     public joinRoom(): void {
         this._router.navigate(['cabinet', 'join']);
     }
+
+    public toProfile(): void {
+        this._router.navigate(['cabinet', 'profile']);
+    }
 }

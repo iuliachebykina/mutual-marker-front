@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
-import { TuiDialogModule, TuiNotificationModule, TuiNotificationsModule, TuiRootModule } from "@taiga-ui/core";
+import { TuiDialogModule, TuiLoaderModule, TuiNotificationModule, TuiNotificationsModule, TuiRootModule } from "@taiga-ui/core";
 import { UserBaseService } from './services/user.base.service';
 import { AppComponent } from './app.component';
 import { routes } from "./app.routing";
@@ -23,6 +23,7 @@ import { RoomService } from './services/room.service';
         RouterModule.forRoot(routes),
         HttpClientModule,
         TuiNotificationModule,
+        TuiLoaderModule,
     ],
     providers: [
         UserBaseService,

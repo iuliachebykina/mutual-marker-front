@@ -6,13 +6,13 @@
             работы</a>
     </div>
     <div class="header__username">
-        <div (mouseover)="onMouseOver()">
+        <div (click)="toProfile()">
             {{user.name.lastName}} {{user.name.firstName}}
         </div>
     </div>
-    <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
+    <!-- <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
         <div (click)="joinRoom()">Присоединиться к комнате</div>
         <div (click)="exit()">Выход</div>
-    </div>
+    </div> -->
 </div>
 <router-outlet></router-outlet>

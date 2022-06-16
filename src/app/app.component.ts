@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { tuiLoaderOptionsProvider } from '@taiga-ui/core';
 import { Subject, takeUntil } from 'rxjs';
 import { GlobalNotificationService, INotificationOptions } from './services/global-notification.service';
 import { UserBaseService } from './services/user.base.service';
@@ -7,12 +8,20 @@ import { IUser } from './student/account/interfaces/user-registration.interface'
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
+    providers: [
+        tuiLoaderOptionsProvider({
+            size: 'xl',
+            inheritColor: false,
+            overlay: true,
+        }),
+    ],
 })
 export class AppComponent implements OnDestroy, OnInit {
     public showNotification: boolean;
     public notificationOptions: INotificationOptions;
     private _onDestroyEvent$: Subject<void> = new Subject<void>();
+    public loading: boolean = true;
 
     constructor(
         private _userBaseService: UserBaseService,
@@ -26,11 +35,13 @@ export class AppComponent implements OnDestroy, OnInit {
                     takeUntil(this._onDestroyEvent$),
                 )
                 .subscribe((success: IUser): void => {
+                    this.loading = false;
                     if (!success.role) {
                         this._router.navigate(['login', 'student']);
                     }
                 });
         } else {
+            this.loading = false;
             this._router.navigate(['login', 'student']);
         }
     }

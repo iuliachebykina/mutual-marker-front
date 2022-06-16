@@ -4,6 +4,7 @@ import { CanActivateCabinet } from "./cabinet-student.guard";
 import { MainPageComponent } from "./main-page/main-page.component";
 import { MyWorksComponent } from "./my-works/my-works.component";
 import { NotFoundErrorComponent } from "./not-found-error/not-found-error.component";
+import { ProfileComponent } from "./profile/components/profile.component";
 import { TaskDetailsComponent } from "./project/project-details/project-details.component";
 import { WorkComponent } from "./room/evaluate-work/components/work.component";
 import { EvaluateWorkComponent } from "./room/evaluate-work/evaluate-work.component";
@@ -33,6 +34,10 @@ export const routes: Routes = [
             {
                 path: 'works',
                 component: MyWorksComponent
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent
             },
             {
                 path: 'room/:id',

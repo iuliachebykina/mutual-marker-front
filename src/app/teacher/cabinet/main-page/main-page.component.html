@@ -37,7 +37,7 @@
 
 <div class="room">
     <div class="room__empty">
-        <ng-container *ngIf="!filteredRooms.length && !notFoundRooms">
+        <ng-container *ngIf="!filteredRooms.length && !notFoundRooms && !loading">
             <div class="room__empty__alert">
                 У Вас еще нет ни одной комнаты
             </div>

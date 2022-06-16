@@ -5,4 +5,7 @@
         </tui-notification>
     </div>
     <router-outlet></router-outlet>
+    <ng-container *ngIf="loading">
+        <tui-loader style="margin-top: 350px;" [showLoader]="loading"></tui-loader>
+    </ng-container>
 </tui-root>
