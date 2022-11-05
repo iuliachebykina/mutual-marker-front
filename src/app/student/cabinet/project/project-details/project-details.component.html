@@ -11,7 +11,7 @@
     </div>
     <div *ngIf="project.length" class="actions">
         <div class="actions__edit">Редактировать</div>
-        <div class="actions__delete">Удалить</div>
+        <div class="actions__delete" (click)="delete()">Удалить</div>
     </div>
     <div *ngIf="!project.length">
         <label class="upload-work" for="file">Загрузить работу</label>

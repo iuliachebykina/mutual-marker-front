@@ -97,6 +97,11 @@ export class TaskDetailsComponent implements OnInit {
             });
     }
 
+    public delete(): void {
+        const newObjt: IAttachment = Object.assign(this.project[0], {attachments: null});
+        this._fileManager.updateProject(newObjt).subscribe();
+    }
+
     public openWork(fileName: string): void {
         this._fileManager.openFile(fileName)
             .pipe(

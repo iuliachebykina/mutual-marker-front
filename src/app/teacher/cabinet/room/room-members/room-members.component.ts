@@ -13,12 +13,13 @@ export class RoomMembersComponent implements OnInit {
     public roomId: string;
     public user$: Observable<IUser>;
     public students: IUser[];
+    public studentView: IUser;
 
     constructor(
         private _userBaseService: UserBaseService,
         private _roomService: RoomService,
         private _activatedRoute: ActivatedRoute
-    ) {}
+    ) { }
 
     public ngOnInit(): void {
         this._activatedRoute.parent.params.subscribe({
@@ -34,5 +35,13 @@ export class RoomMembersComponent implements OnInit {
                     this.students = s;
                 }
             })
+    }
+
+    public openStudentInfo(student: IUser): void {
+        this.studentView = student;
+    }
+
+    public closeModal(): void {
+        this.studentView = null;
     }
 }

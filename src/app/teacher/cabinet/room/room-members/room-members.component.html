@@ -28,7 +28,7 @@
         <div class="container__student">Студенты</div>
         <div style="display: flex; flex-wrap: wrap;">
             <ng-container *ngFor="let student of students" class="content">
-                <div class="container__student__profile">
+                <div class="container__student__profile" (click)="openStudentInfo(student)">
                     <div style="width: 80%; line-height: 30px; margin-left: 30px; margin-top: 20px;">
                         {{student.lastName}}
                         {{student.firstName}}
@@ -36,6 +36,32 @@
                     </div>
                 </div>
             </ng-container>
+        </div>
+    </div>
+
+    <div class="container__modal" *ngIf="studentView">
+        <div class="container__modal__close" (click)="closeModal()">X</div>
+        <div>
+            Имя:
+            {{studentView.lastName}}
+            {{studentView.firstName}}
+            {{studentView.patronymic}}
+        </div>
+        <div>
+            Группа:
+            {{studentView.studentGroup}}
+        </div>
+        <div>
+            Институт:
+            {{studentView.institute}}
+        </div>
+        <div>
+            Телефон:
+            {{studentView.phoneNumber}}
+        </div>
+        <div>
+            Почта:
+            {{studentView.email}}
         </div>
     </div>
 </div>

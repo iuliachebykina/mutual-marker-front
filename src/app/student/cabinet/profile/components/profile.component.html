@@ -4,23 +4,27 @@
         <div class="container__profile__avatar"></div>
         <div class="container__profile__username">
             <div class="container__profile__username__name">Пользователь</div>
-            <div *ngIf="!nameUpdate" class="container__profile__username__forchange" (click)="nameUpdate = true">{{profile.name.lastName}} {{profile.name.firstName}} {{profile.name.patronymic}}</div>
-            <input *ngIf="nameUpdate" class="container__profile__social__input name">
-            <button class="saveButton" *ngIf="nameUpdate">Сохранить</button>
+            <div *ngIf="!nameUpdate" class="container__profile__username__forchange" (click)="nameUpdate = true">
+                {{profile.name.lastName}} {{profile.name.firstName}} {{profile.name.patronymic}}</div>
+            <input *ngIf="nameUpdate" class="container__profile__social__input name" #name>
+            <button class="saveButton" *ngIf="nameUpdate" (click)="updateUsername()">Сохранить</button>
         </div>
         <div class="container__profile__phone">
             <div class="container__profile__phone__value">Контакты</div>
-            <div *ngIf="!phoneUpdate" class="container__profile__phone__forchange" (click)="phoneUpdate = true">{{profile.phoneNumber}}</div>
-            <input *ngIf="phoneUpdate" class="container__profile__social__input">
-            <button class="saveButton" *ngIf="phoneUpdate">Сохранить</button>
+            <div *ngIf="!phoneUpdate" class="container__profile__phone__forchange" (click)="phoneUpdate = true">
+                {{profile.phoneNumber}}</div>
+            <input *ngIf="phoneUpdate" class="container__profile__social__input" #phone>
+            <button class="saveButton" *ngIf="phoneUpdate" (click)="updatePhone()">Сохранить</button>
         </div>
         <div class="container__profile__social">
             <div class="container__profile__social__value">Контакты</div>
-            <div *ngIf="!socialUpdate" class="container__profile__social__forchange" (click)="socialUpdate = true">{{profile.socialNetwork}}</div>
-            <input *ngIf="socialUpdate" class="container__profile__social__input">
-            <button class="saveButton" *ngIf="socialUpdate">Сохранить</button>
+            <div *ngIf="!socialUpdate" class="container__profile__social__forchange" (click)="socialUpdate = true">
+                {{profile.socialNetwork}}</div>
+            <input *ngIf="socialUpdate" class="container__profile__social__input" #social>
+            <button class="saveButton" *ngIf="socialUpdate" (click)="socialUpdating()">Сохранить</button>
         </div>
-        <div (click)="exit()" style="color: #FE5151; font-weight: bold; font-size: 24px; cursor: pointer; margin-top: 45px;">Выйти</div>
+        <div (click)="exit()"
+            style="color: #FE5151; font-weight: bold; font-size: 24px; cursor: pointer; margin-top: 45px;">Выйти</div>
     </div>
 </div>
 

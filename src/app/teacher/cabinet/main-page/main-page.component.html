@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="container__create" (click)="createRoom()">Создать комнату</div>
-    <div class="container__actions">
+    <div  *ngIf="filteredRooms.length || notFoundRooms" class="container__create" (click)="createRoom()">Создать комнату</div>
+    <div class="container__actions" *ngIf="filteredRooms.length || notFoundRooms">
         <div (click)="sort()" class="container__actions__sort" [ngClass]="{'container__actions__top': !sortDown, 'container__actions__down': sortDown}">Сортировать</div>
         <div>
             <div class="search-container">

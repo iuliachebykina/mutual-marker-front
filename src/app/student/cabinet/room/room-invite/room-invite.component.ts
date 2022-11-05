@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { RoomService } from "src/app/services/room.service";
@@ -11,14 +11,23 @@ import { FormBaseViewModel } from "src/libraries/form-base-view-model";
     styleUrls: ['./styles/main-page.style.scss']
 })
 export class RoomInviteComponent extends FormBaseViewModel implements OnDestroy {
+    public roomId: string = '';
     private _subjectDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
         private _roomService: RoomService,
         private _router: Router,
-        private _notificationService: GlobalNotificationService
+        private _notificationService: GlobalNotificationService,
+        private _activatedRouter: ActivatedRoute
     ) {
         super();
+        this._activatedRouter.queryParams
+            .subscribe({
+                next: (obj: { [key: string]: string }) => {
+                    this.roomId = obj?.['id'];
+                    this.setFormValue('code', this.roomId);
+                }
+            });
     }
 
     public ngOnDestroy(): void {

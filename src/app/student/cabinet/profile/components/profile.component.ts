@@ -1,4 +1,4 @@
-import { Component, isDevMode, OnInit } from "@angular/core";
+import { Component, ElementRef, isDevMode, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { UserBaseService } from "src/app/services/user.base.service";
 import { IUser } from "src/app/student/account/interfaces/user-registration.interface";
@@ -8,6 +8,15 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
     styleUrls: ['../style/profile.style.scss']
 })
 export class ProfileComponent implements OnInit {
+    @ViewChild('name')
+    public nameInput: ElementRef;
+
+    @ViewChild('phone')
+    public phoneInput: ElementRef;
+
+    @ViewChild('social')
+    public socialInput: ElementRef;
+
     public loading: boolean = true;
     public profile: IUser;
 
@@ -30,18 +39,62 @@ export class ProfileComponent implements OnInit {
             });
     }
 
-    // public updateUsername(): void {
-    //     const fio: string = (<HTMLInputElement>document.querySelector('.name'))?.value;
-    //     const user: IUser = {
-    //         name: {
-    //             firstName: fio.split(' ')[1],
-    //             lastName: fio.split(' ')[0],
-    //             patronymic: fio.split(' ')[2]
-    //         }
-    //     };
+    public updateUsername(): void {
+        const user: IUser = {
+            name: {
+                firstName: this.nameInput.nativeElement.value.split(' ')[1],
+                lastName: this.nameInput.nativeElement.value.split(' ')[0],
+                patronymic: this.nameInput.nativeElement.value.split(' ')[2]
+            }
+        };
+        this._userService.updateProfileInfo(user).subscribe({
+            next: () => {
+                this.nameUpdate = false;
+                this._userService.getUser()
+                    .subscribe({
+                        next: (user: IUser): void => {
+                            this.profile = user;
+                        }
+                    });
+            }
+        });
+    }
 
-    //     this._userService.updateProfileInfo(user).subscribe();
-    // }
+    public updatePhone(): void {
+        const user: IUser = {
+            phoneNumber: this.phoneInput.nativeElement.value
+        };
+
+        this._userService.updateProfileInfo(user).subscribe({
+            next: () => {
+                this.phoneUpdate = false;
+                this._userService.getUser()
+                    .subscribe({
+                        next: (user: IUser): void => {
+                            this.profile = user;
+                        }
+                    });
+            }
+        });
+    }
+
+    public socialUpdating(): void {
+        const user: IUser = {
+            socialNetwork: this.socialInput.nativeElement.value
+        };
+
+        this._userService.updateProfileInfo(user).subscribe({
+            next: () => {
+                this.socialUpdate = false;
+                this._userService.getUser()
+                    .subscribe({
+                        next: (user: IUser): void => {
+                            this.profile = user;
+                        }
+                    });
+            }
+        });
+    }
 
     public exit(): void {
         if (isDevMode()) {

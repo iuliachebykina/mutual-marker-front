@@ -9,6 +9,9 @@
             </tr>
         </thead>
         <tbody>
+            <div class="error" *ngIf="!statistic.length">
+                Пока что никто не загрузил работу
+            </div>
             <ng-container *ngFor="let student of statistic">
                 <tr>
                     <td>{{student.studentName.firstName}} {{student.studentName.lastName}} {{student.studentName.patronymic}}</td>

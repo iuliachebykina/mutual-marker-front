@@ -72,6 +72,10 @@ export class UserBaseService {
     }
 
     public updateProfileInfo(user: IUser): Observable<any> {
-        return this._httpRequestService.patch<any>('/api/profile', user)
+        return this._httpRequestService.patch<any>('/api/profile', user);
+    }
+
+    public getStudentById(id: string): Observable<any> {
+        return this._httpRequestService.get<any>('/api/profile/student-by-id/' + id);
     }
 }

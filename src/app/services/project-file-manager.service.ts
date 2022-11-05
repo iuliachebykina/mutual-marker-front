@@ -56,7 +56,14 @@ export class ProjectFileManagerService {
             .pipe(
                 map(response => response)
             );
-    } 
+    }
+
+    public updateProject(project: IAttachment): any {
+        return this._httpRequestService.put<any>(`/api/task/${project.id}/project/self`, project)
+            .pipe(
+                map(response => response)
+            );
+    }
 }
 
 export interface IAttachment {

@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { TuiButtonModule, TuiLoaderModule } from "@taiga-ui/core";
 import { TuiInputModule } from "@taiga-ui/kit";
@@ -48,7 +48,8 @@ import { TaskItemComponent } from "./room/task-item/task-item.component";
         TuiButtonModule,
         PdfViewerModule,
         TuiLoaderModule,
-        ModulesModule
+        ModulesModule,
+        FormsModule
     ],
     exports: [],
     providers: [CanActivateCabinet, ProjectFileManagerService, MarksService]

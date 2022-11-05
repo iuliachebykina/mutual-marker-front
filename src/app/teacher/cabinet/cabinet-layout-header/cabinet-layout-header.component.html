@@ -1,5 +1,5 @@
 <div>
-    <div *ngIf="user$ | async as user" class="header">
+    <div *ngIf="user$ | async as user" class="header"  (mouseleave)="onMouseLeave()">
         <div class="header__menu">
             <div class="header__menu__current" (click)="goToMyRooms()">Мои комнаты</div>
         </div>
@@ -7,11 +7,12 @@
             <div>
                 {{user.name.lastName}} {{user.name.firstName}}
             </div>
+            <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
+                <div (click)="joinRoom()">Создать комнату</div>
+                <div (click)="exit()">Выход</div>
+            </div>
         </div>
-        <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
-            <div (click)="joinRoom()">Создать комнату</div>
-            <div (click)="exit()">Выход</div>
-        </div>
+        
     </div>
     <router-outlet></router-outlet>
 </div>

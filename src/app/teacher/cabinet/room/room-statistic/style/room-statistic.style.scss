@@ -5,8 +5,6 @@ table {
     margin-top: 60px;
     background: #FFFFFF;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    thead {
-    }
 
     th {
         padding: 0.8rem 5rem 0.8rem 2rem;
@@ -25,4 +23,9 @@ table {
         color: #767676;
         font-size: 18px;
     }
+}
+
+.error {
+    font-size: 18px;
+    margin-left: 30px;
 }
