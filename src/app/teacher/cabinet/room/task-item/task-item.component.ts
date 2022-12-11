@@ -26,7 +26,9 @@ export class TaskItemComponent implements OnDestroy {
     }
 
     /** удаление таски */
-    public deleteTask(): void {
+    public deleteTask(event: Event): void {
+        event?.stopPropagation();
+        event?.preventDefault();
         this._roomService.deleteTask(this.task.id)
             .pipe(
                 takeUntil(this._onDestroy$)

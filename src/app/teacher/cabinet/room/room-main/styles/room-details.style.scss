@@ -21,6 +21,8 @@
         color: #FE7451;
         font-size: 24px;
         cursor: pointer;
+        margin-bottom: 34px;
+
     }
 
     &__info {
@@ -45,6 +47,10 @@
         &__title {
             font-size: 36px;
             line-height: 40px;
+        }
+
+        &__code {
+            display: none;
         }
     }
 }

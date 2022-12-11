@@ -8,7 +8,9 @@ import { ChangeDetectorRef, Component } from "@angular/core";
 export class PopupMenuComponent {
     public visible: boolean = false;
 
-    public onMouseOver(): void {
+    public onMouseOver(event: Event): void {
+        event?.preventDefault();
+        event?.stopPropagation();
         this.visible = true;
     }
 

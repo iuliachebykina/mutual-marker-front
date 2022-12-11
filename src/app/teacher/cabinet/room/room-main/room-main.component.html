@@ -1,10 +1,9 @@
 <div class="room-main" *ngIf="room$ | async as room">
     <div class="room-main__header">
         <h1 class="room-main__title">{{room.title}}</h1>
-        <span>
-            <button class="room-main__btn" appearance="outline"
-                tuiButton type="button" [tuiManualHint]="template" [tuiManualHintShow]="hintShown"
-                (click)="toggleHint()">
+        <span class="room-main__code">
+            <button class="room-main__btn" appearance="outline" tuiButton type="button" [tuiManualHint]="template"
+                [tuiManualHintShow]="hintShown" (click)="toggleHint()">
                 ?
             </button>
             <ng-template #template>
@@ -17,6 +16,7 @@
     </div>
 
     <ng-container *ngIf="tasks$ | async as tasks">
+        <div class="room-main__add-task" (click)="createTask()">Добавить задание</div>
         <div *ngIf="tasks.length" class="room-main__current-task">Текущие задания:</div>
         <div *ngIf="!tasks.length" class="room-main__current-task">В этой комнате еще нет ни одного задания
         </div>
@@ -24,5 +24,4 @@
             <task-item [task]="task" [index]="i" (onDeleted)="taskSuccessHandler()"></task-item>
         </div>
     </ng-container>
-    <span class="room-main__add-task" (click)="createTask()">Добавить задание</span>
 </div>

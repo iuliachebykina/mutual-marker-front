@@ -59,7 +59,7 @@ export class TaskDetailsComponent implements OnInit {
                     this.project = data;
                     this.project = this.project.filter(i => i !== null);
                     if (data) {
-                        this.openWork(data[0].attachments[0]);
+                        this.openWork(data[0]?.attachments[0]);
                     }
                     this._markService.getAllMarksByTaskId(this.taskId)
                         .subscribe({

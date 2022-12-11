@@ -20,3 +20,26 @@
         text-align: center;
     }
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .container {
+        margin-top: 80px;
+        width: auto;
+        line-height: normal;
+        
+        &__404 {
+            font-size: 40px;
+            text-align: center;
+            font-weight: bold;
+
+            &__number {
+                color: rgb(110, 87, 224);
+            }
+        }
+
+        &__page-not-found {
+            font-size: 24px;
+            text-align: center;
+        }
+    }
+}

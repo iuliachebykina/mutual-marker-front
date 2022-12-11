@@ -39,9 +39,12 @@ export class MarksService {
 }
 
 export interface IMark {
-    comment: string,
-    id: number,
-    markValue: number
+    comment: string;
+    id: number;
+    markValue: number;
+    project: {
+        id: number;
+    }
 }
 
 export interface IStatistic {

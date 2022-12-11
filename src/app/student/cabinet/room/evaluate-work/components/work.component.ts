@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { combineLatest, Observable, take } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { MarksService } from "src/app/services/marks.service";
@@ -32,10 +32,12 @@ export class WorkComponent implements OnInit {
         private _roomService: RoomService,
         private _notificationService: GlobalNotificationService,
         private _markService: MarksService,
-        private _userService: UserBaseService
+        private _userService: UserBaseService,
+        private _route: Router
     ) { }
 
     public ngOnInit(): void {
+
         this._userService.getUser()
             .subscribe({
                 next: (user: IUser): void => {
@@ -62,10 +64,19 @@ export class WorkComponent implements OnInit {
                 next: (data: IAttachment[]): void => {
                     this.project = data;
                     if (data) {
-                        this.openWork(data[0].attachments[0]);
+                        this.openWork(data[0]?.attachments[0]);
                     }
                 }
             });
+
+        this._markService.getProjectMark(parseInt(this.projectId))
+            .subscribe({
+                next: (a) => {
+                    if (a.find(i => i.project.id === parseInt(this.projectId))?.markValue) {
+                        this.mark = (a.find(i => i.project.id === parseInt(this.projectId))?.markValue).toString();
+                    }
+                }
+            })
     }
 
     public saveWork(): void {
@@ -77,6 +88,7 @@ export class WorkComponent implements OnInit {
                         text: 'Работа успешно оценена',
                         status: 'success'
                     });
+                    window.history.back();
                 }
             })
 
