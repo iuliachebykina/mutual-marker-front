@@ -1,17 +1,26 @@
-.dropdown {
-    &__down {
-        background-image: url('../down.png');
-        background-repeat: no-repeat;
-        background-size: 15px;
-        background-position-x: 135px;
-        background-position-y: 5px;
+.accordion {
+    &__title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+        line-height: 38px;
+        cursor: pointer;
     }
 
-    &__top {
-        background-image: url('../top.png');
+    &__icon {
+        width: 12px;
+        height: 12px;
+        margin-left: 8px;
         background-repeat: no-repeat;
-        background-size: 15px;
-        background-position-x: 135px;
-        background-position-y: 5px;
+        background-size: 12px;
+
+        &.down {
+            background-image: url('../down.png');
+        }
+    
+        &.top {
+            background-image: url('../top.png');
+        }
     }
 }

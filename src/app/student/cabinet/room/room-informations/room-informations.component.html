@@ -1,8 +1,8 @@
-<div>
-    <h1 *ngIf="room">{{room.title}}</h1>
+<div class="room-information">
+    <h1 class="room-information__title" *ngIf="room">{{room.title}}</h1>
     <ng-container *ngIf="tasks$ | async as tasks">
-        <div *ngIf="tasks.length" class="current_task">Текущие задания:</div>
-        <div *ngIf="!tasks.length" class="current_task">В этой комнате еще нет ни одного задания
+        <div *ngIf="tasks.length" class="room-information__subtitle">Текущие задания:</div>
+        <div *ngIf="!tasks.length" class="room-information__subtitle">В этой комнате еще нет ни одного задания
         </div>
         <div *ngFor="let task of tasks; let i = index">
             <task-item [task]="task" [index]="i+1" (onTaskClick)="navigateToDetails(task.id, i + 1)"></task-item>

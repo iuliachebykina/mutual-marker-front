@@ -1,8 +1,8 @@
-<div class='container'>
-    <div class='container__left'>
-        <div class='container__actions'>
-            <div (click)="currentComponent = 'login'" [ngClass]="{'container__current': currentComponent === 'login', 'container__unable': currentComponent === 'registration'}">Вход</div>
-            <div (click)="currentComponent = 'registration'" [ngClass]="{'container__current': currentComponent === 'registration', 'container__unable': currentComponent === 'login'}">Регистрация</div>
+<div class='layout'>
+    <div class='layout__left'>
+        <div class='layout__actions'>
+            <div (click)="currentComponent = 'login'" [ngClass]="{'layout__current': currentComponent === 'login', 'container__unable': currentComponent === 'registration'}">Вход</div>
+            <div (click)="currentComponent = 'registration'" [ngClass]="{'layout__current': currentComponent === 'registration', 'container__unable': currentComponent === 'login'}">Регистрация</div>
         </div>
         <ng-container *ngIf="currentComponent === 'login'">
             <login-component></login-component>
@@ -11,6 +11,6 @@
             <registration-component (onRegistration)="submitRegistration()"></registration-component>
         </ng-container>
     </div>
-    <div class='container__right' [ngClass]="{'container__right_small': currentComponent === 'login' }">
+    <div class='layout__right' [ngClass]="{'layout__right_small': currentComponent === 'login' }">
     </div>
 </div>

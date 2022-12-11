@@ -1,52 +1,44 @@
-<div class="container">
-    <div  *ngIf="filteredRooms.length || notFoundRooms" class="container__create" (click)="createRoom()">Создать комнату</div>
-    <div class="container__actions" *ngIf="filteredRooms.length || notFoundRooms">
-        <div (click)="sort()" class="container__actions__sort" [ngClass]="{'container__actions__top': !sortDown, 'container__actions__down': sortDown}">Сортировать</div>
-        <div>
-            <div class="search-container">
-                <input #text type="text" id="search-bar" placeholder="Поиск" (input)="filterItems(text.value)">
-                <div class="search-icon">
-                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <rect width="20" height="19" fill="url(#pattern0)" />
-                        <defs>
-                            <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                                <use xlink:href="#image0_143_16"
-                                    transform="translate(0.025) scale(0.0105556 0.0111111)" />
-                            </pattern>
-                            <image id="image0_143_16" width="90" height="90"
-                                xlink:href="data:image/png;base64,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" />
-                        </defs>
-                    </svg>
+<div class="main-page">
+    <div class="main-page__wrapper">
+        <div  *ngIf="filteredRooms.length || notFoundRooms" class="main-page__create" (click)="createRoom()">Создать комнату</div>
+        <div class="main-page__actions" *ngIf="filteredRooms.length || notFoundRooms">
+            <div (click)="sort()" class="main-page__sort">
+                Сортировать<span class="main-page__sort-icon" [ngClass]="{'top': !sortDown, 'down': sortDown}"></span>
+            </div>
+            <div>
+                <div class="search-container">
+                    <input #text type="text" id="search-bar" placeholder="Поиск" (input)="filterItems(text.value)">
+                    <div class="search-container__icon">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <ng-container *ngIf="filteredRooms.length && !notFoundRooms">
-        <div *ngFor="let i of filteredRooms; last as l; let ind = index" class="container__item">
-            <div [ngClass]="{'container__last': l}">
-                <room-item [roomCount]="ind" [title]="i.title" [roomId]="i.id" (click)="toDetails(i.id)">
-                </room-item>
+        <ng-container *ngIf="filteredRooms.length && !notFoundRooms">
+            <div *ngFor="let i of filteredRooms; last as l; let ind = index" class="main-page__item">
+                <div [ngClass]="{'is-last': l}">
+                    <room-item [roomCount]="ind" [title]="i.title" [roomId]="i.id" (click)="toDetails(i.id)">
+                    </room-item>
+                </div>
             </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="!filteredRooms.length && notFoundRooms">
-        <h1>Поиск не дал результатов</h1>
-    </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!filteredRooms.length && notFoundRooms">
+            <h1>Поиск не дал результатов</h1>
+        </ng-container>
+    </div>
 </div>
 
-<div class="room">
-    <div class="room__empty">
+<!-- <div class="room"> -->
+    <div class="main-page__empty">
         <ng-container *ngIf="!filteredRooms.length && !notFoundRooms && !loading">
-            <div class="room__empty__alert">
+            <div class="main-page__alert">
                 У Вас еще нет ни одной комнаты
             </div>
-            <div class="room__empty__container">
-                <button tuiButton type="button" appearance="accent" class="room__empty__button_login"
+            <div class="main-page__container">
+                <button tuiButton type="button" appearance="accent" class="main-page__button"
                     (click)="createRoom()">
                     Создать комнату
                 </button>
             </div>
         </ng-container>
     </div>
-</div>
+<!-- </div> -->

@@ -1,18 +1,19 @@
 <div>
-    <div *ngIf="user$ | async as user" class="header"  (mouseleave)="onMouseLeave()">
-        <div class="header__menu">
-            <div class="header__menu__current" (click)="goToMyRooms()">Мои комнаты</div>
-        </div>
-        <div class="header__username" (mouseover)="onMouseOver()">
-            <div>
-                {{user.name.lastName}} {{user.name.firstName}}
+    <div *ngIf="user$ | async as user" class="cabinet-layout-header"  (mouseleave)="onMouseLeave()">
+        <div class="cabinet-layout-header__wrapper">
+            <div class="cabinet-layout-header__username" (mouseover)="onMouseOver()">
+                <div>
+                    {{user.name.lastName}} {{user.name.firstName}}
+                </div>
+                <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
+                    <div (click)="joinRoom()">Создать комнату</div>
+                    <div (click)="exit()">Выход</div>
+                </div>
             </div>
-            <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
-                <div (click)="joinRoom()">Создать комнату</div>
-                <div (click)="exit()">Выход</div>
+            <div class="cabinet-layout-header__menu">
+                <div class="hcabinet-layout-header__link" (click)="goToMyRooms()">Мои комнаты</div>
             </div>
         </div>
-        
     </div>
     <router-outlet></router-outlet>
 </div>

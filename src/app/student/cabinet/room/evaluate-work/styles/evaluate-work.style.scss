@@ -1,3 +1,48 @@
+.evaluate-work {
+    &__title {
+        margin: 60px 0 65px;
+        font-size: 80px;
+        line-height: 96px;
+    }
+    
+    &__subtitle {
+        margin-bottom: 20px;
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 500;
+    }
+
+    &__container {
+        position: relative;
+        height: 110px;
+        margin-bottom: 30px;
+        padding: 18px 0 0 48px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    &__count {
+        margin-bottom: 34px;
+        color: #767676;
+        font-size: 18px;
+    }
+
+    &__container-title {
+        color: #1A1A1A;
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    &__grade {
+        position: absolute;
+        top: -10px;
+        right: 30px;
+        font-size: 18px;
+    }
+}
+
+
 .evaluate {
     h1 {
         font-size: 70px;
@@ -15,31 +60,57 @@
         border-right: 5px solid #FBF10E;
     }
 
-    &__container {
-        background: #FFFFFF;
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-        padding: 0 0 40px 60px;
-        margin-bottom: 30px;
-        position: relative;
-        cursor: pointer;
+    // &__container {
+    //     background: #FFFFFF;
+    //     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    //     padding: 0 0 40px 60px;
+    //     margin-bottom: 30px;
+    //     position: relative;
+    //     cursor: pointer;
 
-        &__count {
-            color: #767676;
-            font-size: 18px;
+    //     &__count {
+    //         color: #767676;
+    //         font-size: 18px;
+    //     }
+
+    //     &__title {
+    //         color: #1A1A1A;
+    //         font-size: 36px;
+    //         width: 60%;
+    //         line-height: 42px;
+    //     }
+
+    //     &__grade {
+    //         position: absolute;
+    //         top: -10px;
+    //         right: 30px;
+    //         font-size: 18px;
+    //     }
+    // }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+    .evaluate-work {
+        &__title {
+            margin: 40px 0 45px;
+            font-size: 60px;
+            line-height: 76px;
         }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .evaluate-work {
 
         &__title {
-            color: #1A1A1A;
+            margin: 20px 0;
             font-size: 36px;
-            width: 60%;
-            line-height: 42px;
+            line-height: 48px;
         }
-
-        &__grade {
-            position: absolute;
-            top: -10px;
-            right: 30px;
-            font-size: 18px;
+        
+        &__subtitle {
+            font-size: 16px;
+            line-height: 20px;
         }
     }
 }

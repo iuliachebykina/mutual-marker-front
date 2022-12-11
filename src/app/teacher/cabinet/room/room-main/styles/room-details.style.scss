@@ -1,23 +1,50 @@
-.container {
+.room-main {
+    padding: 60px 0;
+    &__header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 80px;
+        line-height: 96px;
+    }
+
+    &__btn {
+        margin-left: 16px;
+        font-size: 24px;
+    }
+
+    &__add-task {
+        color: #FE7451;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
     &__info {
         margin: 12px auto;
         width: 80%;
         line-height: 80px;
         text-align: left;
-
-        &__add_task {
-            color: #FE7451;
-            font-size: 24px;
-            cursor: pointer;
-        }
     }
 
-    &__current_task {
+    &__current-task {
         font-size: 24px;
-        margin-top: 25px;
+        margin-bottom: 34px;
     }
+}
 
-    h1 {
-        font-size: 80px;
+@media (min-width: 320px) and (max-width: 767px) {
+    .room-main {
+        &__header {
+            margin-bottom: 34px;
+        }
+
+        &__title {
+            font-size: 36px;
+            line-height: 40px;
+        }
     }
 }

@@ -1,13 +1,15 @@
-<div *ngIf="user$ | async as user" class="header">
-    <div class="header__menu">
-        <a [routerLink]="['/cabinet/main']" routerLinkActive="header__menu__current">Мои
-            комнаты</a>
-        <a [routerLink]="['/cabinet/works']" routerLinkActive="header__menu__current">Мои
-            работы</a>
-    </div>
-    <div class="header__username">
-        <div (click)="toProfile()">
-            {{user.name.lastName}} {{user.name.firstName}}
+<div *ngIf="user$ | async as user" class="cabinet-layout-header">
+    <div class="cabinet-layout-header__wrapper">
+        <div class="cabinet-layout-header__username">
+            <div (click)="toProfile()">
+                {{user.name.lastName}} {{user.name.firstName}}
+            </div>
+        </div>
+        <div class="cabinet-layout-header__menu">
+            <a class="cabinet-layout-header__link"[routerLink]="['/cabinet/main']" routerLinkActive="is-active">Мои
+                комнаты</a>
+            <a class="cabinet-layout-header__link" [routerLink]="['/cabinet/works']" routerLinkActive="is-active">Мои
+                работы</a>
         </div>
     </div>
     <!-- <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">

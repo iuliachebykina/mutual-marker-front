@@ -7,7 +7,7 @@
 }
 
 .wrapper {
-    margin-top: 109px;
+    margin-top: 108px;
 }
 
 .b-form > div {
@@ -41,4 +41,10 @@
         background: #7256FD;
     }
     
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .wrapper {
+        margin-top: 48px;
+    }
 }

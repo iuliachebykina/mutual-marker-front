@@ -5,7 +5,7 @@ import { IBasicRoom, RoomService } from "src/app/services/room.service";
 
 @Component({
     templateUrl: './room-details-info.component.html',
-    styleUrls: ['./styles/room-details.style.scss']
+    styleUrls: ['./styles/room-details-info.style.scss']
 })
 export class RoomDetailsInfoComponent implements OnInit, OnDestroy {
     public room$: Observable<IBasicRoom>;
@@ -19,7 +19,7 @@ export class RoomDetailsInfoComponent implements OnInit, OnDestroy {
     ) { }
 
     public ngOnInit(): void {
-        document.querySelector('body').style.background = "#866EFF0D";
+        document.querySelector('body').style.background = "#f9f8ff";
         this.roomId = this._activatedRouter.snapshot.paramMap.get('id');
 
         this.room$ = this._roomService.getRoomById(parseInt(this.roomId))

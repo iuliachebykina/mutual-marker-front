@@ -1,23 +1,23 @@
-<div>
-    <table>
-        <thead>
-            <tr>
-                <th>Имя</th>
-                <th>Группа</th>
-                <th>Задание</th>
-                <th>Оценка</th>
+<div  class="room-statistic">
+    <table class="room-statistic__table">
+        <thead class="room-statistic__table-head">
+            <tr class="room-statistic__row">
+                <th class="room-statistic__cell">Имя</th>
+                <th class="room-statistic__cell">Группа</th>
+                <th class="room-statistic__cell">Задание</th>
+                <th class="room-statistic__cell">Оценка</th>
             </tr>
         </thead>
-        <tbody>
-            <div class="error" *ngIf="!statistic.length">
+        <tbody class="room-statistic__table-body">
+            <tr class="room-statistic__cell room-statistic__cell_empty" *ngIf="!statistic.length">
                 Пока что никто не загрузил работу
-            </div>
-            <ng-container *ngFor="let student of statistic">
-                <tr>
-                    <td>{{student.studentName.firstName}} {{student.studentName.lastName}} {{student.studentName.patronymic}}</td>
-                    <td>{{student.group}}</td>
-                    <td>{{student.projectTitle}}</td>
-                    <td>{{student.finalMark}}/100</td>
+            </tr>
+            <ng-container *ngFor="let student of statistic; let last = last">
+                <tr class="room-statistic__row" [ngClass]="{'is-last': last}">
+                    <td class="room-statistic__cell">{{student.studentName.firstName}} {{student.studentName.lastName}} {{student.studentName.patronymic}}</td>
+                    <td class="room-statistic__cell">{{student.group}}</td>
+                    <td class="room-statistic__cell">{{student.projectTitle}}</td>
+                    <td class="room-statistic__cell">{{student.finalMark}}/100</td>
                 </tr>
             </ng-container>
         </tbody>

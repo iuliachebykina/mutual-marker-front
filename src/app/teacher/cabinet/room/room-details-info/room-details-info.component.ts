@@ -5,7 +5,7 @@ import { IBasicRoom, ITaskResponse, RoomService } from "src/app/services/room.se
 
 @Component({
     templateUrl: './room-details-info.component.html',
-    styleUrls: ['./styles/room-details.style.scss']
+    styleUrls: ['./styles/room-details-info.style.scss']
 })
 export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
     public roomId: string;

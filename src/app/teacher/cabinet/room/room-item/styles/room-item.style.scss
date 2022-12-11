@@ -1,12 +1,19 @@
-.room {
+.room-item {
     cursor: pointer;
-    border-left: 10px solid #FE7451;
+    border-left: 8px solid #FE7451;
     background-color: #fff;
-    padding: 50px;
+    padding: 35px 50px 18px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+    }
 
     &__id {
         font-size: 18px;
+        line-height: 23px;
         color: #767676;
         margin-bottom: 18px;
         cursor: auto;
@@ -14,20 +21,34 @@
 
     &__title {
         font-size: 36px;
+        line-height: 48px;
         width: 400px;
         margin-bottom: 75px;
-        line-height: 30px;
         cursor: auto;
     }
 
     &__count {
-        margin-bottom: -30px;
+        margin-top: auto;
         font-size: 18px;
         cursor: auto;
     }
+
+    &__number {
+        color: #FE7451;
+        font-weight: bold;
+    }
 }
 
-.count {
-    color: #FE7451;
-    font-weight: bold;
+@media (min-width: 320px) and (max-width: 767px) {
+    .room-item {
+        padding: 20px;
+        &__title {
+            width: auto;
+        }
+
+        &__arrow {
+            top: 20px;
+            right: 20px;
+        }
+    }
 }

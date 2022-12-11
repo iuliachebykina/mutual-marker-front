@@ -7,7 +7,7 @@ import { ITaskResponse, RoomService } from "src/app/services/room.service";
 
 @Component({
     templateUrl: './project-details.component.html',
-    styleUrls: ['./styles/task-details.style.scss']
+    styleUrls: ['./styles/project-details.style.scss']
 })
 export class TaskDetailsComponent implements OnInit {
 

@@ -1,41 +1,41 @@
-.list {
-    display: block;
-	margin: auto;
-	width: 80%;
-    h1 {
-        text-align: left;
-        font-weight: bold;
-        font-size: 54px;
-        margin-top: 60px;
-    }
+.my-works {
+	margin: 0 auto;
+	width: 84%;
+    padding: 60px 0 100px;
 
-    &__room {
-        font-size: 24px;
-        margin-top: 80px;
-        margin-bottom: 25px;
+    &__title {
+        font-weight: bold;
+        font-size: 80px;
+        line-height: 96px;
+        margin: 0;
+        margin-bottom: 60px;
     }
 
     &__project {
         background: #FFFFFF;
         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-        height: 120px;
+        min-height: 120px;
         margin-bottom: 20px;
         padding-left: 50px;
+    }
 
-        &__title {
-            font-size: 24px;
-        }
+    &__name {
+        font-size: 24px;
+    }
 
-        &__count {
-            line-height: 60px;
-            font-size: 18px;
-            color: #767676;
-        }
+    &__count {
+        line-height: 60px;
+        font-size: 18px;
+        color: #767676;
     }
 }
 
-.empty {
-    margin: 150px auto;
-    display: block;
-    width: 80%;
+@media (min-width: 320px) and (max-width: 767px) {
+    .my-works {
+        &__title {
+            font-size: 24px;
+            line-height: 30px;
+            margin-bottom: 35px;
+        }
+    }
 }

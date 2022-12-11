@@ -1,18 +1,18 @@
-<div class="container" *ngIf="room$ | async as room">
-    <div class="container__menu">
-        <ul>
-            <li [routerLink]="['info']" routerLinkActive="container__menu__current">
+<div class="room-details-info" *ngIf="room$ | async as room">
+    <div class="room-details-info__menu">
+        <ul class="room-details-info__list">
+            <li class="room-details-info__item" [routerLink]="['info']" routerLinkActive="is-active">
                 Комната
             </li>
-            <li [routerLink]="['evaluate']" routerLinkActive="container__menu__current">
+            <li class="room-details-info__item" [routerLink]="['evaluate']" routerLinkActive="is-active">
                 Оценить работы
             </li>
-            <li routerLinkActive="container__menu__current">
+            <li class="room-details-info__item" routerLinkActive="is-active">
                 Оцененные работы
             </li>
         </ul>
     </div>
-    <div class="container__info">
+    <div class="room-details-info__info">
         <router-outlet></router-outlet>
     </div>
 </div>

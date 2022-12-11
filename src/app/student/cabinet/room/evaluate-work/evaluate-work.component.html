@@ -1,10 +1,10 @@
-<div class="evaluate">
-    <h1>Оценить работы</h1>
-    <div style="font-size: 24px;" *ngIf="!evaluate.length">Нет работ для оценивания</div>
+<div class="evaluate-work">
+    <h1 class="evaluate-work__title">Оценить работы</h1>
+    <div class="evaluate-work__subtitle" *ngIf="!evaluate.length">Нет работ для оценивания</div>
     <div *ngFor="let p of evaluate; let i = index">
-        <div class="evaluate__container" (click)="toWorkDetails(p[0][0].id)">
-            <div class="evaluate__container__count">Задание {{i+1}}</div>
-            <div class="evaluate__container__title">{{p[0][0].title}}</div>
+        <div class="evaluate-work__container" (click)="toWorkDetails(p[0][0].id)">
+            <div class="evaluate-work__count">Задание {{i+1}}</div>
+            <div class="evaluate-work__container-title">{{p[0][0].title}}</div>
         </div>
     </div>
 </div>

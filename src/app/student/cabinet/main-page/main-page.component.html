@@ -1,29 +1,27 @@
 <ng-container *ngIf="!loading">
-    <div class="room">
-        <div *ngIf="allRooms.length">
-            <div class="room__join" (click)="joinNewRoom()">Присоединиться к комнате</div>
-            <div *ngFor="let i of allRooms; last as l; let ind = index">
-                <div class="room__item" [ngClass]="{room__item__last: l}">
-                    <room-item [roomId]="i.id" [roomCount]="ind + 1" [title]="i.title"
-                        (onArrowClick)="navigateToRoom(i.id)">
-                    </room-item>
+    <div class="main-page">
+        <div class="main-page__wrapper">
+            <div *ngIf="allRooms.length">
+                <div class="main-page__join" (click)="joinNewRoom()">Присоединиться к комнате</div>
+                <div *ngFor="let i of allRooms; last as l; let ind = index">
+                    <div class="main-page__item" [ngClass]="{room__item__last: l}">
+                        <room-item [roomId]="i.id" [roomCount]="ind + 1" [title]="i.title"
+                            (onArrowClick)="navigateToRoom(i.id)">
+                        </room-item>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="room__empty" [formGroup]="controlsGroup" *ngIf="!allRooms.length">
-            <div class="room__empty__alert">
-                УПС! У Вас еще нет ни одной комнаты
-            </div>
-            <div class="room__empty__container">
-                <div>
-                    <tui-input class='room__empty__code_field' formControlName="code">
+            <div class="main-page__empty" [formGroup]="controlsGroup" *ngIf="!allRooms.length">
+                <div class="main-page__alert">
+                    УПС! У Вас еще нет ни одной комнаты
+                </div>
+                <div class="main-page__container">
+                    <tui-input class='main-page__field' formControlName="code">
                         Введите код комнаты
                         <input tuiTextfield placeholder="" type="text" />
                     </tui-input>
-                </div>
-
-                <div>
-                    <button tuiButton type="button" appearance="primary" class="room__empty__button_login"
+    
+                    <button tuiButton type="button" appearance="primary" class="main-page__button"
                         (click)="joinRoom()">
                         Присоединиться
                     </button>
@@ -33,5 +31,5 @@
     </div>
 </ng-container>
 <ng-container *ngIf="loading">
-    <tui-loader style="margin-top: 150px;" [showLoader]="loading"></tui-loader>
+    <tui-loader class="main-page__loader" style="margin-top: 150px;" [showLoader]="loading"></tui-loader>
 </ng-container>

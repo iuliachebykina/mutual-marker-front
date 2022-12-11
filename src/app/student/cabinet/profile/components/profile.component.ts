@@ -5,7 +5,7 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
 
 @Component({
     templateUrl: './profile.component.html',
-    styleUrls: ['../style/profile.style.scss']
+    styleUrls: ['./style/profile.style.scss']
 })
 export class ProfileComponent implements OnInit {
     @ViewChild('name')

@@ -16,7 +16,7 @@ export class MyWorksComponent implements OnInit {
 
 
     public ngOnInit(): void {
-        document.querySelector('body').style.background = "#866EFF0D";
+        document.querySelector('body').style.background = "#f9f8ff";
         this._roomService.getRooms(0, 1000)
             .pipe(
                 map(item => item.map(room => room.id))
