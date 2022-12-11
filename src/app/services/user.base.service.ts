@@ -39,7 +39,7 @@ export class UserBaseService {
     /**
      * метод для логина. запрашиваем всех пользователей и ищем совпадение
      * при успешном поиске сохраняем юзера и авторизовываем в системе
-     * @param user 
+     * @param user
      * @returns результат поиска в булевом представлении
      */
     public login(user: IUser, role: string): Observable<IUser> {
@@ -72,7 +72,7 @@ export class UserBaseService {
     }
 
     public updateProfileInfo(user: IUser): Observable<any> {
-        return this._httpRequestService.patch<any>('/api/profile', user);
+        return this._httpRequestService.patch<any>('/api/profile/self', user);
     }
 
     public getStudentById(id: string): Observable<any> {

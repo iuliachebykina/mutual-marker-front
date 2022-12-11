@@ -20,14 +20,14 @@ export class TaskItemComponent implements OnInit {
     @Input()
     public index: number;
 
+    public isBlock: boolean = false;
     public finalMark: number;
-
     public profileId: number;
 
     constructor(
         private _markService: MarksService,
         private _userService: UserBaseService
-    ) { 
+    ) {
         this._userService.getUser()
             .subscribe({
                 next: (user) => {
@@ -37,6 +37,7 @@ export class TaskItemComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.isBlock = new Date() > new Date(this.task.closeDate);
         this._markService.getAllMarksByTaskId(this.task.id)
             .pipe(
                 map(marks => marks.filter(i => i !== null))
@@ -48,6 +49,8 @@ export class TaskItemComponent implements OnInit {
             });
     }
     public clickTask(): void {
-        this.onTaskClick.emit();
+        if (!this.isBlock) {
+            this.onTaskClick.emit();
+        }
     }
 }

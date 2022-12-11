@@ -38,3 +38,16 @@
         }
     }
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+  .room {
+    &__empty {
+      &__alert {
+        font-weight: bold;
+        font-size: 50px;
+        line-height: 1;
+        text-align: center;
+      }
+    }
+  }
+}

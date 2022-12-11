@@ -40,8 +40,10 @@ export class AddTaskComponent extends FormBaseViewModel implements OnDestroy, On
     }
 
     public createTask(): void {
+        const date: string[] = this.getFormValue('deadline').split(',')[0].split('.');
+
         this._roomService.createTask({
-            closeDate: "2022-11-20T00:00:00.000Z",
+            closeDate: new Date(`${date[2]}-${date[1]}-${date[0]}`),
             description: this.getFormValue('description'),
             markSteps: [
                 {
@@ -83,7 +85,7 @@ export class AddTaskComponent extends FormBaseViewModel implements OnDestroy, On
             description: new FormControl('', [
                 Validators.required,
             ]),
-            deadline: new FormControl([new TuiDay(2022, 6, 15)], [
+            deadline: new FormControl([TuiDay.fromLocalNativeDate(new Date())], [
                 Validators.required,
                 ValidationService.checkDeadline
             ]),

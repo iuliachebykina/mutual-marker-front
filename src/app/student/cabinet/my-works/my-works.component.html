@@ -3,9 +3,7 @@
 </div>
 <div *ngFor="let task of tasks; let i = index" class="my-works">
     <h1 class="my-works__title">Мои работы</h1>
-    <!-- потенциально может сломаться нумерация но отображаем на всех страницах в одинаковом порядке
-        тк на бэке нет нумерации считаем сами и это проблематично -->
-    <accordion [title]="'Комната ' + (i + 1)">
+    <accordion [title]="(task.tasks[0].title)">
         <div *ngFor="let project of task.tasks; let ind = index" class="my-works__project">
             <div class="my-works__count">Задание {{ind + 1}}</div>
             <div class="my-works__name">{{project.title}}</div>

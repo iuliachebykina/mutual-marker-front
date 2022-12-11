@@ -35,8 +35,7 @@ export class RoomInformationsComponent {
 
         this.tasks$ = this._roomService.getTasks(parseInt(this.roomId))
             .pipe(
-                takeUntil(this._destroySubj$),
-                map((tasks: ITaskResponse[]): ITaskResponse[] => tasks.filter(i => new Date() < new Date(i.closeDate)))
+                takeUntil(this._destroySubj$)
             );
     }
 

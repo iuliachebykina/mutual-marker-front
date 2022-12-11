@@ -40,13 +40,13 @@ export class ProfileComponent implements OnInit {
     }
 
     public updateUsername(): void {
-        const user: IUser = {
-            name: {
-                firstName: this.nameInput.nativeElement.value.split(' ')[1],
-                lastName: this.nameInput.nativeElement.value.split(' ')[0],
-                patronymic: this.nameInput.nativeElement.value.split(' ')[2]
-            }
-        };
+        const user: IUser = Object.assign(this.profile, {
+          name: {
+            firstName: this.nameInput.nativeElement.value.split(' ')[1],
+            lastName: this.nameInput.nativeElement.value.split(' ')[0],
+            patronymic: this.nameInput.nativeElement.value.split(' ')[2]
+          }
+        });
         this._userService.updateProfileInfo(user).subscribe({
             next: () => {
                 this.nameUpdate = false;
@@ -61,9 +61,9 @@ export class ProfileComponent implements OnInit {
     }
 
     public updatePhone(): void {
-        const user: IUser = {
+        const user: IUser = Object.assign(this.profile, {
             phoneNumber: this.phoneInput.nativeElement.value
-        };
+        });
 
         this._userService.updateProfileInfo(user).subscribe({
             next: () => {
@@ -79,9 +79,9 @@ export class ProfileComponent implements OnInit {
     }
 
     public socialUpdating(): void {
-        const user: IUser = {
-            socialNetwork: this.socialInput.nativeElement.value
-        };
+        const user: IUser = Object.assign(this.profile, {
+          socialNetwork: this.socialInput.nativeElement.value
+        });
 
         this._userService.updateProfileInfo(user).subscribe({
             next: () => {
