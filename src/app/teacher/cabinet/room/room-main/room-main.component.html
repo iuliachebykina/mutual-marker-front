@@ -1,18 +1,6 @@
 <div class="room-main" *ngIf="room$ | async as room">
     <div class="room-main__header">
-        <h1 class="room-main__title">{{room.title}}</h1>
-        <span class="room-main__code">
-            <button class="room-main__btn" appearance="outline" tuiButton type="button" [tuiManualHint]="template"
-                [tuiManualHintShow]="hintShown" (click)="toggleHint()">
-                ?
-            </button>
-            <ng-template #template>
-                <div tuiMode="onDark">
-                    Код комнаты:<br>
-                    <strong>{{room.code}}</strong>
-                </div>
-            </ng-template>
-        </span>
+        <h1 class="room-main__title" (click)="copyRoomCode(room.code)">{{room.title}}</h1>
     </div>
 
     <ng-container *ngIf="tasks$ | async as tasks">

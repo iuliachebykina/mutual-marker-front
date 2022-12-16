@@ -37,10 +37,6 @@ export class CabinetLayoutHeaderComponent implements OnInit {
         this._router.navigate(['login', 'student']);
     }
 
-    public goToMyRooms(): void {
-        this._router.navigate(['account', 'main']);
-    }
-
     public joinRoom() {
         this._router.navigate(['account', 'create']);
     }

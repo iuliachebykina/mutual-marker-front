@@ -1,8 +1,8 @@
 <div class='layout'>
     <div class='layout__left'>
         <div class='layout__actions'>
-            <div (click)="currentComponent = 'login'" [ngClass]="{'layout__current': currentComponent === 'login', 'container__unable': currentComponent === 'registration'}">Вход</div>
-            <div (click)="currentComponent = 'registration'" [ngClass]="{'layout__current': currentComponent === 'registration', 'container__unable': currentComponent === 'login'}">Регистрация</div>
+            <div (click)="currentComponent = 'login'" [ngClass]="{'layout__current': currentComponent === 'login', 'layout__unable': currentComponent === 'registration'}">Вход</div>
+            <div (click)="currentComponent = 'registration'" [ngClass]="{'layout__current': currentComponent === 'registration', 'layout__unable': currentComponent === 'login'}">Регистрация</div>
         </div>
         <ng-container *ngIf="currentComponent === 'login'">
             <login-component></login-component>

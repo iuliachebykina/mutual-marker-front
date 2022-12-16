@@ -21,7 +21,7 @@ export class CabinetLayoutHeaderComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        document.querySelector('body').style.background = "#fff";
+        document.querySelector('body').style.background = 'rgb(245, 247, 251)';
     }
 
     public navigatePage(value: 'rooms' | 'works'): void {

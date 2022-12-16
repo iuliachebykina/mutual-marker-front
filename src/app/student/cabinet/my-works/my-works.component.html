@@ -1,12 +1,13 @@
 <div *ngIf="!tasks.length" class="my-works my-works_empty">
     <h1 class="my-works__title">Еще нет ни одной сданной работы</h1>
 </div>
-<div *ngFor="let task of tasks; let i = index" class="my-works">
-    <h1 class="my-works__title">Мои работы</h1>
-    <accordion [title]="(task.tasks[0].title)">
-        <div *ngFor="let project of task.tasks; let ind = index" class="my-works__project">
-            <div class="my-works__count">Задание {{ind + 1}}</div>
-            <div class="my-works__name">{{project.title}}</div>
-        </div>
-    </accordion>
+<div class="my-works">
+    <div *ngFor="let task of tasks; let i = index">
+        <accordion [title]="room[0]?.title">
+            <div *ngFor="let project of task.tasks; let ind = index" class="my-works__project">
+                <div class="my-works__count">Задание {{ind + 1}}</div>
+                <div class="my-works__name">{{project.title}}</div>
+            </div>
+        </accordion>
+    </div>
 </div>

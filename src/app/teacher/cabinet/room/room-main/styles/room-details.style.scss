@@ -3,13 +3,24 @@
     &__header {
         display: flex;
         align-items: center;
-        margin-bottom: 60px;
+        margin-bottom: 40px;
     }
 
     &__title {
         margin: 0;
         font-size: 80px;
         line-height: 96px;
+        position: relative;
+
+        &::after {
+            content: '';
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            cursor: pointer;
+            top: 35px;
+            background: url('/assets/icons/question-svgrepo-com.svg') no-repeat center;
+        }
     }
 
     &__btn {
@@ -21,7 +32,7 @@
         color: #FE7451;
         font-size: 24px;
         cursor: pointer;
-        margin-bottom: 34px;
+        margin-bottom: 54px;
 
     }
 
@@ -47,6 +58,16 @@
         &__title {
             font-size: 36px;
             line-height: 40px;
+
+            &::after {
+                content: '';
+                width: 25px;
+                height: 25px;
+                cursor: pointer;
+                position: absolute;
+                top: 50px;
+                background: url('/assets/icons/question-svgrepo-com.svg') no-repeat center;
+            }
         }
 
         &__code {

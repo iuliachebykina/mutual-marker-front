@@ -1,5 +1,6 @@
 .room-members {
     padding: 60px 0 100px;
+
     &__title {
         margin: 0;
         margin-bottom: 65px;
@@ -35,7 +36,7 @@
         font-weight: 500;
         background-color: #fff;
     }
-    
+
     &__username {
         margin-bottom: 20px;
     }
@@ -59,7 +60,7 @@
         align-items: center;
         flex-wrap: wrap;
     }
-    
+
     &__profile {
         width: 200px;
         min-width: 200px;
@@ -89,6 +90,7 @@
         position: absolute;
         transform: translateX(50%);
         top: 30%;
+        width: 40%;
         right: calc(50%);
         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         background-color: #fff;
@@ -130,9 +132,10 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
-    .room-members{
+    .room-members {
         padding-top: 20px;
         background: transparent;
+
         &__title {
             margin-bottom: 20px;
             font-size: 36px;
@@ -156,7 +159,7 @@
             width: 100%;
             margin-right: 0;
         }
-        
+
         &__subtitle {
             font-size: 16px;
             line-height: 20px;
@@ -168,6 +171,8 @@
             right: 0;
             left: 0;
             transform: translate(0);
+            width: auto;
+
         }
     }
 }

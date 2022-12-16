@@ -26,7 +26,7 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
         private _router: Router
     ) {
         super();
-        document.querySelector('body').style.background = "#fff";
+        document.querySelector('body').style.background = "rgb(245, 247, 251)";
     }
 
     public ngOnDestroy(): void {

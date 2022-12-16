@@ -8,6 +8,7 @@ import { ProfileComponent } from "./profile/components/profile.component";
 import { TaskDetailsComponent } from "./project/project-details/project-details.component";
 import { WorkComponent } from "./room/evaluate-work/components/work.component";
 import { EvaluateWorkComponent } from "./room/evaluate-work/evaluate-work.component";
+import { RoomAnalyticsComponent } from "./room/room-analytics/room-analytics.component";
 import { RoomDetailsInfoComponent } from "./room/room-details-info/room-details-info.component";
 import { RoomInformationsComponent } from "./room/room-informations/room-informations.component";
 import { RoomInviteComponent } from "./room/room-invite/room-invite.component";
@@ -62,6 +63,10 @@ export const routes: Routes = [
                     {
                         path: 'work/:workId',
                         component: WorkComponent
+                    },
+                    { 
+                        path: 'analytics',
+                        component: RoomAnalyticsComponent
                     }
                 ]
             },
