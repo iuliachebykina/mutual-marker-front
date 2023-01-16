@@ -1,0 +1,44 @@
+.container {
+    background-color: #FFF7EB;
+    width: auto;
+    height: auto;
+    position: relative;
+    margin: 20px 0 20px 0;
+    padding: 20px;
+
+    &__title {
+        font-size: 20px;
+        color: #222835;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__description {
+        font-size: 16px;
+        padding-top: 10px;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__svg {
+        &__circle {
+            position: absolute;
+            top: 30px;
+            right: calc(50% - 8px);
+        }
+
+        &__triangle {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        &__point {
+            position: absolute;
+            top: 30px;
+            right: calc(30% - 1px);
+        }
+
+    }
+}

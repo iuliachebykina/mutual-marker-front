@@ -3,7 +3,6 @@
     <div class="evaluate-work__subtitle" *ngIf="!evaluate.length">Нет работ для оценивания</div>
     <div *ngFor="let p of evaluate; let i = index">
         <div class="evaluate-work__container" (click)="toWorkDetails(p[0][0].id)">
-            <div class="evaluate-work__count">Задание {{i+1}}</div>
             <div class="evaluate-work__container-title">{{p[0][0].title}}</div>
         </div>
     </div>

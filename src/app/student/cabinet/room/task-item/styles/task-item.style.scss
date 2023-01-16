@@ -4,10 +4,17 @@
     height: auto;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
     line-height: 20px;
-    padding: 18px 0 30px 47px;
+    padding: 18px 0 30px 30px;
     margin-bottom: 20px;
     position: relative;
     cursor: pointer;
+
+    &__arrow {
+        position: absolute;
+        top: calc(50% - 11px);
+        right: 20px;
+        cursor: pointer;
+    }
 
     &__green {
         background-color: #17F5B333;
@@ -39,4 +46,8 @@
         top: 10px;
         right: 10px;
     }
+}
+
+.block {
+    cursor: default;
 }

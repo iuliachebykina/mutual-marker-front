@@ -1,7 +1,7 @@
 <div class="main-page">
     <div class="main-page__wrapper">
-        <div *ngIf="filteredRooms.length || notFoundRooms" class="main-page__create" (click)="createRoom()">Создать
-            комнату</div>
+        <!-- <div *ngIf="filteredRooms.length || notFoundRooms" class="main-page__create" (click)="createRoom()">Создать
+            комнату</div> -->
         <div class="main-page__actions" *ngIf="filteredRooms.length || notFoundRooms">
             <div (click)="sort()" class="main-page__sort">
                 Сортировать<span class="main-page__sort-icon" [ngClass]="{'top': !sortDown, 'down': sortDown}"></span>

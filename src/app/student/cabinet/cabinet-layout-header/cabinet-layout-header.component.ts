@@ -12,6 +12,7 @@ export class CabinetLayoutHeaderComponent implements OnInit {
     public user$: Observable<IUser>;
     public hintVisible: boolean = false;
     public currentItem: 'rooms' | 'works' = 'rooms';
+    public isLightTheme: boolean = true;
 
     constructor(
         private _userBaseService: UserBaseService,
@@ -64,5 +65,9 @@ export class CabinetLayoutHeaderComponent implements OnInit {
 
     public toProfile(): void {
         this._router.navigate(['cabinet', 'profile']);
+    }
+
+    public switchTheme(): void {
+        this.isLightTheme = !this.isLightTheme;
     }
 }

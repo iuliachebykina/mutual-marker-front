@@ -9,6 +9,7 @@ import { RoomDetailsInfoComponent } from "./room/room-details-info/room-details-
 import { RoomMainComponent } from "./room/room-main/room-main.component";
 import { RoomMembersComponent } from "./room/room-members/room-members.component";
 import { RoomStatisticComponent } from "./room/room-statistic/room-statistic.component";
+import { RoomSettingsComponent } from "./room/settings/room-settings.component";
 
 export const routes: Routes = [
     {
@@ -52,6 +53,10 @@ export const routes: Routes = [
                     {
                         path: 'member',
                         component: RoomMembersComponent
+                    },
+                    {
+                        path: 'settings',
+                        component: RoomSettingsComponent
                     }
                 ]
             },

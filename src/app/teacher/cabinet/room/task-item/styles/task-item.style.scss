@@ -7,6 +7,14 @@
     padding: 18px 0 30px 47px;
     margin-bottom: 20px;
     position: relative;
+    cursor: pointer;
+
+    &__arrow {
+        position: absolute;
+        top: calc(50% - 2px);
+        right: 38px;
+        cursor: pointer;
+    }
 
     &__id {
         font-size: 18px;
@@ -16,5 +24,26 @@
 
     &__title {
         font-size: 24px;
+        padding-top: 20px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .room {
+        padding: 20px;
+
+        &__title {
+            width: auto;
+        }
+
+        &__arrow {
+            display: none;
+        }
+    }
+
+    .popup {
+        position: absolute;
+        top: 0;
+        right: -25px;
     }
 }

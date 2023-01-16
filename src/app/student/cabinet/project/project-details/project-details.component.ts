@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { map, Observable, switchMap, take } from "rxjs";
+import { declOfNum } from "src/app/modules/word-by-number";
 import { IMark, IStatistic, MarksService } from "src/app/services/marks.service";
 import { IAttachment, ProjectFileManagerService } from "src/app/services/project-file-manager.service";
 import { ITaskResponse, RoomService } from "src/app/services/room.service";
@@ -58,7 +59,7 @@ export class TaskDetailsComponent implements OnInit {
                 next: (data: IAttachment[]): void => {
                     this.project = data;
                     this.project = this.project.filter(i => i !== null);
-                    if (data) {
+                    if (data[0]?.attachments[0]) {
                         this.openWork(data[0]?.attachments[0]);
                     }
                     this._markService.getAllMarksByTaskId(this.taskId)
@@ -72,7 +73,7 @@ export class TaskDetailsComponent implements OnInit {
                         });
                 }
             });
-
+            console.log(this.project);
     }
 
     public uploadWork(element: any): void {
@@ -89,7 +90,7 @@ export class TaskDetailsComponent implements OnInit {
                         next: (data: IAttachment[]): void => {
                             this.project = data;
                             this.project = this.project.filter(i => i !== null);
-                            if (data) {
+                            if (data[0]?.attachments[0]) {
                                 this.openWork(data[0].attachments[0]);
                             }
                         }
@@ -98,8 +99,11 @@ export class TaskDetailsComponent implements OnInit {
     }
 
     public delete(): void {
-        const newObjt: IAttachment = Object.assign(this.project[0], {attachments: null});
-        this._fileManager.updateProject(newObjt).subscribe();
+        this._fileManager.deleteAttachment(this.project[0]?.id, this.project[0].attachments[0]).subscribe({
+            next: () => {
+                this.project = [];
+            }
+        })
     }
 
     public openWork(fileName: string): void {
@@ -114,5 +118,9 @@ export class TaskDetailsComponent implements OnInit {
                     this.pdfSrc = url;
                 }
             });
+    }
+
+    public getDelOfWords(count: number): string {
+        return declOfNum(count, ['работу', 'работ', 'работы']);
     }
 }

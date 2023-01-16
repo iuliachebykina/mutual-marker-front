@@ -1,20 +1,60 @@
 <div *ngIf="user$ | async as user" class="cabinet-layout-header">
     <div class="cabinet-layout-header__wrapper">
-        <div class="cabinet-layout-header__username">
-            <div (click)="toProfile()">
-                {{user.name.lastName}} {{user.name.firstName}}
-            </div>
-        </div>
         <div class="cabinet-layout-header__menu">
             <a class="cabinet-layout-header__link" [routerLink]="['/cabinet/main']" routerLinkActive="is-active">Мои
                 комнаты</a>
             <a class="cabinet-layout-header__link" [routerLink]="['/cabinet/works']" routerLinkActive="is-active">Мои
                 работы</a>
         </div>
+        <div class="cabinet-layout-header__username">
+            <div>
+                <span class="cabinet-layout-header__username__theme" (click)="switchTheme()">
+                    <span *ngIf="isLightTheme">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12.0006" cy="11.9996" r="3.28571" stroke="#222835" stroke-width="2" />
+                            <path d="M12 3.42859V6.00002" stroke="#222835" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M12 18L12 20.5714" stroke="#222835" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6 6L7.71429 7.71429" stroke="#222835" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M16.2852 16.2861L17.9994 18.0004" stroke="#222835" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M3.42969 12H5.14397" stroke="#222835" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M18 12L20.5714 12" stroke="#222835" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6 18.0004L7.71429 16.2861" stroke="#222835" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M16.2852 7.71429L17.9994 6" stroke="#222835" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                    <span *ngIf="!isLightTheme">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12.0006" cy="11.9996" r="3.28571" stroke="#F8D563" stroke-width="2" />
+                            <path d="M12 3.42859V6.00002" stroke="#F8D563" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M12 18L12 20.5714" stroke="#F8D563" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6 6L7.71429 7.71429" stroke="#F8D563" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M16.2852 16.2861L17.9994 18.0004" stroke="#F8D563" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M3.42969 12H5.14397" stroke="#F8D563" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M18 12L20.5714 12" stroke="#F8D563" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M6 18.0004L7.71429 16.2861" stroke="#F8D563" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M16.2852 7.71429L17.9994 6" stroke="#F8D563" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </span>
+                <span (click)="toProfile()">{{user.name.lastName}} {{user.name.firstName}}</span>
+            </div>
+        </div>
     </div>
-    <!-- <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
-        <div (click)="joinRoom()">Присоединиться к комнате</div>
-        <div (click)="exit()">Выход</div>
-    </div> -->
 </div>
 <router-outlet></router-outlet>

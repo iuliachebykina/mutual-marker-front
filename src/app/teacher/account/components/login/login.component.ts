@@ -1,7 +1,7 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { catchError } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { UserBaseService } from "src/app/services/user.base.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
@@ -49,9 +49,9 @@ export class LoginComponent extends FormBaseViewModel {
                         this._route.navigate(['account', 'main']);
                     }
                 },
-                error: (error: string): void => {
+                error: (error: HttpErrorResponse): void => {
                     this._notificationService.subject$.next({
-                        text: error || 'Ошибка при входе в аккаунт',
+                        text: error.error || 'Ошибка при входе в аккаунт',
                         status: 'error'
                     });
                 }

@@ -11,6 +11,13 @@
         flex-direction: column;
     }
 
+    &__arrow {
+        position: absolute;
+        top: calc(50% - 8px);
+        right: 50px;
+        cursor: pointer;
+    }
+
     &__id {
         font-size: 18px;
         line-height: 23px;
@@ -22,7 +29,7 @@
     &__title {
         font-size: 36px;
         line-height: 48px;
-        width: 400px;
+        width: 70%;
         margin-bottom: 75px;
         cursor: pointer;
     }
@@ -42,6 +49,7 @@
 @media (min-width: 320px) and (max-width: 767px) {
     .room-item {
         padding: 20px;
+
         &__title {
             width: auto;
         }

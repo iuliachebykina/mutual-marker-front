@@ -92,6 +92,10 @@ export class RoomService {
     public joinStudentToRoom(roomCode: string): Observable<IBasicRoom> {
         return this._httpRequestService.post<any>(`/api/rooms/student/${roomCode}`, {});
     }
+
+    public deleteRoom(code: string): Observable<void> {
+        return this._httpRequestService.delete<any>('/api/rooms/room/' + code);
+    }
 }
 
 export interface IBasicRoom {
@@ -101,20 +105,20 @@ export interface IBasicRoom {
 }
 
 export interface ITaskRequest {
-    "title": string,
-    "description": string,
-    "openDate": string | Date,
-    "closeDate": string | Date,
-    "roomId": number,
-    "minNumberOfGraded": number,
-    "markSteps": [
+    title: string,
+    description: string,
+    openDate: string | Date,
+    closeDate: string | Date,
+    roomId: number,
+    minNumberOfGraded: number,
+    markSteps: [
         {
-            "title": string,
-            "description": string,
-            "values": number[]
+            title: string,
+            description: string,
+            values: any;
         }
     ],
-    "owner": string
+    owner: string
 }
 
 export interface ITaskResponse {
@@ -124,6 +128,7 @@ export interface ITaskResponse {
     id?: number;
     openDate?: string;
     roomId?: number;
+    minNumberOfGraded?: number;
     title?: string;
     markSteps?: Array<{
         deleted: boolean;

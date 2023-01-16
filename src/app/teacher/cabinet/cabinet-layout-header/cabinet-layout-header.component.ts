@@ -34,7 +34,7 @@ export class CabinetLayoutHeaderComponent implements OnInit {
         localStorage.clear();
         this._userBaseService.logout();
         this._userBaseService.setUser(null);
-        this._router.navigate(['login', 'student']);
+        this._router.navigate(['login', 'teacher']);
     }
 
     public joinRoom() {

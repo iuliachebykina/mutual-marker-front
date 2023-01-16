@@ -1,0 +1,22 @@
+.wrapper {
+    padding: 80px 0 0 30px;
+
+    &__item {
+        font-size: 18px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        position: relative;
+
+        &__link {
+            position: absolute;
+            left: -30px;
+            top: -2px;
+        }
+
+        &__trash {
+            position: absolute;
+            left: -28px;
+            top: -1px;
+        }
+    }
+}

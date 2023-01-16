@@ -19,6 +19,7 @@ import { RoomStatisticComponent } from "./room/room-statistic/room-statistic.com
 import { RoomMainComponent } from "./room/room-main/room-main.component";
 import { MarksService } from "src/app/services/marks.service";
 import { RoomMembersComponent } from "./room/room-members/room-members.component";
+import { RoomSettingsComponent } from "./room/settings/room-settings.component";
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { RoomMembersComponent } from "./room/room-members/room-members.component
         TaskItemComponent,
         RoomStatisticComponent,
         RoomMainComponent,
-        RoomMembersComponent
+        RoomMembersComponent,
+        RoomSettingsComponent
     ],
     imports: [
         CommonModule,

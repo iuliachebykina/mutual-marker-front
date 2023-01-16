@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { tuiLoaderOptionsProvider } from '@taiga-ui/core';
+import { AngularFaviconService } from 'angular-favicon';
 import { Subject, takeUntil } from 'rxjs';
 import { GlobalNotificationService, INotificationOptions } from './services/global-notification.service';
 import { UserBaseService } from './services/user.base.service';
@@ -26,7 +27,8 @@ export class AppComponent implements OnDestroy, OnInit {
     constructor(
         private _userBaseService: UserBaseService,
         private _router: Router,
-        private _globalNotificationService: GlobalNotificationService
+        private _globalNotificationService: GlobalNotificationService,
+        private ngxFavicon: AngularFaviconService
     ) {
         if (localStorage.getItem('user')) {
             const user: IUser = JSON.parse(localStorage.getItem('user'));
@@ -38,6 +40,12 @@ export class AppComponent implements OnDestroy, OnInit {
                     this.loading = false;
                     if (!success.role) {
                         this._router.navigate(['login', 'student']);
+                    } else if (this._router.url === '/') {
+                        if (success.role === 'ROLE_TEACHER') {
+                            this._router.navigate(['account', 'main']);
+                        } else if (success.role === 'ROLE_STUDENT') {
+                            this._router.navigate(['cabinet', 'main']);
+                        }
                     }
                 });
         } else {
@@ -47,6 +55,7 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     public ngOnInit(): void {
+        this.ngxFavicon.setFavicon('/assets/icons/favicon.ico');
         this._globalNotificationService.subject$
             .pipe(
                 takeUntil(this._onDestroyEvent$)

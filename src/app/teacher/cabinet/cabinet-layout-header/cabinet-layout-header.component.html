@@ -1,17 +1,24 @@
 <div>
-    <div *ngIf="user$ | async as user" class="cabinet-layout-header"  (mouseleave)="onMouseLeave()">
+    <div *ngIf="user$ | async as user" class="cabinet-layout-header" (mouseleave)="onMouseLeave()">
         <div class="cabinet-layout-header__wrapper">
+            <div class="cabinet-layout-header__menu">
+                <div class="cabinet-layout-header__link" [routerLink]="['/account/main']" routerLinkActive="is-active">
+                    Главная</div>
+                <div class="cabinet-layout-header__link" [routerLink]="['/account/create']"
+                    routerLinkActive="is-active">
+                    Создать комнату</div>
+            </div>
             <div class="cabinet-layout-header__username" (click)="onMouseOver()">
                 <div>
                     {{user.name.lastName}} {{user.name.firstName}}
+                    <span class="cabinet-layout-header__username__exit" (click)="exit()">
+                        <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M0.25 2C0.25 1.0335 1.0335 0.25 2 0.25H7C7.41421 0.25 7.75 0.585786 7.75 1C7.75 1.41421 7.41421 1.75 7 1.75H2C1.86193 1.75 1.75 1.86193 1.75 2V16C1.75 16.1381 1.86193 16.25 2 16.25H7C7.41421 16.25 7.75 16.5858 7.75 17C7.75 17.4142 7.41421 17.75 7 17.75H2C1.0335 17.75 0.25 16.9665 0.25 16V2ZM6.25 9C6.25 8.58579 6.58579 8.25 7 8.25H14.1893L12.4697 6.53033C12.1768 6.23744 12.1768 5.76256 12.4697 5.46967C12.7626 5.17678 13.2374 5.17678 13.5303 5.46967L16.5303 8.46967C16.6022 8.54158 16.6565 8.62445 16.6931 8.71291C16.7251 8.79009 16.7446 8.87376 16.749 8.9614C16.7497 8.97419 16.75 8.98706 16.75 9C16.75 9.10169 16.7298 9.19866 16.6931 9.28709C16.6565 9.37555 16.6022 9.45842 16.5303 9.53033L13.5303 12.5303C13.2374 12.8232 12.7626 12.8232 12.4697 12.5303C12.1768 12.2374 12.1768 11.7626 12.4697 11.4697L14.1893 9.75H7C6.58579 9.75 6.25 9.41421 6.25 9Z"
+                                fill="#222835" />
+                        </svg>
+                    </span>
                 </div>
-                <div class="hint" *ngIf="hintVisible" (mouseleave)="onMouseLeave()">
-                    <div (click)="joinRoom()">Создать комнату</div>
-                    <div (click)="exit()">Выход</div>
-                </div>
-            </div>
-            <div class="cabinet-layout-header__menu">
-                <div class="cabinet-layout-header__link" [routerLink]="['/account/main']" routerLinkActive="is-active">Мои комнаты</div>
             </div>
         </div>
     </div>

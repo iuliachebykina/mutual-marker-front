@@ -1,25 +1,27 @@
 <div *ngIf="task$ | async as task" class="project-details">
-    <h1 class="project-details__title">Задание {{projectIndex}}</h1>
     <div class="project-details__subtitle">{{task.title}}</div>
-    
-    <div *ngIf="project.length" class="project-details__grade">
+    <warning-alert *ngIf="project[0]?.attachments.length" [title]="'Вы не оценили необходимое количество работ'" [description]="'Необходимо оценить ' + task.minNumberOfGraded + ' ' + getDelOfWords(task.minNumberOfGraded)"></warning-alert>
+    <div *ngIf="project[0]?.attachments.length" class="project-details__grade">
         <div class="project-details__grade-current">Текущая оценка</div>
         <div class="project-details__grade-percent">{{mark}}/100</div>
     </div>
-    <div *ngIf="project.length" class="project-details__scale">
+    <div *ngIf="project[0]?.attachments.length" class="project-details__scale">
         <div #grade  class="project-details__linear"></div>
     </div>
-    <div *ngIf="project.length" class="project-details__actions">
+    <div *ngIf="project[0]?.attachments.length" class="project-details__actions">
         <div class="project-details__edit">Редактировать</div>
         <div class="project-details__delete" (click)="delete()">Удалить</div>
     </div>
-    <div *ngIf="!project.length">
+    <div *ngIf="!project[0]?.attachments.length">
         <label class="project-details__upload-work" for="file">Загрузить работу</label>
         <input style="display: none;" #input id="file" accept="application/pdf" (change)="uploadWork($event.target)" type="file">
     </div>
-    <div *ngFor="let proj of project">
-        <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false" style="width: 100%; height: 500px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);">
-        </pdf-viewer>
+
+    <div *ngIf="project[0]?.attachments.length">
+        <div *ngFor="let proj of project">
+            <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false" style="width: 100%; height: 500px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);">
+            </pdf-viewer>
+        </div>
     </div>
 
 </div>

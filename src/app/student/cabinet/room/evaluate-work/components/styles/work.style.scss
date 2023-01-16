@@ -1,5 +1,6 @@
 h1 {
   font-size: 60px;
+  margin-top: 80px;
 }
 
 .download {
@@ -10,6 +11,9 @@ h1 {
   display: block;
 }
 
+.range {
+  margin-bottom: 10px;
+}
 
 /*Chrome*/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -60,22 +64,20 @@ input[type="range"]::-ms-fill-upper {
 
 .title {
   font-size: 24px;
-  margin-top: -30px;
+  margin-top: 30px;
   margin-bottom: 90px;
 }
 
 .mark {
   font-size: 24px;
   font-weight: 400;
-  // position: absolute;
-  // top: -50px;
-  // z-index: -1;
+  margin-bottom: 40px;
 }
 
 .actions {
   display: flex;
   justify-content: space-between;
-  margin-bottom: -25px;
+  margin-bottom: 20px;
 }
 
 .save {
@@ -97,11 +99,10 @@ input[type="range"]::-ms-fill-upper {
 
   .title {
     margin-top: 20px;
-    margin-bottom: 50px;
   }
 
   .actions {
-    margin-bottom: 0;
+    margin-bottom: -20px;
     display: block;
     line-height: 40px;
   }

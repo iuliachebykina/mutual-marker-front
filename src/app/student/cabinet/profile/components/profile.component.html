@@ -6,21 +6,21 @@
             <div class="profile__block">
                 <div class="profile__subtitle">Пользователь</div>
                 <div *ngIf="!nameUpdate" class="profile__forchange" (click)="nameUpdate = true">
-                    {{profile.name.lastName}} {{profile.name.firstName}} {{profile.name.patronymic}}</div>
+                    {{profile?.name?.lastName}} {{profile?.name?.firstName}} {{profile?.name?.patronymic}}</div>
                 <input *ngIf="nameUpdate" class="profile__input profile__input_name" #name>
                 <button class="profile__save" *ngIf="nameUpdate" (click)="updateUsername()">Сохранить</button>
             </div>
             <div class="profile__block">
                 <div class="profile__subtitle">Контакты</div>
                 <div *ngIf="!phoneUpdate" class="profile__forchange" (click)="phoneUpdate = true">
-                    {{profile.phoneNumber}}</div>
+                    {{profile?.phoneNumber}}</div>
                 <input *ngIf="phoneUpdate" class="profile__input" #phone>
                 <button class="profile__save" *ngIf="phoneUpdate" (click)="updatePhone()">Сохранить</button>
             </div>
             <div class="profile__block">
                 <div class="profile__subtitle">Контакты</div>
                 <div *ngIf="!socialUpdate" class="profile__forchange" (click)="socialUpdate = true">
-                    {{profile.socialNetwork}}</div>
+                    {{profile?.socialNetwork}}</div>
                 <input *ngIf="socialUpdate" class="profile__input" #social >
                 <button class="profile__save" *ngIf="socialUpdate" (click)="socialUpdating()">Сохранить</button>
             </div>

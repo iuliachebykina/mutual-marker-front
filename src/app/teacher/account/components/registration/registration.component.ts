@@ -1,17 +1,17 @@
-import { Component, EventEmitter, OnDestroy, Output } from "@angular/core";
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { UserBaseService } from "src/app/services/user.base.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 import { IUser } from "../../interfaces/user-registration.interface";
-
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 @Component({
     selector: 'registration-component',
     templateUrl: './registration.component.html',
     styleUrls: ['./styles/registration.style.scss'],
 })
-export class RegistrationComponent extends FormBaseViewModel implements OnDestroy {
+export class RegistrationComponent extends FormBaseViewModel implements OnDestroy, OnInit {
     @Output()
     public onRegistration: EventEmitter<void> = new EventEmitter<void>();
 
@@ -26,6 +26,20 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
 
     public ngOnDestroy(): void {
         this._onDestroy$.next();
+    }
+
+    public ngOnInit(): void {
+        this.getControl('password').valueChanges.subscribe({
+            next: () => {
+                this.getControl('repeatPassword').addValidators(this.checkLimit());
+            }
+        });
+
+        this.getControl('repeatPassword').valueChanges.subscribe({
+            next: () => {
+                this.getControl('password').addValidators(this.checkLimit());
+            }
+        });
     }
 
     public submitForm(): void {
@@ -88,12 +102,23 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
                 Validators.required,
             ]),
             socialNetworkLink: new FormControl('', [
-                Validators.required,
+                Validators.required
             ]),
             contacts: new FormControl('', [
                 Validators.required,
+                Validators.maxLength(11),
+                Validators.minLength(11)
             ])
         })
     }
 
+    private checkLimit(): ValidatorFn {
+        return (c: AbstractControl): { [key: string]: boolean } | null => {
+            let pass = this.getFormValue('password');
+            let confirmPass = this.getFormValue('repeatPassword');
+            return pass === confirmPass ? null : { 'notSame': true }
+        };
+    }
+
 }
+

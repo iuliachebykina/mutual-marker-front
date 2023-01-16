@@ -15,7 +15,7 @@ export class ProjectFileManagerService {
      */
     public uploadStudentWork(fileToUpload: File): Observable<string[]> {
         const formData: FormData = new FormData();
-        formData.append('files', fileToUpload, fileToUpload.name);
+        formData.append('attachments', fileToUpload, fileToUpload.name);
 
         return this._httpRequestService.post<string[]>('/api/attachments/upload', formData);
     }
@@ -63,6 +63,10 @@ export class ProjectFileManagerService {
             .pipe(
                 map(response => response)
             );
+    }
+
+    public deleteAttachment(projectId: number, fileName: string): Observable<void> {
+        return this._httpRequestService.delete<any>('/api/project/' + projectId + '/attachments/' + fileName);
     }
 }
 
