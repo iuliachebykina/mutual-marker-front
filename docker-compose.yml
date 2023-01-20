@@ -10,3 +10,8 @@ services:
       - '/main/node_modules'
     ports:
       - "80:80"
+    networks:
+      - some-net
+networks:
+  some-net:
+    driver: bridge
