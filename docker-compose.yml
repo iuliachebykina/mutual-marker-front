@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  mutual-marker-front:
+    container_name: mutual-marker-front
+    build:
+      context: .
+    image: mutual-marker-front:latest
+    volumes:
+      - '.:/main'
+      - '/main/node_modules'
+    ports:
+      - "80:80"
