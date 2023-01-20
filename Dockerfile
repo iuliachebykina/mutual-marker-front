@@ -3,10 +3,10 @@ WORKDIR main
 
 COPY main/package.json ./package.json
 RUN npm install
-RUN npm run build
 
 COPY main ./
-RUN npm run prod-parallel
+RUN npm run build
 
 FROM nginx:latest
 COPY --from=build-img main/dist /usr/share/nginx/html
+EXPOSE 80
