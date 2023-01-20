@@ -14,4 +14,4 @@ services:
       - some-net
 networks:
   some-net:
-    driver: bridge
+    name: some-net
