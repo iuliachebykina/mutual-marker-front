@@ -7,6 +7,6 @@ RUN npm install
 COPY main ./
 RUN npm run build
 
-FROM nginx:latest
-COPY --from=build-img main/dist /usr/share/nginx/html
-EXPOSE 80
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build-img /main/dist/project-proverka /usr/share/nginx/html
