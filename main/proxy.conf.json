@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://localhost:8090",
+    "target": "http://mutual-marker-back:8090",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
