@@ -1,0 +1,11 @@
+<div class="room-task" *ngIf="task$ | async as task">
+    <div class="room-task__name">
+        {{task.title}}
+    </div>
+    <div class="room-task__title">
+        {{task.description}}
+    </div>
+    <div class="room-task__excel" (click)="excel()">
+        Сделать выгрузку задания
+    </div>
+</div>

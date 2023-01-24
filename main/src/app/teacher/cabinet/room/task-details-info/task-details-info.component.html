@@ -1,0 +1,14 @@
+<div class="room-details-info">
+    <div class="room-details-info__menu">
+        <ul class="room-details-info__list">
+            <li class="room-details-info__item" (click)="toRoom()">
+                Комната
+            </li>
+            <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['works']">
+                Работы участников</li>
+        </ul>
+    </div>
+    <div class="room-details-info__info">
+        <router-outlet></router-outlet>
+    </div>
+</div>

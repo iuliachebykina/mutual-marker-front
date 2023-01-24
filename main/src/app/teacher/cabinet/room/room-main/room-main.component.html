@@ -9,7 +9,7 @@
         <div *ngIf="!tasks.length" class="room-main__current-task">В этой комнате еще нет ни одного задания
         </div>
         <div *ngFor="let task of tasks; let i = index">
-            <task-item [task]="task" [index]="i" (onDeleted)="taskSuccessHandler()"></task-item>
+            <task-item [task]="task" [index]="i" (onDeleted)="taskSuccessHandler()" (onArrowClick)="onArrowClick($event)"></task-item>
         </div>
     </ng-container>
 </div>

@@ -52,6 +52,10 @@ export class RoomMainComponent {
             );
     }
 
+    public onArrowClick(id: number): void {
+        this._router.navigate(['account/task/' + id + '/info'])
+    }
+
     /** обновление данных при успешном запросе связанным с тасками (удаление, добавление, etc) */
     public taskSuccessHandler(): void {
         this.tasks$ = this._roomService.getTasks(parseInt(this.roomId))

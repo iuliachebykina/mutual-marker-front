@@ -125,6 +125,7 @@ export interface ITaskResponse {
     closeDate?: string;
     deleted?: boolean;
     description?: string;
+    isBlock?: boolean;
     id?: number;
     openDate?: string;
     roomId?: number;

@@ -51,7 +51,7 @@ export class EvaluateWorkComponent implements OnInit {
                 switchMap((projectId: number[]): Observable<IAttachment[][]> => {
                     return forkJoin([
                         ...projectId.filter(i => i !== null).map((item) => {
-                            return this._projectService.getAnotherStudentProject(null, item)
+                            return this._projectService.getAnotherStudentProject(item)
                         })
                     ])
                 }),
@@ -84,6 +84,6 @@ export class EvaluateWorkComponent implements OnInit {
 
     public toWorkDetails(workId: number): void {
         const taskId: number = this.tasks.find(item => item.roomId === parseInt(this.roomId))?.id;
-        this._router.navigate(['cabinet', 'room', this.roomId, 'work', workId], { queryParams: { task: taskId }});
+        this._router.navigate(['cabinet', 'room', this.roomId, 'work', workId], { queryParams: { task: taskId } });
     }
 }

@@ -35,8 +35,8 @@ export class ProjectFileManagerService {
             );
     }
 
-    public getAnotherStudentProject(taskId: string | number, projectId: string | number): Observable<IAttachment[]> {
-        return this._httpRequestService.get<IAttachment[]>(`/api/task/${taskId}/project/${projectId}`)
+    public getAnotherStudentProject(projectId: string | number): Observable<IAttachment[]> {
+        return this._httpRequestService.get<IAttachment[]>(`/api/task/project/${projectId}`)
             .pipe(
                 map(attachment => Array.isArray(attachment) ? attachment : [attachment])
             );
@@ -65,8 +65,16 @@ export class ProjectFileManagerService {
             );
     }
 
+    public getProjectsByTask(task_id: number): Observable<any> {
+        return this._httpRequestService.get<any>('/api/task/' + task_id + '/projects');
+    }
+
     public deleteAttachment(projectId: number, fileName: string): Observable<void> {
         return this._httpRequestService.delete<any>('/api/project/' + projectId + '/attachments/' + fileName);
+    }
+
+    public excelStatistic(id: number): Observable<any> {
+        return this._httpRequestService.get('/api/statistics/excel', { responseType: 'blob', params: { taskId: id } });
     }
 }
 

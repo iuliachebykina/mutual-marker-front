@@ -1,0 +1,6 @@
+<div class="student">
+    <div class="student__work" *ngFor="let i of tasks">
+        <div class="student__work__title">Тема: {{title}}</div>
+        <div class="student__work__name">{{i.student.lastName}} {{i.student.firstName}} {{i.student.patronymic}}</div>
+    </div>
+</div>

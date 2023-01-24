@@ -40,7 +40,7 @@ export class TaskItemComponent implements OnInit {
         this.isBlock = new Date() > new Date(this.task.closeDate);
         this._markService.getAllMarksByTaskId(this.task.id)
             .pipe(
-                map(marks => marks.filter(i => i !== null))
+                map(marks => marks?.filter(i => i !== null))
             )
             .subscribe({
                 next: (marks) => {

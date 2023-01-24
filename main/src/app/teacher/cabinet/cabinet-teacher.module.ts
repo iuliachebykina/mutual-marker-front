@@ -20,10 +20,15 @@ import { RoomMainComponent } from "./room/room-main/room-main.component";
 import { MarksService } from "src/app/services/marks.service";
 import { RoomMembersComponent } from "./room/room-members/room-members.component";
 import { RoomSettingsComponent } from "./room/settings/room-settings.component";
+import { TaskInformationComponent } from "./room/task-information/task-information.component";
+import { TaskDetailsInfoComponent } from "./room/task-details-info/task-details-info.component";
+import { TaskStudentWorksInfoComponent } from "./room/task-student-works-info/task-student-works-info.component";
+import { ProjectFileManagerService } from "src/app/services/project-file-manager.service";
 
 @NgModule({
     declarations: [
         CabinetLayoutHeaderComponent,
+        TaskStudentWorksInfoComponent,
         MainPageComponent,
         NotFoundErrorComponent,
         CreateRoomComponent,
@@ -34,7 +39,9 @@ import { RoomSettingsComponent } from "./room/settings/room-settings.component";
         RoomStatisticComponent,
         RoomMainComponent,
         RoomMembersComponent,
-        RoomSettingsComponent
+        RoomSettingsComponent,
+        TaskInformationComponent,
+        TaskDetailsInfoComponent
     ],
     imports: [
         CommonModule,
@@ -52,6 +59,6 @@ import { RoomSettingsComponent } from "./room/settings/room-settings.component";
         TuiInputDateTimeModule
     ],
     exports: [],
-    providers: [CanActivateCabinet, MarksService]
+    providers: [CanActivateCabinet, MarksService, ProjectFileManagerService]
 })
 export class CabinetTeacherModule {}

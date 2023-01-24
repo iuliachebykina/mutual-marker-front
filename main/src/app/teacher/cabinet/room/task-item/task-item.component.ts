@@ -13,6 +13,9 @@ export class TaskItemComponent implements OnDestroy {
     @Output()
     public onDeleted: EventEmitter<void> = new EventEmitter<void>();
 
+    @Output()
+    public onArrowClick: EventEmitter<number> = new EventEmitter<number>();
+
     @Input()
     public task: ITaskResponse;
 
@@ -43,5 +46,9 @@ export class TaskItemComponent implements OnDestroy {
     /** редактирование таски */
     public updateTask(): void {
         
+    }
+
+    public toInformation(): void {
+        this.onArrowClick.emit(this.task.id);
     }
 }

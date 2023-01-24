@@ -10,6 +10,9 @@ import { RoomMainComponent } from "./room/room-main/room-main.component";
 import { RoomMembersComponent } from "./room/room-members/room-members.component";
 import { RoomStatisticComponent } from "./room/room-statistic/room-statistic.component";
 import { RoomSettingsComponent } from "./room/settings/room-settings.component";
+import { TaskDetailsInfoComponent } from "./room/task-details-info/task-details-info.component";
+import { TaskInformationComponent } from "./room/task-information/task-information.component";
+import { TaskStudentWorksInfoComponent } from "./room/task-student-works-info/task-student-works-info.component";
 
 export const routes: Routes = [
     {
@@ -29,6 +32,20 @@ export const routes: Routes = [
             {
                 path: 'create',
                 component: CreateRoomComponent
+            },
+            {
+                path: 'task/:id',
+                component: TaskDetailsInfoComponent,
+                children: [
+                    {
+                        path: 'info',
+                        component: TaskInformationComponent
+                    },
+                    {
+                        path: 'works',
+                        component: TaskStudentWorksInfoComponent
+                    }
+                ]
             },
             {
                 path: 'room/:id',
