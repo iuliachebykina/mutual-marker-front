@@ -48,10 +48,10 @@ export class EvaluateWorkComponent implements OnInit {
                         })
                     ])
                 }),
-                switchMap((projectId: number[]): Observable<IAttachment[][]> => {
+                switchMap((projectId: [number, number][]): Observable<IAttachment[][]> => {
                     return forkJoin([
-                        ...projectId.filter(i => i !== null).map((item) => {
-                            return this._projectService.getAnotherStudentProject(item)
+                        ...projectId.filter(i => i[0] !== null).map((item) => {
+                            return this._projectService.getAnotherStudentProject(item[0], item[1])
                         })
                     ])
                 }),
@@ -77,9 +77,12 @@ export class EvaluateWorkComponent implements OnInit {
             .subscribe({
                 next: (v: IAttachment[][][]): void => {
                     this.evaluate = v;
-                    console.log(v);
                 }
             })
+    }
+
+    public getTheme(id: number): string {
+        return this.tasks.find(i => i.id === id)?.title;
     }
 
     public toWorkDetails(workId: number): void {

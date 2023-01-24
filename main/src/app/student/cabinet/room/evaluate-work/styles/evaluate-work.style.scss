@@ -4,7 +4,7 @@
         font-size: 80px;
         line-height: 96px;
     }
-    
+
     &__subtitle {
         margin-bottom: 20px;
         font-size: 24px;
@@ -32,6 +32,13 @@
         color: #1A1A1A;
         font-size: 24px;
         line-height: 28px;
+    }
+
+    &__container-theme {
+        color: #767676;
+        font-size: 18px;
+        margin-bottom: 17px;
+        word-break: break-all;
     }
 
     &__grade {
@@ -107,7 +114,7 @@
             font-size: 36px;
             line-height: 48px;
         }
-        
+
         &__subtitle {
             font-size: 16px;
             line-height: 20px;

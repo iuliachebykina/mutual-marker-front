@@ -59,7 +59,7 @@ export class WorkComponent implements OnInit {
             });
 
         this.task$ = this._roomService.getTaskById(this.taskId);
-        this._fileManager.getAnotherStudentProject(this.projectId)
+        this._fileManager.getAnotherStudentProject(this.projectId, parseInt(this.taskId))
             .subscribe({
                 next: (data: IAttachment[]): void => {
                     this.project = data;

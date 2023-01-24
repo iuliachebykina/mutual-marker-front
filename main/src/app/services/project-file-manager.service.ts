@@ -35,10 +35,15 @@ export class ProjectFileManagerService {
             );
     }
 
-    public getAnotherStudentProject(projectId: string | number): Observable<IAttachment[]> {
+    public getAnotherStudentProject(projectId: string | number, task_id: number): Observable<IAttachment[]> {
         return this._httpRequestService.get<IAttachment[]>(`/api/task/project/${projectId}`)
             .pipe(
-                map(attachment => Array.isArray(attachment) ? attachment : [attachment])
+                map(attachment => Array.isArray(attachment) ? attachment : [attachment]),
+                map(att => {
+                    att[0].taskId = task_id;
+
+                    return att;
+                })
             );
     }
 
@@ -51,10 +56,10 @@ export class ProjectFileManagerService {
      * @param task_id айди задания
      * @returns 
      */
-    public getRandomProject(task_id: number): Observable<number> {
+    public getRandomProject(task_id: number): Observable<[number, number]> {
         return this._httpRequestService.get<any>(`/api/task/${task_id}/project/random`)
             .pipe(
-                map(response => response)
+                map(response => [response, task_id])
             );
     }
 
@@ -84,4 +89,5 @@ export interface IAttachment {
     description?: string,
     id?: number;
     grade?: any;
+    taskId?: number;
 }
