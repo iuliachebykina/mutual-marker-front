@@ -24,8 +24,8 @@ export class RoomService {
      * @param teacherId 
      * @returns 
      */
-    public createRoom(title: string, teacherId: number): Observable<void> {
-        return this._httpRequestService.post<void>('api/rooms/room', { title, teacherId });
+    public createRoom(title: string, teacherId: number, description: string): Observable<void> {
+        return this._httpRequestService.post<void>('api/rooms/room', { title, teacherId, description });
     }
 
     /**

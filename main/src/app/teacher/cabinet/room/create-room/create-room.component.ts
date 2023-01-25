@@ -27,7 +27,7 @@ export class CreateRoomComponent extends FormBaseViewModel implements OnDestroy 
 
     public createRoom(): void {
         this._userBaseService.getUser().subscribe(user => {
-            this._roomService.createRoom(this.getFormValue('projectName'), parseFloat(user.id))
+            this._roomService.createRoom(this.getFormValue('projectName'), parseFloat(user.id), this.getFormValue('projectDescription'))
                 .pipe(
                     takeUntil(this._onDestroy$)
                 )
