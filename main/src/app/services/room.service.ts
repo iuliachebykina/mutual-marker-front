@@ -99,9 +99,10 @@ export class RoomService {
 }
 
 export interface IBasicRoom {
-    code: string,
-    id: number,
-    title: string
+    code: string;
+    id: number;
+    title: string;
+    description: string;
 }
 
 export interface ITaskRequest {
@@ -130,6 +131,7 @@ export interface ITaskResponse {
     openDate?: string;
     roomId?: number;
     minNumberOfGraded?: number;
+    numberOfWorksLeftToGrade?: number;
     title?: string;
     markSteps?: Array<{
         deleted: boolean;

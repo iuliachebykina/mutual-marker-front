@@ -1,5 +1,6 @@
 <div class="room-information">
     <h1 class="room-information__title" *ngIf="room">{{room.title}}</h1>
+    <div class="room-information__description" *ngIf="room">{{room.description}}</div>
     <ng-container *ngIf="tasks$ | async as tasks">
         <div *ngIf="tasks.length" class="room-information__subtitle">Текущие задания:</div>
         <div *ngIf="!tasks.length" class="room-information__subtitle">В этой комнате еще нет ни одного задания

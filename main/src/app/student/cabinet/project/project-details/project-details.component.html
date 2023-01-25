@@ -1,6 +1,6 @@
 <div *ngIf="task$ | async as task" class="project-details">
     <div class="project-details__subtitle">{{task.title}}</div>
-    <warning-alert *ngIf="project[0]?.attachments.length && task.minNumberOfGraded" [title]="'Вы не оценили необходимое количество работ'" [description]="'Необходимо оценить ' + task.minNumberOfGraded + ' ' + getDelOfWords(task.minNumberOfGraded)"></warning-alert>
+    <warning-alert *ngIf="project[0]?.attachments.length && task.numberOfWorksLeftToGrade" [title]="'Вы не оценили необходимое количество работ'" [description]="'Необходимо оценить ' + task.numberOfWorksLeftToGrade + ' ' + getDelOfWords(task.numberOfWorksLeftToGrade)"></warning-alert>
     <div *ngIf="project[0]?.attachments.length" class="project-details__grade">
         <div class="project-details__grade-current">Текущая оценка</div>
         <div class="project-details__grade-percent">{{mark}}/100</div>
