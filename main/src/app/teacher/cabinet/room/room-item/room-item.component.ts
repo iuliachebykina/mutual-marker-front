@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
 import { forkJoin, map, Subject, takeUntil } from "rxjs";
 import { RoomService } from "src/app/services/room.service";
 
@@ -8,6 +8,12 @@ import { RoomService } from "src/app/services/room.service";
     styleUrls: ['./styles/room-item.style.scss']
 })
 export class RoomItemComponent implements OnInit, OnDestroy {
+
+    @Input()
+    public fromGroup: boolean = false;
+    
+    @Output()
+    public onArrowClick: EventEmitter<void> = new EventEmitter<void>();
 
     @Input()
     public title: string;
@@ -28,6 +34,10 @@ export class RoomItemComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy(): void {
         this._onDestroy$.next();
+    }
+
+    public redirect(): void {
+        this.onArrowClick.emit();
     }
 
     public ngOnInit(): void {

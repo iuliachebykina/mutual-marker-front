@@ -1,28 +1,38 @@
-<div class='wrapper'>
-    <form class="b-form" [formGroup]="controlsGroup">
-        <div>
-            <tui-input class='b-form__email_field' formControlName="email">
-                Адрес электронной почты
-                <input tuiTextfield placeholder="mail@mail.ru" type="email" />
-            </tui-input>
+<div class='layout'>
+    <div class="wrapper">
+        <div class="wrapper__header">
+            <div class="wrapper__header__logo">
+                <img src="assets/icons/logo.svg" width="48" height="48">
+            </div>
+            <div class="wrapper__header__actions">
+                <div class="wrapper__header__actions__student" (click)="switchTeacher()">Я преподаватель</div>
+                <div class="wrapper__header__actions__entrance">Еще нет аккаунта?</div>
+                <button class="wrapper__header__actions__registration" (click)="toRegistration()">Регистрация</button>
+            </div>
         </div>
 
-        <div>
-            <tui-input class='b-form__password_field' formControlName="passwordValue">
-                Пароль
-                <input tuiTextfield placeholder="" type="password" />
-            </tui-input>
+        <div class="wrapper__main" [formGroup]="controlsGroup">
+            <div>
+                <tui-input class='b-form__email_field' formControlName="email">
+                    Адрес электронной почты
+                    <input tuiTextfield placeholder="mail@mail.ru" type="email" />
+                </tui-input>
+            </div>
+    
+            <div>
+                <tui-input class='b-form__password_field' formControlName="passwordValue">
+                    Пароль
+                    <input tuiTextfield placeholder="" type="password" />
+                </tui-input>
+            </div>
+
+            <div class="wrapper__main__registration" (click)='submitForm()'>
+                Вход
+            </div>
         </div>
 
-        <div class="b-form__bottom_panel">
-            <div>Забыли пароль?</div>
-            <div (click)="toStudentForm()">Я студент</div>
+        <div class="wrapper__footer">
+            <img src="assets/icons/long-logo.svg">
         </div>
-
-        <div>
-            <button tuiButton type="button" [disabled]="!controlsGroup.valid" appearance="accent" class="b-form__button_login" (click)='submitForm()'>
-                Войти
-            </button>
-        </div>
-    </form>
+    </div>
 </div>

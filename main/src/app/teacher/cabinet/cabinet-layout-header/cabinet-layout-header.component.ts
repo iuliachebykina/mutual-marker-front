@@ -11,12 +11,18 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
 export class CabinetLayoutHeaderComponent implements OnInit {
     public user$: Observable<IUser>;
     public hintVisible: boolean = false;
+    public showActionsProfile: boolean = false;
 
     constructor(
         private _userBaseService: UserBaseService,
         private _router: Router
     ) {
         this.user$ = this._userBaseService.getUser();
+    }
+
+
+    public showActions(): void {
+        this.showActionsProfile = !this.showActionsProfile;
     }
 
     public ngOnInit(): void {
@@ -34,7 +40,7 @@ export class CabinetLayoutHeaderComponent implements OnInit {
         localStorage.clear();
         this._userBaseService.logout();
         this._userBaseService.setUser(null);
-        this._router.navigate(['login', 'teacher']);
+        this._router.navigate(['teacher']);
     }
 
     public joinRoom() {

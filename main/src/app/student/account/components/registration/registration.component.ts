@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
-import { GlobalNotificationService } from "src/app/services/global-notification.service";
+import { IModalService } from "src/app/services/modals";
 import { ValidationService } from "src/app/services/validation.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 import { UserBaseService } from "../../../../services/user.base.service";
@@ -20,13 +21,22 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
 
     constructor(
         private _userBaseService: UserBaseService,
-        private _notificationService: GlobalNotificationService,
+        private _modalService: IModalService,
+        private _route: Router,
     ) {
         super();
     }
 
     public ngOnDestroy(): void {
         this._onDestroy$.next();
+    }
+
+    public toLogin(): void {
+        this._route.navigate(['student', 'login']);
+    }
+
+    public switchTeacher(): void {
+        this._route.navigate(['teacher']);
     }
 
     public ngOnInit(): void {
@@ -44,6 +54,10 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
     }
 
     public submitForm(): void {
+        if (!this.controlsGroup.valid) {
+            return;
+        }
+
         const data: IUser = {
             firstName: this.getFormValue('username').split(' ')[1],
             lastName: this.getFormValue('username').split(' ')[0],
@@ -64,17 +78,11 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
             )
             .subscribe({
                 next: () => {
-                    this._notificationService.subject$.next({
-                        text: 'Регистрация успешна',
-                        status: 'success'
-                    });
-                    this.onRegistration.emit();
+                    this._modalService.showSuccess('Регистрация успешна');
+                    this._route.navigate(['student']);
                 },
                 error: () => {
-                    this._notificationService.subject$.next({
-                        text: 'Ошибка при регистрации',
-                        status: 'error'
-                    });
+                    this._modalService.showError('Ошибка при регистрации');
                 }
             });
     }

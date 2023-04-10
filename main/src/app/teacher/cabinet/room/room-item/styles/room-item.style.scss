@@ -1,37 +1,24 @@
 .room-item {
     cursor: pointer;
-    border-left: 8px solid #FE7451;
-    background-color: #fff;
-    padding: 35px 50px 18px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
     position: relative;
+    padding: 24px 0 0 24px;
+
 
     &__block {
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__arrow {
-        position: absolute;
-        top: calc(50% - 8px);
-        right: 50px;
-        cursor: pointer;
-    }
-
-    &__id {
-        font-size: 18px;
-        line-height: 23px;
-        color: #767676;
-        margin-bottom: 18px;
-        cursor: auto;
+        padding-bottom: 23px;
+        margin-right: 100px;
     }
 
     &__title {
-        font-size: 36px;
-        line-height: 48px;
-        width: 70%;
-        margin-bottom: 75px;
+        font-size: 48px;
+        line-height: 58px;
+        width: 80%;
+        margin-bottom: 37px;
         cursor: pointer;
+        font-weight: 700;
     }
 
     &__count {
@@ -46,10 +33,14 @@
     }
 }
 
+.from-group {
+    background-color: #FFF1EE;
+    box-shadow: none;
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
     .room-item {
         padding: 20px;
-
         &__title {
             width: auto;
         }

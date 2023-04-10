@@ -1,0 +1,62 @@
+
+.breadcrumb, .breadcrumb__item, .breadcrumb__link {
+    color: black
+}
+
+.breadcrumb {
+    padding: 42px 0;
+    display: flex;
+
+    &__backButton {
+        margin-left: 96px;
+    }
+    
+}
+
+.breadcrumb__link {
+    font-size: 24px;
+    border: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.breadcrumb__item_last {
+    .breadcrumb__link {
+        text-decoration: none;
+        font-size: 24px;
+        border: 0;
+        cursor: pointer;
+    }
+}
+
+.breadcrumb__item_first {
+    margin-left: 32px;
+    .breadcrumb__link {
+        color: #FE7451;
+        text-decoration: none;
+        font-size: 24px;
+        cursor: pointer;
+        border: 0;
+    }
+}
+
+.breadcrumb__item_withSubSection {
+    .breadcrumb__link {
+        position: relative;
+
+        // &::after {
+        //     content: '';
+        //     @include svg('~src/Content/images/svg/arrow/arrow-down.svg', $icon-size, $icon-size);
+        //     margin: 0 0 0 5px;
+        //     position: absolute;
+        //     top: 50%;
+        //     @include transform(translate(0, -50%));
+        // }
+    }
+}
+
+.breadcrumb__separator {
+    margin: 0px 33px;
+    position: relative;
+    top: -5px;
+}

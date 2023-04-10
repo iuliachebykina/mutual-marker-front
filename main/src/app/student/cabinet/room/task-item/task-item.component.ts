@@ -44,13 +44,15 @@ export class TaskItemComponent implements OnInit {
             )
             .subscribe({
                 next: (marks) => {
-                    this.finalMark = marks.filter(item => item.profileId === this.profileId)[0]?.finalMark;
+                    if (marks) {
+                        this.finalMark = marks.filter(item => item.profileId === this.profileId)[0]?.finalMark;
+                    }
                 }
             });
     }
     public clickTask(): void {
-        if (!this.isBlock) {
+        // if (!this.isBlock) {
             this.onTaskClick.emit();
-        }
+        // }
     }
 }

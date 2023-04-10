@@ -1,4 +1,4 @@
-<div class="create-room" [formGroup]="controlsGroup">
+<div class="create-room" [formGroup]="form">
     <h1 class="create-room__title">Создать комнату</h1>
     <div>
         <tui-input class='create-room__field' formControlName="projectName">
@@ -7,14 +7,16 @@
         </tui-input>
     </div>
     <div>
-        <tui-input class='create-room__field' formControlName="projectDescription">
+        <tui-text-area class='create-room__field' formControlName="projectDescription">
             Описание комнаты
-            <input tuiTextfield placeholder="" type="text" />
-        </tui-input>
+        </tui-text-area>
     </div>
-    <div>
-        <button tuiButton type="button" [disabled]="!controlsGroup.valid" appearance="accent" class="create-room__button" (click)="createRoom()">
-            Создать комнату
+    <div сlass="create-room__group" style="display: flex; justify-content: space-between;">
+        <button tuiButton type="button" [disabled]="!form.valid" appearance="accent" class="create-room__group__button" (click)="createRoom()">
+            Создать
+        </button>
+        <button tuiButton type="button" appearance="outline" class="create-room__group__button" (click)="cancel.next()">
+            Закрыть
         </button>
     </div>
 </div>

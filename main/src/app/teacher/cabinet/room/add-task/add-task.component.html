@@ -1,30 +1,106 @@
-<div class="add-task" [formGroup]="controlsGroup">
-    <h1>Добавить задание</h1>
-    <tui-input class='add-task__field' formControlName="name">
-        Название задания
-        <input tuiTextfield placeholder="" type="text" />
-    </tui-input>
-    <tui-input class='add-task__field' formControlName="description">
-        Описание задания
-        <input tuiTextfield placeholder="" type="text" />
-    </tui-input>
-    <div class="wrapper">
-        <tui-input-date-time class='add-task__field' formControlName="deadline">
-            Срок выполнения
-            <input tuiTextfield placeholder="" />
-        </tui-input-date-time>
-    </div>
-    <tui-input class='add-task__field' formControlName="countMarks">
-        Количество оценок
-        <input tuiTextfield placeholder="" type="text" />
-    </tui-input>
-    <tui-error class='add-task__error' formControlName="countMarks" [error]="[] | tuiFieldError | async"></tui-error>
-    <tui-input class='add-task__field' formControlName="descriptionMark">
-        Описание оценки
-        <input tuiTextfield placeholder="" type="text" />
-    </tui-input>
-    <button tuiButton type="button" [disabled]="!controlsGroup.valid" appearance="accent" class="add-task__button"
-        (click)="createTask()">
-        Добавить задание
-    </button>
+<div class="add-task">
+    <div class="add-task__title">Добавить задание</div>
+    <form [formGroup]="myForm">
+        <div class="add-task__group">
+            <div style="display: flex; justify-content: space-between;">
+                <tui-input class='add-task__field' formControlName="title" style="width: 72%;">
+                    Название задания
+                    <input tuiTextfield placeholder="" type="text" />
+                </tui-input>
+                
+                <tui-input-date-time class='add-task__field' formControlName="closeDate" style="width: 25%;">
+                    Срок сдачи
+                    <input tuiTextfield placeholder="" />
+                </tui-input-date-time>
+            </div>
+
+            <tui-text-area class='add-task__field' formControlName="description" style="width: 72%;">
+                Описание задания
+            </tui-text-area>
+            <tui-input class='add-task__field' formControlName="minNumberOfGraded" style="width: 72%;">
+                Минимальное количество работ, которые необходимо оценить
+                <input tuiTextfield placeholder="" type="text" />
+            </tui-input>
+            <div style="width: 72%">
+                <div formArrayName="markSteps">
+                    <div *ngFor="let step of markSteps.controls; let i=index" [formGroupName]="i">
+                        <tui-input class='add-task__field' formControlName="title">
+                            Название критерия
+                            <input tuiTextfield placeholder="" type="text" />
+                        </tui-input>
+
+                        <tui-input class='add-task__field' formControlName="description">
+                            Описание критерия
+                            <input tuiTextfield placeholder="" type="text" />
+                        </tui-input>
+
+                        <div formArrayName="values" style="margin-left: 50px;">
+                            <div *ngFor="let value of getValues(step).controls; let j=index" [formGroupName]="j"
+                                style="display: flex; align-items: center;">
+                                <tui-input class='add-task__field' formControlName="valueControl" style="width: 100%;">
+                                    Значение критерия
+                                    <input tuiTextfield placeholder="" type="number" inputmode="numeric"/>
+                                </tui-input>
+
+                                <span (click)="deleteValue(step, j)"
+                                    style="margin-left: 20px; margin-top: -25px; cursor: pointer;">
+                                    <svg width="16" height="2" viewBox="0 0 16 2" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M15 0H1C0.734784 0 0.48043 0.105357 0.292893 0.292893C0.105357 0.48043 0 0.734784 0 1C0 1.26522 0.105357 1.51957 0.292893 1.70711C0.48043 1.89464 0.734784 2 1 2H15C15.2652 2 15.5196 1.89464 15.7071 1.70711C15.8946 1.51957 16 1.26522 16 1C16 0.734784 15.8946 0.48043 15.7071 0.292893C15.5196 0.105357 15.2652 0 15 0Z"
+                                            fill="#FE5151" />
+                                    </svg>
+                                </span>
+                                
+                            </div>
+
+                            <div class="add-task__group__delete-criteria" (click)="addValue(step)">
+                                Добавить значение
+                                <span style="display: inline-block; margin-left: 30px;">
+
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 1V13" stroke="#FE7451" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M13 7L1 7" stroke="#FE7451" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </div>
+
+                        </div>
+                        <div class="add-task__group__add-criteria" (click)="deleteStep(i)" style="margin-top: 50px;">
+                            Удалить критерий
+                            <span style="display: inline-block; margin-left: 45px;">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 7L1 7" stroke="#FE7451" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="add-task__group__add-criteria" (click)="addStep()">
+                        Добавить критерий
+                        <span style="display: inline-block; margin-left: 30px;">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 1V13" stroke="#FE7451" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M13 7L1 7" stroke="#FE7451" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <button tuiButton type="button" appearance="accent" [disabled]="!myForm.valid" class="add-task__button"
+                style="width: 350px; font-size: 24px; margin-top: 72px;" (click)="createTask()">
+                Сохранить задание
+            </button>
+        </div>
+    </form>
+
 </div>

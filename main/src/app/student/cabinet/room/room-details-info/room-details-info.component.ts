@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable, Subject, takeUntil } from "rxjs";
+import { IModalContainer, IModalService } from "src/app/services/modals";
 import { IBasicRoom, RoomService } from "src/app/services/room.service";
+import { LeaveRoomComponent } from "../leave-room/leave-room.component";
 
 @Component({
     templateUrl: './room-details-info.component.html',
@@ -15,7 +17,8 @@ export class RoomDetailsInfoComponent implements OnInit, OnDestroy {
     constructor(
         private _activatedRouter: ActivatedRoute,
         private _roomService: RoomService,
-        private _router: Router
+        private _router: Router,
+        private _modalService: IModalService
     ) { }
 
     public ngOnInit(): void {
@@ -30,5 +33,25 @@ export class RoomDetailsInfoComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy(): void {
         this._destroySubj$.next();
+    }
+
+    public leaveRoom(): void {
+        const modal: IModalContainer = this._modalService.showModal(LeaveRoomComponent);
+        modal.InnerComponent.instance.initialize(this.roomId);
+
+        modal.InnerComponent.instance.submit.subscribe({
+            next: () => {
+                modal.close();
+            }
+        });
+
+        modal.InnerComponent.instance.cancel.subscribe({
+            next: () => {
+                modal.close();
+                this._router.navigate(['cabinet', 'main']);
+            }
+        });
+
+        modal.open();
     }
 }

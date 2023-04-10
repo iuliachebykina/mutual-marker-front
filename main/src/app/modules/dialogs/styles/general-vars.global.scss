@@ -1,0 +1,693 @@
+/*grid*/
+
+$gutter: 30px !default; // внешний
+$gutter_base: 40px !default; // внутренний
+
+$base-block-container-padding-top: 48px !default;
+$base-block-container-padding-bottom: 30px !default;
+$base-block-container-radius: 0 !default;
+
+$a-base-block-padding-top: 20px !default;
+$a-base-block-padding-bottom: 30px !default;
+
+$a-gutter: 10px !default;
+$a-gutter_base: 20px !default; // отступ от края экрана до контента
+$a-gutter_base_large: 30px !default; // увеличенный отступ от края экрана до контента
+
+/* стандартный размер иконки */
+$icon-size-s: 16px !default;
+$icon-size: 24px !default;
+$icon-size-l: 32px !default;
+$icon-size-2l: 40px !default;
+$icon-size-xl: 48px !default;
+$icon-size-2xl: 56px !default;
+$icon-size-3xl: 62px !default;
+
+$icon-clickarea: 40px !default; /* для размера $icon-size */
+
+/*$breakpoint*/
+
+$breakpoint-min: 320px !default;
+$breakpoint-xxs: 375px !default;
+$breakpoint-xxs-max: calc(#{$breakpoint-xxs} - 1px) !default;
+$breakpoint-xs: 576px !default;
+$breakpoint-xs-max: calc(#{$breakpoint-xs} - 1px) !default;
+$breakpoint-sm: 768px !default;
+$breakpoint-sm-max: calc(#{$breakpoint-sm} - 1px) !default;
+$breakpoint-md: 1024px !default;
+$breakpoint-md-max: calc(#{$breakpoint-md} - 1px) !default;
+$breakpoint-lg: 1280px !default;
+$breakpoint-lg-max: calc(#{$breakpoint-lg} - 1px) !default;
+$breakpoint-xl: 1366px !default;
+$breakpoint-xl-max: calc(#{$breakpoint-xl} - 1px) !default;
+$breakpoint-xxl: 1440px !default;
+$breakpoint-xxl-max: calc(#{$breakpoint-xxl} - 1px) !default;
+$breakpoint-xxxl: 1680px !default;
+$breakpoint-xxxl-max: calc(#{$breakpoint-xxxl} - 1px) !default;
+$breakpoint-xxxxl: 1920px !default;
+$breakpoint-xxxxl-max: calc(#{$breakpoint-xxxxl} - 1px) !default;
+$breakpoint-xxxxxl: 2560px !default;
+$breakpoint-xxxxxl-max: calc(#{$breakpoint-xxxxxl} - 1px) !default;
+
+/*padding для основного контейнера при разных breakpoint*/
+
+$container-padding-xs: 20px !default;
+$container-padding-sm: 30px !default;
+$container-padding-md: 35px !default;
+
+/*font-family*/
+
+$robotoRegular: roboto-regular, sans-serif;
+$robotoMedium: roboto-medium, sans-serif;
+$robotoBold: roboto-bold, sans-serif;
+
+/*для заголовоков*/
+$regular_heading: $robotoRegular !default;
+$medium_heading: $robotoMedium !default;
+$bold_heading: $robotoBold !default;
+
+/*для текстов*/
+$regular: $robotoRegular !default;
+$medium: $robotoMedium !default;
+$bold: $robotoBold !default;
+
+// располагаются тут, т.к. в этом файле используются эти переменные для шрифтов
+$ff_base: $regular !default;
+$fs_base: 15px !default;
+$fs_base_adaptive: 15px !default;
+$lh_base: 22px !default;
+
+$radius: 2px !default;
+
+/*знак валюты и копейки*/
+
+$currencySize: 0.8em !default;
+$currencyColor: inherit !default;
+$currency-margin: 0 0 0 3px !default;
+
+$ff_link: $ff_base !default;
+$fs_link: $fs_base !default;
+$lh_link: 22px !default;
+$link-text-decoration: underline !default;
+
+/*Ссылки - конец*/
+
+
+/*Заголовки*/
+$ff_titleUpper: $medium !default;
+$fs_titleUpper: $fs_base !default;
+$lh_titleUpper: $lh_base !default;
+$ls_titleUpper: 0.016em !default;
+
+/*Заголовки - конец*/
+
+/* Placeholder */
+$placeholder-overflow: visible !default;
+/* Placeholder - конец */
+
+/*Замочки*/
+$padlock_icon: "~abanking/Content/images/svg/padlock.svg" !default;
+$padlock_width: 9px !default;
+$padlock_height: 10px !default;
+/*Замочки - конец*/
+
+// CONTROLS
+
+/*inputCurrency*/
+
+// $inputCurrency_width: 220px !default;
+
+/*inputCurrency - конец*/
+
+/*Цвета*/
+
+/*Заголовки*/
+$title: #000000 !default;
+/*Основной текст*/
+$text: #4C4C4C !default;
+/*Подписи*/
+$sign: #818181 !default;
+/* Иконки */
+$icon: #CCCCCC !default;
+
+/* Линия, обводка полей */
+$line: #DADADA !default;
+$line-border: $line !default;
+
+/*Основной фон, цвет линии разметки*/
+$fon: #F0F0F0 !default;
+/*Фон 2, hover*/
+$fon-secondary: #F8F8F8 !default;
+
+/*Основной, бренд*/
+$general: #084E98 !default;
+/*Акцентный, Кнопки*/
+$accent1: #FBCC32 !default;
+/*Акцентный 2, кнопки, иконки, успех*/
+$accent2: #01A8A0 !default;
+/*Третичный, текст ошибки*/
+$accent3: #D71F61 !default;
+$error: #D71F61 !default;
+
+/*Выбранная строка*/
+$selected-row: #E6F7F6 !default;
+
+/*Ссылка*/
+$link: $general !default;
+$link-active: $title !default;
+$link-hover: $title !default;
+$link-disabled: $link !default;
+$link-opacity: 0.5 !default;
+
+// для изменения темы белая/черная
+$bg-global: #FFFFFF !default;
+
+$placeholder: $sign !default;
+
+
+/*input search*/
+
+$search_height: 42px !default;
+$search_height_large: 50px !default;
+$inputSearch_lh: 22px !default;
+$fs_inputSearch: $fs_base !default;
+$ff_inputSearch: $ff_base !default;
+$inputSearch_border_radius: $radius !default;
+$inputSearch_bg: #fbfcfc !default;
+$inputSearch_border_color: #e4e9ed !default;
+$inputSearch_border_width: 1px !default;
+$inputSearch_padding: 0 45px 0 15px !default;
+$inputSearch_btn_width: 45px !default;
+$inputSearch_btn_img: '/assets/images/svg/loop_grey.svg' !default;
+$inputSearch_btn_img_size: 24px !default;
+$inputSearch_btn_img_size_large: 17px !default;
+
+$fon_hover: transparent !default;
+
+/*input search - конец*/
+
+/*select-custom*/
+
+$select_minWidth: 510px !default;
+$select_border_color: #d4dcdf !default;
+$select_border_color_hover: rgba(50, 169, 223, 0.5) !default;
+$select_border_color_active: rgba(50, 169, 223, 0.5) !default;
+$select_border_width: 1px !default;
+$select_list_boxShadow: none !default;
+$select_item_border_color: $select_border_color !default;
+$select_item_bg_hover: rgba(212, 220, 223, .35) !default;
+$select_item_bg_isSelected: rgba(212, 220, 223, .25) !default;
+$select_item_bg_isDisabled: rgba(107, 107, 107, 0.15) !default;
+$select_control_bgImg: url('~abanking/Content/images/png/arrow_angle_down_orange.png') !default;
+$select_control_padding_title: 7px 45px 7px 18px !default;
+$select_control_padding: 7px 45px 7px 18px !default;
+$select_control_height: 50px !default;
+$fs_select_control: 17px !default;
+$ff_select_control: $ff_base !default;
+$select_control_title_border_color: #dfe5e9 !default;
+$select_control_title_border_radius: $radius !default;
+
+
+/*select-custom - конец*/
+
+
+
+/*validation*/
+$ff_validation: $ff_base !default;
+$fs_validation: 13px !default;
+$lh_validation: 18px !default;
+$validation-padding: 4px 0 !default;
+/*validation - конец*/
+
+/*checkbox*/
+
+$checkbox_label_isActive_color: $text !default;
+$checkbox_box_isActive_bg: $accent1 !default;
+$checkbox_box_isActive_borderColor: $accent1 !default;
+$checkbox_box_hover_boxShadow: '' !default;
+$fs_checkbox_label: $fs_base !default;
+$ff_checkbox_label: $ff_base !default;
+$checkbox_size: 22px !default;
+$checkbox_border_color: #dfe5e9 !default;
+$checkbox_border_color_hover: #b5bfc6 !default;
+$fs_checkbox_label_link: $ff_base !default;
+$ff_checkbox_label_link: $medium !default;
+$check_color: $title !default;
+$check_weight: 3px !default;
+$check_width: 8px !default;
+$check_height: 14px !default;
+$check_posLeft: 3px !default;
+$check_posTop: 11px !default;
+$checkbox_bg: transparent !default;
+$checkbox_radius: 2px !default;
+$checkbox_border_width: 1px !default;
+$fs_checkbox_caption: 14px !default;
+$checkbox_caption_color: '' !default;
+$checkbox_caption_padding: 5px 0 0 30px !default;
+$checkbox_label_lh: inherit !default;
+$checkbox-bg-color-hover: #fff !default;
+
+/*checkbox - конец*/
+
+/* check icon */
+$check_icon: '' !default;
+
+/*slider*/
+$handle_size: 16px !default;
+$handle_bg: $general !default;
+$ribbon_height: 2px !default;
+$ribbon_bg: $general !default;
+/*slider - конец*/
+
+// CONTROLS - end
+
+/*badge*/
+
+$badge_bgColor: $accent1 !default;
+$badge-bg-color-error: '' !default;
+$badge-bg-color-gray: '' !default;
+$badge-bg-color-empty: '' !default;
+$ff_badge: $ff_base !default;
+$fs_badge: 13px !default;
+$badge_color: $sign !default;
+$badge-padding: 0 7px !default;
+$badge_size: 22px !default;
+$badge_size-width: $badge_size !default;
+$badge_radius: $badge_size !default;
+/*badge - конец*/
+
+
+/*$helpIcon*/
+
+$helpIcon_bg: $accent1 !default;
+$helpIcon_bg_hover: darken($helpIcon_bg,
+5%) !default;
+$helpIcon_border: none !default;
+$helpIcon_border_hover: none !default;
+$ff_helpIcon: $ff_base !default;
+$fs_helpIcon: 13px !default;
+$helpIcon_size: 22px !default;
+$helpIcon_transitionProperty: background-color !default;
+$helpIcon_lh: 22px !default;
+$helpIcon_color: $title !default;
+$helpIcon_margin-left: 7px !default;
+// $helpIcon_margin: 0 0 0 7px !default;
+$helpTooltip_margin: 15px !default;
+$helpIcon_color_hover: $title !default;
+$hint-container-width: 420px !default;
+$hint-container-padding-save-hover: 25px !default; // для того чтобы можно было попасть на область текста когда убираем курсор с вопросика
+/*$helpIcon - конец*/
+
+
+/*helpTooltip*/
+
+$bgc_tooltip: #fff !default;
+$c_tooltip: $text !default;
+$ff_tooltip: $ff_base !default;
+$fs_tooltip: $fs_base !default;
+$tooltip_lh: $lh_base !default;
+$tooltip_padding: 12px !default;
+$tooltip_borderWidth: 1px !default;
+$tooltip_borderColor: $fon !default;
+$tooltip_minHeight: auto !default;
+$tooltip_shadow: 0 10px 21px rgba(0,
+0,
+0,
+0.1) !default;
+$tooltip_close-icon: '' !default;
+$tooltip_color: $text !default;
+$helpIcon_image: '' !default;
+$helpIcon_margin: 0 0 0 7px !default;
+
+/*helpTooltip - конец*/
+
+
+/*innerMenu*/
+
+$innerMenu_link_color: $text !default;
+$ff_innerMenu_link: $ff_base !default;
+$fs_innerMenu_link: 17px !default;
+$fs_innerMenu_link_adaptive: 15px !default;
+$innerMenu_link_decorBg: $accent2 !default;
+$innerMenu_link_color_active: $title !default;
+$innerMenu_link_color_hover: $text !default;
+
+/*innerMenu - конец*/
+
+
+/*логотип компании*/
+
+$colorDashbordMenu: #3db1df !default;
+$widthDashbordMenu: 290px !default;
+$widthDashbordCompactMenu: 7.5% !default;
+$heightHeader: 80px !default;
+// $heightQuickMenu: 80px !default;
+$heightGlobalSearch: 60px !default;
+$minHeightTileSmall: 74px !default;
+$minHeightTileLarge: 157px !default;
+
+/*$minHeightTileSmall * 2*/
+
+$paddingDashbordBlock: 50px 50px 40px !default;
+$paddingDashbordBlockLarge: 30px !default;
+$paddingDashbordBlocksSmall: 30px 10px !default;
+$heightRateSmall: 65px !default;
+$paddingBaseMobile: 25px !default;
+$paddingBaseMobileXS: 15px !default;
+$creditColor: #fd6464 !default;
+
+/*$error*/
+
+$depositColor: #6ac954 !default;
+$quickMenuHeight: 60px !default;
+$marketplaceMaxWidth: 1920px !default;
+$marketplaceAuthWidth: 330px !default;
+$breakpoint: initial !default;
+$breakpointMobile: 374px !default;
+
+/*tempalte filters*/
+
+$templFilterPad: 30px !default;
+$ff_templFilter: $medium !default;
+$fs_templFilter: $fs_base !default;
+$templFilterArrow_img: '~abanking/Content/images/svg/arrow-right.svg' !default;
+$templFilterArrow_width: 10px !default;
+$templFilterArrow_height: 7px !default;
+
+/*tempalte filters - конец*/
+
+// $largeMax: max-width 1024px;
+
+/*confirmation*/
+
+$ff_confirmPayAmount: $bold !default;
+$fs_confirmPayAmount: $fs_base !default;
+$lh_confirmPayAmount: $lh_base !default;
+$ff_confirmInfo: $medium !default;
+$fs_confirmInfo: $fs_base !default;
+
+/*confirmation - end*/
+
+
+/*dialog_confirm*/
+
+$dialog_confirm_overlay_z-index: 7 !default;
+$dialog_confirm_overlay_bg: rgba(77,
+78,
+85,
+0.8) !default;
+$dialog_confirm_z-index: 8 !default;
+$ff_dialog_confirm: $medium !default;
+
+/*dialog_confirm - end*/
+
+
+/*modal*/
+
+$modal_padding: 35px !default;
+$a-modal_padding: 35px !default;
+$modal_maxWidth: 1148px !default;
+$modal_minWidth: 1148px !default;
+
+$modal-width-s: '' !default;
+$modal-width-m: '' !default;
+$modal-width-l: '' !default;
+
+$z-index-overlay: 6 !default;
+$z-index-modal: 8 !default;
+$z-index-modal-sub: 7 !default;
+$z-index-navbar: 8 !default;
+
+$modal-adaptive-min-height: 30% !default;
+
+
+$modal_close_img: '~abanking/Content/images/svg/modalClose_grey.svg' !default;
+$modal_close_width: 26px !default;
+$modal_close_height: 26px !default;
+$modal_close_pos_top: 20px !default;
+$modal_close_pos_right: 20px !default;
+
+$layout-main-controls: 2 !default;
+
+$a-gutter-modal: $a-gutter_base !default;
+$gutter-modal: 152px !default;
+
+$modal-icon-close: ''!default;
+/*modal - end*/
+
+/* iq-channels */
+$z-index-chat-panel: 5 !default;
+$z-index-chat-btn: $layout-main-controls !default;
+/* iq-channels -end*/
+
+
+/*paymentReceipt*/
+
+$fs_paymentReceipt_data: $fs_base !default;
+$ff_paymentReceipt_data: $medium !default;
+$fs_paymentReceipt_title: $fs_base !default;
+$ff_paymentReceipt_title: $ff_base !default;
+$fs_paymentReceipt_stamp: $fs_base !default;
+$ff_paymentReceipt_stamp: $bold !default;
+$lh_paymentReceipt_stamp: $lh_base !default;
+$fs_paymentReceipt_stamp_status: $fs_base !default;
+$paymentReceipt_margin: 0 -#{$modal_padding} !default;
+$paymentReceipt_padding: 45px $modal_padding 45px $modal_padding !default;
+$paymentReceipt_margin_a: 0 -#{$modal_padding} !default;
+$paymentReceipt_padding_a: 45px $modal_padding 45px $modal_padding !default;
+
+/*paymentReceipt - end*/
+
+
+/*returnToTop*/
+
+$btnToTop_bgImg: '~abanking/Content/images/svg/arrow-up_gray.svg' !default;
+$btnToTop_bgImg_accent: '~abanking/Content/images/svg/arrow-up_blue.svg' !default;
+$btnToTop_borderColor: $general !default;
+
+/*returnToTop - end*/
+
+/*map*/
+
+$mapArrow: '~abanking/Content/images/svg/arrow_down_orange.svg' !default;
+$mapArrow_width: 12px !default;
+$mapArrow_height: 6px !default;
+
+/*map- end*/
+
+
+/*virtual keyboard*/
+
+$keyboard_inactive: '' !default;
+$keyboard_inactive_width: 20px !default;
+$keyboard_inactive_height: 14px !default;
+$keyboard_active: '' !default;
+$keyboard_width: 20px !default;
+$keyboard_height: 14px !default;
+
+/*virtual keyboard  - end*/
+
+/* Лента операций */
+$operation-statement_icon: '' !default;
+$operation-statement_icon-width: '' !default;
+$operation-statement_icon-height: '' !default;
+
+//== Forms
+$form-control-base-width: 510px !default;
+$form-control-limit-min-height: 0px !default;
+$form-control-required-label: $error !default;
+/* ab-skeleton */
+$accentSkeleton1: '' !default;
+$accentSkeleton2: '' !default;
+$accentSkeleton3: '' !default;
+$subSkeleton: '' !default;
+/* ab-skeleton - end */
+
+//== Layout paddings
+$main-layout-padding-x: 0 !default;
+
+/*типография*/
+$ff_heading: $bold_heading !default;
+$ff_text: $regular !default;
+
+$ff_h0: $ff_heading !default;
+$fs_h0: 40px !default;
+$fs_h0_a: 40px !default;
+$lh_h0: 48px !default;
+$lh_h0_a: 48px !default;
+$ls_h0: 0 !default;
+$color_h0: $title !default;
+$margin-h0: 0 !default; // для текущей совместимости
+
+$ff_h1: $ff_heading !default;
+$fs_h1: 32px !default;
+$fs_h1_a: 24px !default;
+$lh_h1: 40px !default;
+$lh_h1_a: 28px !default;
+$ls_h1: 0 !default;
+$color_h1: $title !default;
+$margin-h1: 0 !default; // для текущей совместимости
+
+$ff_h2: $ff_heading !default;
+$fs_h2: 24px !default;
+$fs_h2_a: 20px !default;
+$lh_h2: 28px !default;
+$lh_h2_a: 24px !default;
+$ls_h2: 0 !default;
+$color_h2: $title !default;
+$margin-h2: 0 !default; // для текущей совместимости
+
+$ff_h3: $ff_heading !default;
+$fs_h3: 18px !default;
+$fs_h3_a: 18px !default;
+$lh_h3: 24px !default;
+$lh_h3_a: 24px !default;
+$ls_h3: 0 !default;
+$fw_h3: normal !default;
+$margin-h3: 0 !default; // для текущей совместимости
+
+$color_h3: $title !default;
+
+$ff_h4: $ff_text !default;
+$ff_h4_a: $ff_text !default;
+$fs_h4: 20px !default;
+$fs_h4_a: 16px !default;
+$lh_h4: 28px !default;
+$lh_h4_a: 24px !default;
+$ls_h4: 0 !default;
+$color_h4: $title !default;
+$margin-h4: 0 !default; // для текущей совместимости
+
+$ff_h5: $ff_heading !default;
+$fs_h5: 16px !default;
+$lh_h5: 24px !default;
+$ls_h5: 0.16em !default;
+$color_h5: $title !default;
+$margin-h5: 0 !default; // для текущей совместимости
+
+$ff_menu: $medium_heading !default;
+$fs_menu: 16px !default;
+$lh_menu: 24px !default;
+$ls_menu: normal !default;
+$color_menu: $general !default;
+
+$ff_number: $ff_heading !default;
+$fs_number: 20px !default;
+$lh_number: 28px !default;
+$ls_number: 0 !default;
+$color_number: $title !default;
+/*типография - конец*/
+
+
+/*Заглушка*/
+$card-notification-blanket-icon: '' !default;
+$card-notification-extend-icon: '' !default;
+/*Заглушка - конец*/
+
+/*history*/
+$history-item-transaction-arrow: '~abanking/Content/images/svg/arrow-right_gray.svg' !default;
+$history-item-transaction-arrow-width: 16px !default;
+$history-item-transaction-arrow-height: 10px !default;
+$history-item-hover-bg: rgba(245, 245, 245, 0.5) !default;
+//когда выбран чекбокс в истории
+$history-item-hover-select: rgba(255, 229, 62, 0.1) !default;
+/*history - конец*/
+
+$payment-order-curr-form-item-close-icon: '' !default;
+
+/*loader*/
+$loader-bg-color: $fon !default;
+$loader-bg-color-blur: rgba(255, 255, 255, .7) !default;
+$loader-min-height: 85px !default;
+$loader-color: $general !default;
+$loader-size: 52px !default;
+$loader-size_s: 30px !default;
+$loader-height: 16px !default;
+$loader-border-size: 2px !default;
+$loader-align: center !default;
+$loader-border-size_s: 1px !default;
+$loader-gap: 10px !default;
+$loader-animation-duration: 1s !default;
+$loader-space: 300px !default;
+/*loader - конец*/
+
+/*modal-layer*/
+$a-modal-layer-top: 92px !default;
+/*modal-layer - конец*/
+
+/*path svg*/
+$abanking-svg-root: '~abanking/Content/images/svg';
+$src-svg-root: '~src/Content/images/svg';
+/*path svg - конец*/
+
+/*popup-menu-simple*/
+$popup-menu-simple-icon-background-color: $link !default;
+$popup-menu-simple-icon-background-color-active: $accent1 !default;
+$popup-menu-simple-shodow: none !default;
+/*popup-menu-simple - конец*/
+
+/* static products and payment systems */
+$card-picture: '' !default;
+$mastercard-icon: '' !default;
+$mastercard-icon-width:  50px;
+$mastercard-icon-height: 40px;
+
+$visa-icon: '' !default;
+$visa-icon-width: 50px !default;
+$visa-icon-height: 30px !default;
+
+//yandex map
+
+//web
+$yandex-map-width: 1118px !default;
+$yandex-map-height: 700px !default;
+
+//adaptive
+
+$a_yandex-map-width: 100% !default;
+$a_yandex-map-height: 300px !default;
+
+// skeleton
+$skeleton-border-radius: 0 !default;
+
+// цвет фона элемента при клике (применяется в моб.приложении)
+$m-elem-bg-color-on-click: rgba( $accent1, 0.1) !default;
+/* trasfer error icon */
+$tranfer-error-alert-warning-icon: '' !default;
+
+// временно для сборки (нужно для дизайн-системы)
+
+/* Сервисные цвета */
+$success: #42C28C !default;
+// $success-bg: #F5FCF9 !default;
+// $success-stroke: #C7EDDD !default;
+$attention: #FFCF52 !default;
+// $attention-bg: #FFFCF6 !default;
+// $attention-stroke: #FFF1CC !default;
+// $error-bg: #FFF6F6 !default;
+// $error-stroke: #FECCCC !default;
+$info: #2CA2FD !default;
+// $info-bg: #F4FAFF !default;
+// $info-stroke: #C0E3FF !default;
+
+/* Градиент для продуктов */
+$ruble-account: linear-gradient(184.06deg, rgba(46, 98, 217, 0.5) -3.69%, rgba(255, 255, 255, 0) 90.67%), #2CA2FD;
+$currency-account: linear-gradient(184.06deg, rgba(252, 84, 84, 0.5) -4.49%, rgba(255, 255, 255, 0) 90.67%), #E5BD6D;
+$corporate-account: linear-gradient(250.44deg, rgba(46, 98, 217, 0.5) -3.69%, rgba(255, 255, 255, 0) 90.67%), #FC5454;
+$deposit: linear-gradient(184.06deg, rgba(46, 98, 217, 0.5) -4.49%, rgba(255, 255, 255, 0) 90.67%), #47BA8A;
+$credit: linear-gradient(184.06deg, rgba(46, 98, 217, 0.5) -3.69%, rgba(255, 255, 255, 0) 90.67%), #CC76EB;
+
+/* atm */
+$atm-map-filter-icon: '' !default;
+$atm-balloon-service-title: '' !default;
+
+/* autosave */
+$autosave-loader-success-icon: '' !default;
+
+/* refresh */
+$btn-refresh-icon: '~abanking/Content/images/svg/loader_blue.svg';
+
+$banner-wrapper-bg-url: '' !default;
+
+/* img vars */
+$card-small-img-radius: 2px !default;

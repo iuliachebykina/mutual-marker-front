@@ -1,0 +1,25 @@
+<div class="container" [formGroup]="form">
+    <div class="container__title">
+        Загрузить работу
+    </div>
+    <label class="container__upload-work" for="file">Выберите файл</label>
+    <input style="display: none;" #input id="file" accept="application/pdf" (change)="uploadWork($event.target)"
+        type="file">
+
+    <div class="container__name">
+        {{name}}
+    </div>
+
+    <tui-text-area formControlName="projectDescription" style="margin-left: 48px; margin-right: 48px; margin-top: 83px;">
+        Описание работы
+    </tui-text-area>
+
+    <div class="container__buttons">
+        <button tuiButton type="button" [disabled]="!form.valid" appearance="accent" class="container__buttons__button" (click)="sendForm()">
+            Создать
+        </button>
+        <button tuiButton type="button" appearance="outline" class="container__buttons__button" (click)="cancel.next()">
+            Закрыть
+        </button>
+    </div>
+</div>

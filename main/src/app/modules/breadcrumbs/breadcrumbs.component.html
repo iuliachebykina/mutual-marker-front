@@ -1,0 +1,28 @@
+<div *ngIf="breadcrumbs?.length > 0" class="flexAlignCenter breadcrumb">
+    <div class="breadcrumb__backButton" (click)="toBack()">
+        <ng-container *ngIf="color === '#FE7451'">
+            <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 1.75L1 8.25L7.5 14.75" stroke="#FE7451" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </ng-container>
+        
+        <ng-container *ngIf="color === '#7256FD'">
+            <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 1.75L1 8.25L7.5 14.75" stroke="#7256FD" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </ng-container>
+    </div> 
+    <div *ngFor="let breadcrumb of breadcrumbs; let last = last; let first = first;"
+        class="breadcrumb__item flexAlignCenter"
+        [ngClass]="{'breadcrumb__item_last': last, 'breadcrumb__item_first': first}">
+        <a *ngIf="!last" class="breadcrumb__link"  [style.color]="color" [routerLink]="breadcrumb.Url">{{breadcrumb.Label}}</a>
+        <a *ngIf="last" class="breadcrumb__link">{{breadcrumb.Label}}</a>
+        <span class="breadcrumb__separator" *ngIf="!last">
+            <svg width="14" height="3" viewBox="0 0 14 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1.5H13" stroke="black" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </span>
+    </div>
+</div>

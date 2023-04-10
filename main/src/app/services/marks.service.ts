@@ -1,12 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { catchError, map, Observable, of } from "rxjs";
-import { IAttachment } from "./project-file-manager.service";
+import { catchError, Observable, of } from "rxjs";
 
 @Injectable()
 export class MarksService {
     constructor(private _httpRequestService: HttpClient) { }
-
 
     /**
      * получение задания оценки проекта
@@ -24,8 +22,8 @@ export class MarksService {
      * @param markStepValues оценка
      * @returns 
      */
-    public setWorkMark(projectId: string, profileId: string, markStepValues: number[]): Observable<any> {
-        return this._httpRequestService.post<any>('/api/marks/mark', { projectId, profileId, markStepValues, comment: '' })
+    public setWorkMark(projectId: string, profileId: string, markStepFeedbackDtos: IMarkStepValue[]): Observable<any> {
+        return this._httpRequestService.post<any>('/api/marks/mark', { projectId, profileId, markStepFeedbackDtos })
     }
 
     public getAllMarksByTaskId(taskId: number | string): Observable<IStatistic[]> {
@@ -58,4 +56,11 @@ export interface IStatistic {
         lastName: string;
         patronymic: string;
     };
+}
+
+export interface IMarkStepValue {
+    value: number;
+    comment: string;
+    markStepId: number;
+    reviewerId: number;
 }

@@ -1,50 +1,94 @@
-.b-form > div:first-child,
-.b-form > div:nth-child(2),
-.b-form > div:last-child {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+.layout {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #F9F8FF;
 
-.wrapper {
-    margin-top: 48px;
-}
-
-.b-form > div {
-    margin-bottom: 18px;
-}
-
-.b-form {
-    &__email_field {
-        width: 100%;
-        border-radius: 0;
-    }
-
-    &__password_field {
-        width: 100%;
-        border-radius: 0; 
-    }
-
-    &__bottom_panel {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__bottom_panel > div {
-        cursor: pointer;
-    }
-
-    &__button_login {
-        border-radius: 0;
-        width: 100%;
-        margin-top: 72px;
-        background: #7256FD;
-    }
-    
-}
-
-@media (min-width: 320px) and (max-width: 767px) {
     .wrapper {
-        margin-top: 48px;
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+
+        &__footer {
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        &__main {
+            flex: 1 1 auto;
+            margin: 72px auto 200px;
+            padding: 72px 48px 0px 48px;
+            width: 576px;
+            height: 360px;
+            background: rgba(114, 86, 253, 0.05);
+            border-radius: 5px;
+
+            >div {
+                margin-bottom: 48px;
+            }
+
+            &__registration {
+                width: 194px;
+                background: #7256FD;
+                border-radius: 5px;
+                font-weight: 700;
+                font-size: 24px;
+                color: #FFFFFF;
+                padding: 18px 22px 18px 22px;
+                text-align: center;
+                margin: 65px auto;
+                cursor: pointer;
+            }
+        }
+
+        &__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &__actions {
+                display: flex;
+                justify-content: space-between;
+
+                &__registration {
+                    background: #7256FD;
+                    border-radius: 5px;
+                    width: 194px;
+                    height: 48px;
+                    font-weight: 700;
+                    font-size: 24px;
+                    color: #FFFFFF;
+                    border: 0px;
+                    margin-left: 48px;
+                    margin-top: 24px;
+                    cursor: pointer;
+                }
+
+                &__entrance {
+                    font-size: 24px;
+                    color: #1A1A1A;
+                    margin-top: 34px;
+                    margin-left: 72px;
+                }
+
+                &__student {
+                    background: #FFFFFF;
+                    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+                    border-radius: 0px 0px 5px 5px;
+                    font-size: 24px;
+                    color: #7256FD;
+                    padding: 34px 24px 14px 24px;
+                    cursor: pointer;
+                }
+            }
+
+            &__logo {
+                display: flex;
+                align-items: center;
+            }
+        }
     }
 }
+
+@media (min-width: 320px) and (max-width: 767px) {}

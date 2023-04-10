@@ -1,0 +1,29 @@
+.skeleton-content {
+    pointer-events: none;
+
+    &_animated {
+        animation: wave 1.6s infinite;
+    }
+}
+
+@keyframes wave {
+    0% { opacity: .4; }
+    50% { opacity: 1; }
+    100% { opacity: .4; }
+}
+
+:host {
+    width: 100%;
+
+    &[data-auto-width] {
+        width: auto;
+    }
+
+    &[data-background] {
+        background-color: blue;
+    }
+
+    &[data-full-height] {
+        height: 100%;
+    }
+}

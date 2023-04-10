@@ -1,9 +1,12 @@
 <div class="evaluate-work" *ngIf="tasks.length">
     <h1 class="evaluate-work__title">Оценить работы</h1>
+    <div class="evaluate-work__subtitle" *ngIf="evaluate.length">
+        Задания на оценку
+    </div>
+
     <div class="evaluate-work__subtitle" *ngIf="!evaluate.length">Нет работ для оценивания</div>
     <div *ngFor="let p of evaluate; let i = index">
         <div class="evaluate-work__container" (click)="toWorkDetails(p[0][0].id)">
-            <div class="evaluate-work__container-theme">Тема: {{getTheme(p[0][0].taskId)}}</div>
             <div class="evaluate-work__container-title">{{p[0][0].title}}</div>
         </div>
     </div>

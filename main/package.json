@@ -10,17 +10,20 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.3.0",
+    "@angular/cdk": "^13.3.9",
     "@angular/common": "~13.3.0",
     "@angular/compiler": "~13.3.0",
     "@angular/core": "~13.3.0",
     "@angular/forms": "~13.3.0",
+    "@angular/material": "^13.3.9",
     "@angular/platform-browser": "~13.3.0",
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
-    "@taiga-ui/cdk": "^2.40.0",
-    "@taiga-ui/core": "^2.40.0",
-    "@taiga-ui/icons": "^2.40.0",
-    "@taiga-ui/kit": "^2.40.0",
+    "@taiga-ui/cdk": "^3.23.1",
+    "@taiga-ui/core": "^3.23.1",
+    "@taiga-ui/icons": "^3.23.1",
+    "@taiga-ui/kit": "^3.23.1",
+    "@taiga-ui/styles": "^3.23.1",
     "angular-favicon": "^1.0.9",
     "firebase": "^9.8.1",
     "ng2-pdf-viewer": "^9.0.0",
@@ -43,6 +46,7 @@
     "karma-coverage": "~2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "less": "^4.1.3",
     "typescript": "~4.6.2"
   }
 }

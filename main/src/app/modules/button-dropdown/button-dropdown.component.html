@@ -1,0 +1,14 @@
+<div class="button" style="background: {{backgroundColor}};" (click)="active=!active">
+    <div style="color: {{textColor}}; margin-right: 110px;">
+        {{text}}
+    </div>
+    <ng-content></ng-content>
+</div>
+
+<div class="list" *ngIf="items && items.length && active">
+    <div *ngFor="let element of items">
+        <div (click)="selectValue(element.value)">
+            {{element.text}}
+        </div>
+    </div>
+</div>

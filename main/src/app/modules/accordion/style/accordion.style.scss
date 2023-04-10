@@ -1,11 +1,21 @@
 .accordion {
+    box-sizing: border-box;
     &__title {
         display: flex;
         align-items: center;
-        margin-bottom: 20px;
         font-size: 24px;
         line-height: 38px;
         cursor: pointer;
+
+        &__bold {
+            font-weight: 700;
+            font-size: 32px;
+        }
+    }
+
+    &__content {
+        margin-top: 72px;
+        margin-right: 48px;
     }
 
     &__icon {

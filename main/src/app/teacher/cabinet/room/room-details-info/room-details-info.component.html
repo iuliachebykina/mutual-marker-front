@@ -1,20 +1,52 @@
-<div class="room-details-info" *ngIf="room$ | async as room">
-    <div class="room-details-info__menu">
-        <ul class="room-details-info__list">
-            <li class="room-details-info__item" [routerLink]="['info']" routerLinkActive="is-active">
-                Комната
-            </li>
-            <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['member']">
-                Участники</li>
-            <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['statistic']">
-                Cтатистика
-            </li>
-            <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['settings']">
-                Настройки
-            </li>
-        </ul>
+<div class="routing">
+    <app-breadcrumbs></app-breadcrumbs>
+</div>
+
+
+<div class="wrapper">
+    <div class="wrapper__main">
+        <div class="room-details-info" *ngIf="room$ | async as room">
+            <div class="room-details-info__menu">
+                <ul class="room-details-info__list">
+                    <li class="room-details-info__item" [routerLink]="['info']" routerLinkActive="is-active">
+                        Комната
+                    </li>
+                    <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['member']">
+                        Участники комнаты</li>
+                    <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['create-task']" style="margin-top: 100px; color: #FE7451;">
+                        Добавить задание
+                    </li>
+                    <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['statistic']" style="color: #FE7451;">
+                        Просмотр статистики
+                    </li>
+                    <li class="room-details-info__item" routerLinkActive="is-active" style="margin-top: 100px; color: #FE7451;" (click)="deleteRoom()">
+                        Удалить комнату
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="info">
+            <skeleton>
+                <div main-content class="info__main">
+                    <router-outlet></router-outlet>
+                </div>
+
+                <div skeleton-content class="info__skeleton">
+                    <div class="info__skeleton__header"></div>
+                    <div class="info__skeleton__flex">
+                        <div class="info__skeleton__flex__item"></div>
+                        <div class="info__skeleton__flex__item"></div>
+                        <div class="info__skeleton__flex__item"></div>
+                        <div class="info__skeleton__flex__item"></div>
+                        <div class="info__skeleton__flex__item"></div>
+                    </div>
+                </div>
+            </skeleton>
+        </div>
     </div>
-    <div class="room-details-info__info">
-        <router-outlet></router-outlet>
+
+    <div class="wrapper__footer">
+        <img src="assets/icons/long-logo.svg">
     </div>
 </div>

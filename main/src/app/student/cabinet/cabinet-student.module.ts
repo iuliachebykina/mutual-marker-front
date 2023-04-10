@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { TuiButtonModule, TuiLoaderModule } from "@taiga-ui/core";
-import { TuiInputModule } from "@taiga-ui/kit";
+import { TuiInputModule, TuiTextAreaModule } from "@taiga-ui/kit";
 import { PdfViewerModule } from "ng2-pdf-viewer";
 import { ModulesModule } from "src/app/modules/modules.module";
 import { MarksService } from "src/app/services/marks.service";
@@ -24,6 +24,14 @@ import { RoomInformationsComponent } from "./room/room-informations/room-informa
 import { RoomInviteComponent } from "./room/room-invite/room-invite.component";
 import { RoomItemComponent } from "./room/room-item/room-item.component";
 import { TaskItemComponent } from "./room/task-item/task-item.component";
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon'
+import { JoinRoomModalComponent } from "./room/join-room-modal/join-room-modal.component";
+import { ModalUploadWorkComponent } from "./project/modal-upload-work/modal-upload-work.component";
+import { LeaveRoomComponent } from "./room/leave-room/leave-room.component";
+import { ALL_TAIGA_UI_MODULES } from "src/libraries/all-taiga-modules";
+
 
 @NgModule({
     declarations: [
@@ -40,7 +48,10 @@ import { TaskItemComponent } from "./room/task-item/task-item.component";
         EvaluateWorkComponent,
         WorkComponent,
         ProfileComponent,
-        RoomAnalyticsComponent
+        RoomAnalyticsComponent,
+        JoinRoomModalComponent,
+        ModalUploadWorkComponent,
+        LeaveRoomComponent
     ],
     imports: [
         CommonModule,
@@ -51,9 +62,15 @@ import { TaskItemComponent } from "./room/task-item/task-item.component";
         PdfViewerModule,
         TuiLoaderModule,
         ModulesModule,
-        FormsModule
+        FormsModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        TuiTextAreaModule,
+        ALL_TAIGA_UI_MODULES
+
     ],
     exports: [],
     providers: [CanActivateCabinet, ProjectFileManagerService, MarksService]
 })
-export class CabinetStudentModule {}
+export class CabinetStudentModule { }

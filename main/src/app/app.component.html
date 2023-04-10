@@ -1,11 +1,10 @@
 <tui-root>
-    <div class="notification-container" *ngIf="notificationOptions && showNotification">
+    <router-outlet></router-outlet>
+    <!-- <div class="notification-container" *ngIf="notificationOptions && showNotification">
         <tui-notification [status]="notificationOptions.status === 'success' ? 'success' : 'error'">
             {{ notificationOptions.text }}
         </tui-notification>
-    </div>
-    <router-outlet></router-outlet>
-    <ng-container *ngIf="loading">
-        <tui-loader style="margin-top: 350px;" [showLoader]="loading"></tui-loader>
-    </ng-container>
+    </div> -->
+    <div id="Dialog" container></div>
+    <modal-container></modal-container>
 </tui-root>

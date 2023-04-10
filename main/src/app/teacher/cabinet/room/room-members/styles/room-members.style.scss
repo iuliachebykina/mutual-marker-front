@@ -1,31 +1,39 @@
 .room-members {
-    padding: 60px 0 100px;
-
     &__title {
-        margin: 0;
-        margin-bottom: 65px;
-        font-size: 80px;
-        line-height: 96px;
+        background: #FFF1EE;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 59px;
+        color: #000000;
+        padding: 48px 0 48px 48px;
+        margin: 48px 24px 96px 24px;
     }
 
     &__subtitle {
-        margin-bottom: 20px;
-        font-size: 24px;
+        margin-bottom: 32px;
+        font-size: 32px;
         line-height: 38px;
-        font-weight: 500;
+        font-weight: 700;
+        margin-left: 72px;
     }
 
     &__block {
+        margin: 0 72px 0 72px;
         display: flex;
-        width: 100%;
-        margin-bottom: 40px;
+        background: #FFFFFF;
         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        align-items: center;
+        padding-left: 24px;
+        margin-bottom: 64px;
     }
 
     &__avatar {
-        width: 200px;
-        min-height: 200px;
-        background: linear-gradient(219.95deg, #7256FD 6.55%, #FE7451 183.42%);
+        width: 48px;
+        height: 48px;
+        background: #D9D9D9;
+        border-radius: 50%;
     }
 
     &__info {
@@ -33,7 +41,7 @@
         padding: 20px 46px;
         font-size: 24px;
         line-height: 24px;
-        font-weight: 500;
+        font-weight: 700;
         background-color: #fff;
     }
 
@@ -41,39 +49,45 @@
         margin-bottom: 20px;
     }
 
-    &__contacts {
-        font-weight: 300;
-        font-size: 18px;
-        line-height: 21px;
-    }
-
-    &__value {
-        margin-bottom: 10px;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+    &__name {
+        flex: 1;
+        padding: 20px 46px;
+        font-size: 24px;
+        line-height: 24px;
+        font-weight: 700;
+        background-color: #fff;
     }
 
     &__wrap {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
-
+    
     &__profile {
-        width: 200px;
-        min-width: 200px;
-        height: 200px;
-        margin-right: 28px;
-        margin-bottom: 28px;
-        padding: 18px 20px;
-        color: #fff;
-        background: linear-gradient(199.27deg, #7256FD -0.49%, #FE7451 101.16%);
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 21px;
-        box-sizing: border-box;
+        // flex: 1;
+        // padding: 20px 46px;
+        // font-size: 24px;
+        // line-height: 24px;
+        // font-weight: 700;
+        // background-color: #fff;
+        // align-items: center;
+        // display: flex;
+
+        margin: 0 72px 0 72px;
+        display: flex;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        align-items: center;
+        padding-left: 24px;
+        margin-bottom: 64px;
+
+        &__avatar {
+            width: 48px;
+            height: 48px;
+            background: #D9D9D9;
+            border-radius: 50%;
+        }
     }
 
     &__modal-layout {

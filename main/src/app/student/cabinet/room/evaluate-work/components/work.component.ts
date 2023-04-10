@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { combineLatest, Observable, take } from "rxjs";
-import { GlobalNotificationService } from "src/app/services/global-notification.service";
-import { MarksService } from "src/app/services/marks.service";
+import { IMarkStepValue, MarksService } from "src/app/services/marks.service";
+import { IModalService } from "src/app/services/modals";
 import { IAttachment, ProjectFileManagerService } from "src/app/services/project-file-manager.service";
 import { ITaskResponse, RoomService } from "src/app/services/room.service";
 import { UserBaseService } from "src/app/services/user.base.service";
@@ -13,8 +14,7 @@ import { IUser } from "src/app/student/account/interfaces/user-registration.inte
     styleUrls: ['./styles/work.style.scss']
 })
 export class WorkComponent implements OnInit {
-    @ViewChild('range')
-    public rangeControl: ElementRef;
+    public taskForm: FormGroup;
     public mark: string = '0';
     public roomId: string;
     public projectId: string;
@@ -25,19 +25,26 @@ export class WorkComponent implements OnInit {
     public project: IAttachment[] = [];
     public pdfSrc: string;
     public userId: string;
+    public current: number = 0;
+
+    public commentControls: { [key: number]: FormControl } = {};
+    public evaluateControls: { [key: number]: FormControl } = {};
+
 
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _fileManager: ProjectFileManagerService,
         private _roomService: RoomService,
-        private _notificationService: GlobalNotificationService,
+        private _modalService: IModalService,
         private _markService: MarksService,
         private _userService: UserBaseService,
-        private _route: Router
+        private _route: Router,
+        private fb: FormBuilder,
+        private _cdr: ChangeDetectorRef,
+        private _userBaseService: UserBaseService
     ) { }
 
     public ngOnInit(): void {
-
         this._userService.getUser()
             .subscribe({
                 next: (user: IUser): void => {
@@ -76,18 +83,78 @@ export class WorkComponent implements OnInit {
                         this.mark = (a.find(i => i.project.id === parseInt(this.projectId))?.markValue).toString();
                     }
                 }
-            })
+            });
+
+        this.taskForm = this.fb.group({});
+        this.task$.subscribe({
+            next: (task) => {
+                task.markSteps.forEach(item => {
+                    this.addCriterionControl(item.id);
+                })
+            }
+        });
+    }
+
+    public changeCurrentCriteria(number: number, criterionId: number): void {
+        this.current = number;
+
+        const commentControl = this.commentControls[criterionId];
+        const evaluateControl = this.evaluateControls[criterionId];
+
+        const commentValue = commentControl.value;
+        const evaluateValue = evaluateControl.value;
+
+
+        if (commentValue || evaluateValue) {
+            commentControl.setValue(commentValue);
+            evaluateControl.setValue(evaluateValue);
+        } else {
+            commentControl.setValue('');
+            evaluateControl.setValue('');
+        }
+
+        this._cdr.detectChanges();
+    }
+
+    public addCriterionControl(criterionId: number) {
+        const commentControlName = 'comment' + criterionId;
+        const evaluateControlName = 'evaluate' + criterionId;
+
+        const commentControl = new FormControl('', Validators.required);
+        const evaluateControl = new FormControl('', Validators.required);
+
+        this.taskForm.addControl(commentControlName, commentControl);
+        this.taskForm.addControl(evaluateControlName, evaluateControl);
+
+        this.commentControls[criterionId] = commentControl;
+        this.evaluateControls[criterionId] = evaluateControl;
+
     }
 
     public saveWork(): void {
-        this._markService.setWorkMark(this.projectId, this.userId, [parseInt(this.mark)])
+        if (!this.taskForm.valid) {
+            return;
+        }
+
+        const marks: IMarkStepValue[] = [];
+
+        Object.keys(this.taskForm.value).forEach(key => {
+            const [prefix, markStepId] = key.split(/(\d+)/);
+            const value = this.taskForm.value[key];
+
+            if (marks.some((i: IMarkStepValue): boolean => i.markStepId === parseInt(markStepId))) {
+                return;
+            } else {
+                marks.push({ markStepId: parseInt(markStepId), value: this.taskForm.value['evaluate' + markStepId], comment: this.taskForm.value['comment' + markStepId], reviewerId: this._userBaseService.getUserId() });
+            }
+        });
+
+        this._markService.setWorkMark(this.projectId, this.userId, marks)
             .subscribe({
                 next: () => {
-                    this.isRangeSaved = true;
-                    this._notificationService.subject$.next({
-                        text: 'Работа успешно оценена',
-                        status: 'success'
-                    });
+                    this._modalService.showSuccess(
+                        'Работа успешно оценена',
+                    );
                     window.history.back();
                 }
             })

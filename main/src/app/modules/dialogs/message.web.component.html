@@ -1,0 +1,5 @@
+<div *ngIf="opened" class="dialog {{css}}">
+    <div class="dialog__title">{{title}}</div>
+    <div *ngIf="!isHideCloseBtn" class="dialog__close" (click)="onClickedExit()"></div>
+    <div class="dialog__message">{{message}}</div>
+</div>

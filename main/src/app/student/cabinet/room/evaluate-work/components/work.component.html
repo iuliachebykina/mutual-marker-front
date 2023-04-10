@@ -1,23 +1,71 @@
-<div *ngIf="task$ | async as task">
-    <h1>Оценка работы</h1>
-    <div class="title">{{task.title}}</div>
-    <div style="position: relative;" style="margin-top: -30px">
-        <div class="mark">Оценка {{mark}}/100</div>
-        <div class="actions">
-            <div *ngIf="!isRangeSaved" class="save" (click)="saveWork()">Сохранить</div>
-            <div class="download" (click)="downloadWork()">
-                Скачать работу
-            </div>
-            <!-- <div *ngIf="isRangeSaved" class="change" (click)="isRangeSaved = false">Изменить</div> -->
+<div *ngIf="task$ | async as task" class="task">
+    <div>
+        <h1>Описание работы</h1>
+        <div class="task__description">{{task.description}}</div>
+        <div class="task__download" (click)="downloadWork()">
+            Скачать
         </div>
-        <input [disabled]="isRangeSaved" #range class="range" type="range" min="0" max="100" step="1" value="0"
-            (input)="checkValue(range.value)">
-        <div class="progress-bar"></div>
-    </div>
 
-    <div *ngFor="let proj of project">
-        <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false"
-            style="width: 100%; height: 500px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);">
-        </pdf-viewer>
+        <div *ngFor="let proj of project" style="width: 677px; margin-left: 72px; height: auto;">
+            <pdf-viewer [src]="pdfSrc" [render-text]="true" [original-size]="false"
+                style="width: 100%; height: 500px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);">
+            </pdf-viewer>
+        </div>
     </div>
-</div>
+    <div class="task__review">
+        <div>
+            <div class="task__review__header">
+                <ng-container *ngFor="let q of task.markSteps; let i = index">
+                    <div (click)="changeCurrentCriteria(i, q.id)" class="task__review__header__step"
+                        [ngClass]="{'task__review__header__step__is-active': current === i}">
+                        {{ i + 1 }}
+                    </div>
+                </ng-container>
+            </div>
+            <ng-container *ngFor="let q of task.markSteps; let i = index">
+                <div *ngIf="task.markSteps[current] && i === current" class="task__review__action"
+                    [formGroup]="taskForm">
+                    <div class="task__review__action__title">Критерий</div>
+                    <div class="task__review__action__subtitle">{{task.markSteps[current]?.title}} </div>
+                    <div class="task__review__action__comment">Комментарий</div>
+                    <div class="task__review__action__comment-field">
+                        <tui-text-area style="margin-left: 48px; margin-right: 48px; margin-top: 83px;"
+                            [formControlName]="'comment' + q.id">
+                            Прокомментируйте работу
+                        </tui-text-area>
+                    </div>
+                    <div class="task__review__action__evaluate">Оценка</div>
+                    <div class="task__review__action__evaluate-field">
+                        <!-- <tui-input [formControlName]="'evaluate' + q.id">
+                            Введите оценку
+                            <input tuiTextfield placeholder="" type="text" />
+                        </tui-input> -->
+
+                        <tui-select class="b-form" [tuiTextfieldLabelOutside]="true"
+                            [formControlName]="'evaluate' + q.id">
+                            Выбери
+                            <ng-template tuiDataList>
+                                <tui-data-list>
+                                    <button *ngFor="let item of q.values" tuiOption [value]="item">
+                                        {{ item }}
+                                    </button>
+                                </tui-data-list>
+                            </ng-template>
+                        </tui-select>
+                    </div>
+                </div>
+                <div *ngIf="task.markSteps[current] && i === current && (i+1) < task.markSteps.length"
+                    class="task__review__next" (click)="changeCurrentCriteria(i + 1, q.id)">
+                    Следующий критерий
+                </div>
+                <div class="task__review__save" *ngIf="i === current && task.markSteps.length === (i + 1)"
+                    [ngClass]="{'task__review__save__invaid': !taskForm.valid}" (click)="saveWork()">
+                    Сохранить работу
+                </div>
+            </ng-container>
+
+            <ng-container *ngFor="let q of task.markSteps; let i = index">
+
+            </ng-container>
+        </div>
+    </div>

@@ -18,6 +18,14 @@ export class RoomService {
         return this._httpRequestService.get<IBasicRoom[]>('/api/rooms/rooms', { params: { page, size: 100 } });
     }
 
+    public getRoomsWithoutGroup(page: number, size: number): Observable<IBasicRoom[]> {
+        return this._httpRequestService.get<any>('api/rooms/rooms-without-group', { params: { page, size: 100 } })
+    }
+
+    public getGroups(page: number, size: number): Observable<IGroup[]> {
+        return this._httpRequestService.get<any>('api/rooms/all-room-group', { params: { page, size: 100 } })
+    }
+
     /**
      * создание комнаты
      * @param title 
@@ -28,6 +36,9 @@ export class RoomService {
         return this._httpRequestService.post<void>('api/rooms/room', { title, teacherId, description });
     }
 
+    public createGroup(name: string): Observable<IGroup> {
+        return this._httpRequestService.get<any>('api/rooms/create-room-group/' + name);
+    }
     /**
      * получение комнаты по айди
      * @param id айди комнаты
@@ -37,6 +48,9 @@ export class RoomService {
         return this._httpRequestService.get<IBasicRoom>(`api/rooms/room-by-id/${id}`);
     }
 
+    public putRoomsToGroup(roomId: string, roomGroupId: string): Observable<void> {
+        return this._httpRequestService.post<any>('api/rooms/add-room-group', { roomId, roomGroupId })
+    }
     /**
      * получение всех студентов комнаты
      * @param id айди комнаты
@@ -70,7 +84,7 @@ export class RoomService {
      * @returns 
      */
     public createTask(task: ITaskRequest): Observable<ITaskRequest> {
-        return this._httpRequestService.post<ITaskRequest>('/api/task', task);
+        return this._httpRequestService.post<ITaskRequest>('/api/taskWithoutAttachments', task);
     }
 
     public getTasks(room_id: number): Observable<ITaskResponse[]> {
@@ -93,8 +107,20 @@ export class RoomService {
         return this._httpRequestService.post<any>(`/api/rooms/student/${roomCode}`, {});
     }
 
+    public joinTeacherToRoom(roomCode: string): Observable<IBasicRoom> {
+        return this._httpRequestService.post<any>(`/api/rooms/teacher/${roomCode}`, {});
+    }
+
     public deleteRoom(code: string): Observable<void> {
         return this._httpRequestService.delete<any>('/api/rooms/room/' + code);
+    }
+
+    public leaveRoomAsStudent(roomId: string): Observable<void> {
+        return this._httpRequestService.delete<any>('/api/rooms/room-by-student/' + roomId);
+    }
+
+    public deleteGroup(id: number): Observable<void> {
+        return this._httpRequestService.delete<any>('api/rooms/delete-room-group/' + id);
     }
 }
 
@@ -115,7 +141,6 @@ export interface ITaskRequest {
     markSteps: [
         {
             title: string,
-            description: string,
             values: any;
         }
     ],
@@ -141,3 +166,17 @@ export interface ITaskResponse {
         values: number[];
     }>;
 }
+
+export interface IGroup {
+    roomGroupId: 0,
+    roomGroupName: string,
+    rooms: [
+        {
+            id: 0,
+            title: string,
+            code: string,
+            membersCount: 0,
+            description: string
+        }
+    ]
+};

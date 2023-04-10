@@ -1,19 +1,20 @@
 <div class="room-members">
     <div *ngIf="user$ | async as user">
+        <div class="room-members__title">
+            Участники комнаты
+        </div>
         <div class="room-members__subtitle">Преподаватель</div>
         <div class="room-members__block">
             <div class="room-members__avatar">
             </div>
             <div class="room-members__info">
-                <div class="room-members__username">
-                    {{user.name.lastName}}
-                    {{user.name.firstName}}
-                    {{user.name.patronymic}}
-                </div>
-                <div class="room-members__contacts">Контакты</div>
+                {{user.name.lastName}}
+                {{user.name.firstName}}
+                {{user.name.patronymic}}
+                <!-- <div class="room-members__contacts">Контакты</div>
                 <div class="room-members__value">{{user.phoneNumber}}</div>
                 <div class="room-members__value">{{user.email}}</div>
-                <div class="room-members__value">{{user.socialNetwork}}</div>
+                <div class="room-members__value">{{user.socialNetwork}}</div> -->
             </div>
         </div>
 
@@ -25,6 +26,8 @@
         <div class="room-members__wrap" style="cursor: pointer;">
             <ng-container *ngFor="let student of students" class="room-members__content">
                 <div class="room-members__profile" (click)="openStudentInfo(student)">
+                    <div class="room-members__profile__avatar">
+                    </div>
                     <div class="room-members__name">
                         {{student.lastName}}
                         {{student.firstName}}
@@ -32,41 +35,6 @@
                     </div>
                 </div>
             </ng-container>
-        </div>
-    </div>
-
-    <div class="room-members__modal-layout" *ngIf="studentView">
-        <div class="room-members__modal">
-            <div class="room-members__modal-close" (click)="closeModal()">
-                <svg class="room-members__svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M10.6215 12L4 5.37853L5.37853 4L12 10.6215L18.6215 4L20 5.37853L13.3785 12L20 18.6215L18.6215 20L12 13.3785L5.37853 20L4 18.6215L10.6215 12Z"
-                        fill="#2E62D9" />
-                </svg>
-            </div>
-            <div class="room-members__cell">
-                <div class="room-members__label">Имя:</div>
-                {{studentView.lastName}}
-                {{studentView.firstName}}
-                {{studentView.patronymic}}
-            </div>
-            <div class="room-members__cell">
-                <div class="room-members__label">Группа:</div>
-                {{studentView.studentGroup}}
-            </div>
-            <div class="room-members__cell">
-                <div class="room-members__label">Институт:</div>
-                {{studentView.institute}}
-            </div>
-            <div class="room-members__cell">
-                <div class="room-members__label">Телефон:</div>
-                {{studentView.phoneNumber}}
-            </div>
-            <div class="room-members__cell">
-                <div class="room-members__label">Почта:</div>
-                {{studentView.email}}
-            </div>
         </div>
     </div>
 </div>

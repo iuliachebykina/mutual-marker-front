@@ -1,0 +1,7 @@
+<div class="modalContainer" *ngIf="visibleContainer && visible" (mousedown)="modalClickCallback($event, false)">
+    <div (mouseup)="modalClickCallback($event, true)" (mousedown)="modalClickCallback($event, true)" modalPosition #modal class="modal" *ngIf="visible">
+        <div *ngIf="!hideClose" class="modal__close" (click)="close($event)"></div>
+        <ng-content></ng-content>
+    </div>
+</div>
+<div *ngIf="visible" class="modalOverlay"></div>

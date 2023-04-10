@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute, Params } from "@angular/router";
 import { map, Observable, Subject, switchMap, takeUntil } from "rxjs";
+import { IModalContainer, IModalService } from "src/app/services/modals";
 import { IBasicRoom, ITaskResponse, RoomService } from "src/app/services/room.service";
+import { RoomSettingsComponent } from "../settings/room-settings.component";
 
 @Component({
     templateUrl: './room-details-info.component.html',
@@ -9,6 +11,7 @@ import { IBasicRoom, ITaskResponse, RoomService } from "src/app/services/room.se
 })
 export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
     public roomId: string;
+    public roomCode: string;
     public room$: Observable<IBasicRoom>;
     public tasks$: Observable<ITaskResponse[]>;
     public currentMenu: 'room' | 'members' | 'works' | 'addTask' = 'room';
@@ -16,7 +19,8 @@ export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
 
     constructor(
         private _activatedRouter: ActivatedRoute,
-        private _roomService: RoomService
+        private _roomService: RoomService,
+        private _modalService: IModalService
     ) { }
 
     public ngOnInit(): void {
@@ -26,6 +30,12 @@ export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
             .pipe(
                 takeUntil(this._destroySubj$)
             );
+
+        this.room$.subscribe({
+            next: (room) => {
+                this.roomCode = room.code;
+            }
+        });
 
         this.tasks$ = this._roomService.getTasks(parseInt(this.roomId))
             .pipe(
@@ -53,5 +63,28 @@ export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
 
     public ngOnDestroy(): void {
         this._destroySubj$.next();
+    }
+
+    public deleteRoom(): void {
+        const modal: IModalContainer = this._modalService.showModal(RoomSettingsComponent);
+        modal.InnerComponent.instance.submit.subscribe({
+            next: () => {
+                this._roomService.deleteRoom(this.roomCode).subscribe({
+                    next: () => {
+                        this._modalService.showSuccess('Комната успешно удалена');
+                        modal.close();
+                    },
+                    error: () => {
+                        this._modalService.showError('Ошибка при удалении комнаты');
+                    }
+                });
+            }
+        });
+        modal.InnerComponent.instance.cancel.subscribe({
+            next: () => {
+                modal.close();
+            }
+        });
+        modal.open();
     }
 }

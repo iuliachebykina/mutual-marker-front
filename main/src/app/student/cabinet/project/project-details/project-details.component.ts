@@ -1,10 +1,12 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from "@angular/core";
+import { Component, ElementRef, Inject, Injector, OnInit, Renderer2, ViewChild } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { map, Observable, switchMap, take } from "rxjs";
 import { declOfNum } from "src/app/modules/word-by-number";
 import { IMark, IStatistic, MarksService } from "src/app/services/marks.service";
+import { IModalContainer, IModalService } from "src/app/services/modals";
 import { IAttachment, ProjectFileManagerService } from "src/app/services/project-file-manager.service";
 import { ITaskResponse, RoomService } from "src/app/services/room.service";
+import { ModalUploadWorkComponent } from "../modal-upload-work/modal-upload-work.component";
 
 @Component({
     templateUrl: './project-details.component.html',
@@ -12,8 +14,6 @@ import { ITaskResponse, RoomService } from "src/app/services/room.service";
 })
 export class TaskDetailsComponent implements OnInit {
 
-    @ViewChild('grade')
-    public rangeControl: ElementRef;
     public pdfSrc: string;
     public mark: number = 0;
     @ViewChild('input')
@@ -36,7 +36,10 @@ export class TaskDetailsComponent implements OnInit {
         private _roomService: RoomService,
         private _fileManager: ProjectFileManagerService,
         private _markService: MarksService,
-        private _renderer: Renderer2
+        private _renderer: Renderer2,
+        private _modalService: IModalService,
+        @Inject(Injector) protected injector: Injector,
+
     ) { }
 
     public ngOnInit(): void {
@@ -66,25 +69,27 @@ export class TaskDetailsComponent implements OnInit {
                         .subscribe({
                             
                             next: (marks: IStatistic[]): void => {
-                                const mark: number = marks.filter(i => i !== null).filter(item => item.projectId === data[0].id)[0]?.finalMark || 0;
-                                this.mark = !isFinite(mark) ? 0 : mark;
-                                this._renderer.setStyle(this.rangeControl.nativeElement, 'width', this.mark + '%')
+                                if (marks) {
+                                    const mark: number = marks.filter(i => i !== null).filter(item => item.projectId === data[0].id)[0]?.finalMark || 0;
+                                    this.mark = !isFinite(mark) ? 0 : mark;
+                                }
+                                
+                                // this._renderer.setStyle(this.rangeControl.nativeElement, 'width', this.mark + '%')
                             }
                         });
                 }
             });
-            console.log(this.project);
     }
 
-    public uploadWork(element: any): void {
-        const fileToUpload = element.files.item(0);
-        this._fileManager.uploadStudentWork(fileToUpload)
-            .pipe(
-                switchMap(data => {
-                    return this._fileManager.createProject(this.taskId, data);
-                })
-            )
-            .subscribe(() => {
+    public openModalUploadWork(): void {
+        const modal: IModalContainer = this._modalService.showModal(ModalUploadWorkComponent, { componentParams: { injector: this.injector } });
+        modal.InnerComponent.instance.cancel.subscribe({
+            next: () => {
+                modal.close();
+            }
+        });
+        modal.InnerComponent.instance.submit.subscribe({
+            next: () => {
                 this._fileManager.getSelfProjectByTaskId(this.taskId)
                     .subscribe({
                         next: (data: IAttachment[]): void => {
@@ -95,7 +100,34 @@ export class TaskDetailsComponent implements OnInit {
                             }
                         }
                     });
-            });
+                modal.close();
+            }
+        });
+        modal.InnerComponent.instance.initialize(this.taskId, this.task$);
+
+        modal.open();
+    }
+
+    public uploadWork(element: any): void {
+        // const fileToUpload = element.files.item(0);
+        // this._fileManager.uploadStudentWork(fileToUpload)
+        //     .pipe(
+        //         switchMap(data => {
+        //             return this._fileManager.createProject(this.taskId, data);
+        //         })
+        //     )
+        //     .subscribe(() => {
+        //         this._fileManager.getSelfProjectByTaskId(this.taskId)
+        //             .subscribe({
+        //                 next: (data: IAttachment[]): void => {
+        //                     this.project = data;
+        //                     this.project = this.project.filter(i => i !== null);
+        //                     if (data[0]?.attachments[0]) {
+        //                         this.openWork(data[0].attachments[0]);
+        //                     }
+        //                 }
+        //             });
+        //     });
     }
 
     public delete(): void {
@@ -118,6 +150,10 @@ export class TaskDetailsComponent implements OnInit {
                     this.pdfSrc = url;
                 }
             });
+    }
+
+    public openInBrowser(): void {
+        window.open(this.pdfSrc);
     }
 
     public getDelOfWords(count: number): string {

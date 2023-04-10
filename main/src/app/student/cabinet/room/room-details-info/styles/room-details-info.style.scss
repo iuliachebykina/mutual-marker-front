@@ -1,106 +1,99 @@
+.routing {
+    margin-top: 120px;
+    margin-bottom: 96px;
+    height: 98px;
+    background: #F2F0FF;
+}
+
+.wrapper {
+    &__main {
+        flex-grow: 1;
+        display: flex;
+        width: calc(100% - 224px);
+        margin: 0 auto;
+        margin-bottom: 24px;
+        padding: 0 96px 0 99px;
+        // grid-template-columns: 1fr 3fr;
+        // display: grid;
+    }
+
+    &__footer {
+        flex-shrink: 0;
+        text-align: center;
+    }
+}
+
 .room-details-info {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+    // display: grid;
+    width: 22%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: 48px 25px 0 25px;
 
     &__menu {
         min-height: calc(100vh - 150px);
         background-color: #fff;
-        position: relative;   
+        position: relative;
     }
 
-    &__list {
-        padding: 80px 0 0 180px;
-    }
-    
+
     &__item {
-        margin-bottom: 54px;
         font-size: 24px;
-        line-height: 28px;
-        
+        margin-bottom: 42px;
+        margin-left: 20px;
+        cursor: pointer;
+
         &.is-active {
             font-weight: bold;
-        }
-    }
-
-    &__info {
-        margin: 0 auto;
-        width: 80%;
-        text-align: left;
-
-        &__add_task {
-            color: #FE7451;
-            font-size: 24px;
-            cursor: pointer;
+            background: #F2F0FF;
+            border-radius: 5px;
+            padding: 12px 0 12px 24px;
+            margin-bottom: 30px;
+            box-sizing: border-box;
+            margin-left: -3px;
+            box-sizing: border-box;
         }
     }
 }
 
-@media (min-width: 1440px) and (max-width: 1920px) {
-    .room-details-info {
-        &__list {
-            padding-left: 60px;
-        }
-    }
-}
+.info {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    min-height: calc(100vh - 150px);
+    width: 78%;
+    margin-left: 29px;
 
-@media (min-width: 1280px) and (max-width: 1439px) {
-    .room-details-info {
-        &__list {
-            padding-left: 40px;
-        }
-    }
-}
-
-@media (min-width: 1024px) and (max-width: 1279px) {
-    .room-details-info {
-        &__list {
-            padding-left: 20px;
-        }
-    }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-    .room-details-info {
-        &__menu {
-            min-height: calc(100vh - 80px);
+    &__skeleton {
+        &__header {
+            height: 342px;
+            background: #F8F6FF;
+            border-radius: 5px;
+            margin: 48px 24px 84px 24px;
         }
 
-        &__list {
-            padding: 40px 0 0 20px;
-        }
-
-        &__item {
-            margin-bottom: 24px;
-            font-size: 16px;
-            line-height: 24px;
-            white-space: nowrap;
-        }
-    }
-}
-
-@media (min-width: 320px) and (max-width: 767px) {
-    .room-details-info {
-        display: block;
-
-        &__menu {
-            min-height: auto;
-            background-color: transparent;
-        }
-
-        &__list {
+        &__flex {
             display: flex;
-            align-items: center;
-            padding: 0;
-            overflow-x: scroll;
-            padding: 20px;
-        }
+            flex-wrap: wrap;
+            flex-direction: column;
 
-        &__item {
-            margin-right: 40px;
-            margin-bottom: 0;
-            font-size: 16px;
-            line-height: 20px;
-            white-space: nowrap;
+            &__item {
+                background: #F8F6FF;
+                border-radius: 5px;
+                height: 77px;
+                margin: 0 24px 20px 24px;
+            }
         }
     }
 }
+
+@media (min-width: 1440px) and (max-width: 1920px) {}
+
+@media (min-width: 1280px) and (max-width: 1439px) {}
+
+@media (min-width: 1024px) and (max-width: 1279px) {}
+
+@media (min-width: 768px) and (max-width: 1023px) {}
+
+@media (min-width: 320px) and (max-width: 767px) {}

@@ -1,0 +1,10 @@
+<div class="modal" [formGroup]="form">
+    <tui-input formControlName="code">
+        Код комнаты
+        <input tuiTextfield placeholder="" type="text" />
+    </tui-input>
+    <div class="modal__actions">
+        <div class="modal__actions__add" (click)="add()">Добавить</div>
+        <div class="modal__actions__close" (click)="close()">Закрыть</div>
+    </div>
+</div>

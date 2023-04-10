@@ -1,16 +1,42 @@
 .project-details {
-    &__title {
-        margin: 60px 0 65px;
-        font-size: 80px;
-        line-height: 96px;
+    &__head {
+        background: #F2F0FF;
+        border-radius: 5px;
+        margin: 48px 24px 96px 24px;
+        box-sizing: border-box;
+
+        &__title {
+            padding: 48px 0px 48px 48px;
+            font-size: 48px;
+            width: 60%;
+            line-height: 59px;
+            font-weight: 700;
+        }
+
     }
-    
-    &__subtitle {
-        margin-bottom: 20px;
+
+    &__description {
+        color: #565656;
         font-size: 24px;
-        line-height: 28px;
-        font-weight: 500;
-        margin-top: 80px;
+        margin-left: 72px;
+        margin-bottom: 96px;
+    }
+
+    &__desc {
+        font-weight: 700;
+        font-size: 32px;
+        color: #000000;
+        margin-left: 72px;
+        margin-bottom: 32px;
+
+    }
+
+    &__criteria {
+        font-weight: 700;
+        font-size: 32px;
+        color: #000000;
+        margin-left: 72px;
+        margin-bottom: 32px;
     }
 
     &__grade {
@@ -18,7 +44,7 @@
         justify-content: space-between;
         margin-bottom: 20px;
     }
-    
+
     &__grade-current {
         font-size: 18px;
     }
@@ -30,7 +56,7 @@
         box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
         margin-bottom: 48px;
     }
-    
+
     &__linear {
         width: 0%;
         height: 100%;
@@ -39,14 +65,27 @@
 
     &__actions {
         display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
+        justify-content: flex-start;
     }
 
     &__edit {
         color: #7256FD;
         font-size: 24px;
-        font-weight: bold;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        padding: 14px 24px;
+        cursor: pointer;
+        font-weight: 700;
+    }
+
+    &__description-title {
+        margin-top: 60px;
+        margin-left: 72px;
+        color: #000000;
+        font-weight: 700;
+        font-size: 32px;
+        margin-bottom: 32px;
     }
 
     &__delete {
@@ -55,10 +94,38 @@
         font-size: 24px;
     }
 
-    &__upload-work {
-        font-weight: bold;
+    &__criteria-list {
+        margin-left: 72px;
+        color: #565656;
         font-size: 24px;
-        color: #7256FD;
+        margin-bottom: 96px;
+
+        div {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__upload-work {
+        font-weight: 700;
+        font-size: 24px;
+        color: #fff;
+        height: 48px;
+        background: #7256FD;
+        border-radius: 5px;
+        padding: 14px 24px 14px 24px;
+        margin-left: 72px;
+        cursor: pointer;
+    }
+
+    &__download {
+        background: #7256FD;
+        border-radius: 5px;
+        padding: 14px 24px;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+        margin-left: 24px;
+        cursor: pointer;
     }
 }
 
@@ -88,7 +155,7 @@
             font-size: 36px;
             line-height: 48px;
         }
-        
+
         &__subtitle {
             font-size: 16px;
             line-height: 20px;

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
+import { IModalService } from "src/app/services/modals";
 import { RoomService } from "src/app/services/room.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 
@@ -17,7 +18,7 @@ export class RoomInviteComponent extends FormBaseViewModel implements OnDestroy 
     constructor(
         private _roomService: RoomService,
         private _router: Router,
-        private _notificationService: GlobalNotificationService,
+        private _modalService: IModalService,
         private _activatedRouter: ActivatedRoute
     ) {
         super();
@@ -41,18 +42,11 @@ export class RoomInviteComponent extends FormBaseViewModel implements OnDestroy 
             )
             .subscribe({
                 next: () => {
-                    this._notificationService.subject$.next({
-                        status: 'success',
-                        text: 'Вы успешно добавились в комнату'
-                    });
-
+                    this._modalService.showSuccess('Вы успешно добавились в комнату');
                     this._router.navigate(['cabinet', 'main']);
                 },
                 error: () => {
-                    this._notificationService.subject$.next({
-                        status: 'error',
-                        text: 'При добавлении в комнату произошла ошибка'
-                    });
+                    this._modalService.showError('При добавлении в комнату произошла ошибка');
                 }
             });
     }

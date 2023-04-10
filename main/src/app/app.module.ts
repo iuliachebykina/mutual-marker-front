@@ -1,35 +1,39 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
-import { TuiDialogModule, TuiLoaderModule, TuiNotificationModule, TuiNotificationsModule, TuiRootModule } from "@taiga-ui/core";
-import { UserBaseService } from './services/user.base.service';
+import { CookieService } from 'ngx-cookie-service';
+import { ALL_TAIGA_UI_MODULES } from 'src/libraries/all-taiga-modules';
 import { AppComponent } from './app.component';
 import { routes } from "./app.routing";
-import { HttpClientModule } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
+import { Breadcrumb } from './services/breadcrumb';
+import { BreadcrumbsService } from './services/breadcrumb.service';
 import { GlobalNotificationService } from './services/global-notification.service';
+import { ModalModule } from './services/modals/modal.module';
 import { RoomService } from './services/room.service';
+import { UserBaseService } from './services/user.base.service';
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
         BrowserModule,
-        TuiRootModule,
+        CommonModule,
+        ALL_TAIGA_UI_MODULES,
         BrowserAnimationsModule,
-        TuiDialogModule,
-        TuiNotificationsModule,
         RouterModule.forRoot(routes),
         HttpClientModule,
-        TuiNotificationModule,
-        TuiLoaderModule,
+        ModalModule.forRoot(),
     ],
     providers: [
         UserBaseService,
         CookieService,
         GlobalNotificationService,
-        RoomService
+        RoomService,
+        BreadcrumbsService,
+        Breadcrumb
     ],
     bootstrap: [AppComponent]
 })

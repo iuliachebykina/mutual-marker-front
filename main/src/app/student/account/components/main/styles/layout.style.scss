@@ -1,0 +1,152 @@
+.layout {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #F9F8FF;
+
+    .wrapper {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+
+        &__footer {
+            flex-shrink: 0;
+            text-align: center;
+        }
+
+        &__main {
+            flex-grow: 1;
+            margin-bottom: 200px;
+
+            &__title {
+                font-size: 96px;
+                margin-top: 175px;
+                color: #292929;
+                line-height: 90px;
+                font-weight: bold;
+            }
+
+            &__email {
+                margin-top: 48px;
+                display: flex;
+
+                &__input {
+                    width: 480px;
+                }
+
+                &__registration {
+                    background: #7256FD;
+                    border-radius: 5px;
+                    font-weight: 700;
+                    font-size: 24px;
+                    padding: 14px 24px 14px 24px;
+                    margin-top: 2px;
+                    color: #FFFFFF;
+                    margin-left: 48px;
+                }
+            }
+
+            &__choose {
+                display: flex;
+                margin-top: 24px;
+
+                &__student {
+                    background: #7256FD;
+                    border-radius: 5px;
+                    font-weight: 700;
+                    font-size: 24px;
+                    padding: 10px 24px 14px 24px;
+                    color: #FFFFFF;
+                    cursor: pointer;
+                }
+
+                &__teacher {
+                    margin-left: 48px;
+                    background: #FFFFFF;
+                    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+                    border-radius: 5px;
+                    font-weight: 700;
+                    font-size: 24px;
+                    padding: 10px 24px 14px 24px;
+                    color: #FE7451;
+                    cursor: pointer;
+                }
+            }
+
+            &__role {
+                font-size: 24px;
+                margin-top: 96px;
+                color: #292929;
+                font-weight: 700;
+            }
+        }
+
+        &__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &__actions {
+                display: flex;
+                justify-content: space-between;
+
+                &__registration {
+                    background: #7256FD;
+                    border-radius: 5px;
+                    width: 194px;
+                    height: 48px;
+                    font-weight: 700;
+                    font-size: 24px;
+                    color: #FFFFFF;
+                    border: 0px;
+                    margin-left: 48px;
+                    margin-top: 24px;
+                    cursor: pointer;
+                }
+
+                &__entrance {
+                    font-size: 24px;
+                    color: #1A1A1A;
+                    margin-top: 34px;
+                    margin-left: 72px;
+                    cursor: pointer;
+                }
+
+                &__student {
+                    background: #FFFFFF;
+                    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+                    border-radius: 0px 0px 5px 5px;
+                    font-size: 24px;
+                    font-weight: 600;
+                    color: #7256FD;
+                    padding: 34px 24px 14px 24px;
+                }
+            }
+
+            &__logo {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+
+}
+
+@media (min-width: 1291px) and (max-width: 1440px) {
+    .layout {}
+}
+
+@media (min-width: 1024px) and (max-width: 1290px) {
+    .layout {}
+}
+
+@media (min-width: 320px) and (max-width: 1023px) {
+    .layout {
+        display: block;
+
+    }
+}
+
+@media (min-width: 320px) and (max-width: 767px) {}

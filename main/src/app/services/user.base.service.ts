@@ -24,6 +24,18 @@ export class UserBaseService {
             )
     }
 
+    public getUserId(): number {
+        let id: number;
+
+        this._getUser$.subscribe({
+            next: (user) => {
+                id = parseInt(user.id);
+            }
+        });
+
+        return id;
+    }
+
     /**
      * метод для регистрации пользователя в системе
      * @param user данные юзера

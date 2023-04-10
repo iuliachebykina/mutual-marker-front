@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable, Subject, takeUntil } from "rxjs";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
+import { IModalService } from "src/app/services/modals";
 import { IBasicRoom, ITaskResponse, RoomService } from "src/app/services/room.service";
 import { copyToClipboard } from "src/utils/clipboardCopy";
 
@@ -20,7 +21,7 @@ export class RoomMainComponent {
         private _activatedRouter: ActivatedRoute,
         private _roomService: RoomService,
         private _router: Router,
-        private _notificationService: GlobalNotificationService
+        private _modalService: IModalService
     ) { }
 
     public toggleHint(): void {
@@ -29,10 +30,7 @@ export class RoomMainComponent {
 
     public copyRoomCode(code: string): void {
         copyToClipboard(code);
-        this._notificationService.subject$.next({
-            status: 'success',
-            text: 'Код комнаты скопирован'
-        })
+        this._modalService.showSuccess('Код комнаты скопирован');
     }
 
     public ngOnInit(): void {

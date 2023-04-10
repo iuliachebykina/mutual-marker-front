@@ -13,12 +13,17 @@ export class CabinetLayoutHeaderComponent implements OnInit {
     public hintVisible: boolean = false;
     public currentItem: 'rooms' | 'works' = 'rooms';
     public isLightTheme: boolean = true;
+    public showActionsProfile: boolean = false;
 
     constructor(
         private _userBaseService: UserBaseService,
         private _router: Router,
     ) {
         this.user$ = this._userBaseService.getUser();
+    }
+
+    public showActions(): void {
+        this.showActionsProfile = !this.showActionsProfile;
     }
 
     public ngOnInit(): void {
@@ -48,7 +53,7 @@ export class CabinetLayoutHeaderComponent implements OnInit {
 
         localStorage.clear();
         this._userBaseService.setUser(null);
-        this._router.navigate(['login', 'student']);
+        this._router.navigate(['student']);
     }
 
     public onMouseOver(): void {

@@ -10,6 +10,7 @@ import { CanActivateLogin } from "./account.guard";
 import { routes } from "./account.routing";
 import { LayoutComponent } from "./components/layout/layout.component";
 import { LoginComponent } from "./components/login/login.component";
+import { MainComponent } from "./components/main/main.component";
 import { RegistrationComponent } from "./components/registration/registration.component";
 
 @NgModule({
@@ -17,6 +18,7 @@ import { RegistrationComponent } from "./components/registration/registration.co
         LoginComponent,
         LayoutComponent,
         RegistrationComponent,
+        MainComponent
     ],
     imports: [
         CommonModule,

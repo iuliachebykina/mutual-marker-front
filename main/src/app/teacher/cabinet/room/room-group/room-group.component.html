@@ -1,0 +1,33 @@
+<div class="create-room" [formGroup]="form">
+    <ng-container *ngIf="!loading">
+        <h1 class="create-room__title">Создать новую группу комнат</h1>
+        <div>
+            <tui-input class='create-room__field' formControlName="projectName">
+                Название группы
+                <input tuiTextfield placeholder="" type="text" />
+            </tui-input>
+        </div>
+        <div>
+            <tui-multi-select *tuiLet="items$ | async as items" class="b-form" [formControl]="control"
+                [tuiTextfieldLabelOutside]="true" [stringify]="(stringify$ | async)!" (searchChange)="onSearch($event)">
+                Выберите комнаты для добавления
+                <tui-data-list-wrapper *tuiDataList tuiMultiSelectGroup [items]="items"
+                    [itemContent]="(stringify$ | async)!"></tui-data-list-wrapper>
+            </tui-multi-select>
+        </div>
+        <div сlass="create-room__group" style="display: flex; justify-content: space-between;">
+            <button tuiButton type="button" [disabled]="!form.valid || !control.valid" appearance="accent"
+                class="create-room__group__button" (click)="putRoomsToGroup()">
+                Создать
+            </button>
+            <button tuiButton type="button" appearance="outline" class="create-room__group__button"
+                (click)="cancel.next()">
+                Закрыть
+            </button>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="loading">
+        <tui-loader class="tui-space_vertical-3 loader"></tui-loader>
+    </ng-container>
+</div>

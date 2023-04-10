@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { GlobalNotificationService } from "src/app/services/global-notification.service";
+import { IModalService } from "src/app/services/modals";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 import { UserBaseService } from "../../../../services/user.base.service";
 import { IUser } from "../../interfaces/user-registration.interface";
@@ -17,14 +18,22 @@ export class LoginComponent extends FormBaseViewModel {
     constructor(
         private _userBaseService: UserBaseService,
         private _route: Router,
-        private _notificationService: GlobalNotificationService
+        private _notificationService: GlobalNotificationService,
+        private _modalService: IModalService
     ) {
         super();
-        document.querySelector('body').style.background = "#fff";
     }
 
     public toTeacherForm(): void {
-        this._route.navigate(['login', 'teacher']);
+        this._route.navigate(['student']);
+    }
+
+    public toRegistration(): void {
+        this._route.navigate(['student', 'registration']);
+    }
+
+    public switchTeacher(): void {
+        this._route.navigate(['teacher']);
     }
 
     public submitForm(): void {
@@ -43,17 +52,12 @@ export class LoginComponent extends FormBaseViewModel {
                             JSON.stringify({ username: this.getFormValue('email'), password: this.getFormValue('passwordValue'), role: success.role })
                         );
 
-                        this._notificationService.subject$.next({
-                            text: 'Успешный вход в аккаунт',
-                            status: 'success'
-                        });
+                        this._modalService.showSuccess('Успешный вход в аккаунт');
                     }
                 },
                 error: (error: HttpErrorResponse) => {
-                    this._notificationService.subject$.next({
-                        text: error.error || 'Ошибка при входе в аккаунт',
-                        status: 'error'
-                    });
+                    this._modalService.showError('Ошибка при входе в аккаунт');
+
                 }
             });
     }

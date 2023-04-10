@@ -2,7 +2,9 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class ProjectFileManagerService {
     constructor(private _httpRequestService: HttpClient) { }
 
@@ -20,12 +22,16 @@ export class ProjectFileManagerService {
         return this._httpRequestService.post<string[]>('/api/attachments/upload', formData);
     }
 
-    public createProject(taskId: string, file: string[]): Observable<void> {
-        return this._httpRequestService.post<void>(`/api/task/${taskId}/project`, {
-            title: 'Работа студента',
-            description: 'Работа студента',
-            attachments: file
-        });
+    public createProject(taskId: string, file: string[], data?: IWork): Observable<void> {
+        if (!data) {
+            data = {
+                title: 'Работа студента',
+                description: 'Работа студента',
+                attachments: file
+            }
+        };
+
+        return this._httpRequestService.post<void>(`/api/task/${taskId}/project`, data);
     }
 
     public getSelfProjectByTaskId(taskId: string): Observable<IAttachment[]> {
@@ -90,4 +96,10 @@ export interface IAttachment {
     id?: number;
     grade?: any;
     taskId?: number;
+}
+
+export interface IWork {
+    title: string,
+    description: string,
+    attachments: any
 }

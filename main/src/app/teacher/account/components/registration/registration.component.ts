@@ -6,6 +6,8 @@ import { UserBaseService } from "src/app/services/user.base.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
 import { IUser } from "../../interfaces/user-registration.interface";
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { Router } from "@angular/router";
+import { IModalService } from "src/app/services/modals";
 @Component({
     selector: 'registration-component',
     templateUrl: './registration.component.html',
@@ -19,13 +21,22 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
 
     constructor(
         private _userBaseService: UserBaseService,
-        private _notificationService: GlobalNotificationService
+        private _modalService: IModalService,
+        private _route: Router
     ) {
         super();
     }
 
     public ngOnDestroy(): void {
         this._onDestroy$.next();
+    }
+
+    public toLogin(): void {
+        this._route.navigate(['teacher', 'login']);
+    }
+
+    public switchTeacher(): void {
+        this._route.navigate(['teacher']);
     }
 
     public ngOnInit(): void {
@@ -62,17 +73,11 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
             )
             .subscribe({
                 next: () => {
-                    this._notificationService.subject$.next({
-                        text: 'Регистрация успешна',
-                        status: 'success'
-                    });
-                    this.onRegistration.emit();
+                    this._modalService.showSuccess('Регистрация успешна');
+                    this._route.navigate(['teacher']);
                 },
                 error: () => {
-                    this._notificationService.subject$.next({
-                        text: 'Ошибка при регистрации',
-                        status: 'error'
-                    });
+                    this._modalService.showError('Ошибка при регистрации');
                 }
             });
     }

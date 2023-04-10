@@ -1,0 +1,6 @@
+<div *ngIf="!Loading"  class="skeleton-frame">
+    <ng-content select="[main-content]" class="main-content"></ng-content>
+</div>
+<div *ngIf="Loading">
+    <ng-content select="[skeleton-content]" class="skeleton-content"></ng-content>
+</div>

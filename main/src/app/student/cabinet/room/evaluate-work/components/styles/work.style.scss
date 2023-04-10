@@ -1,119 +1,256 @@
-h1 {
-  font-size: 60px;
-  margin-top: 80px;
+.task {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    &__review {
+        margin-left: 48px;
+        padding-top: 48px;
+
+        &__next {
+            background: #7256FD;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 30px;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 10px 82px;
+            margin-top: 30px;
+            box-sizing: border-box;
+            margin-right: 24px;
+            cursor: pointer;
+
+        }
+
+        &__save {
+            background: #7256FD;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 30px;
+            text-align: center;
+            color: #FFFFFF;
+            padding: 10px 82px;
+            margin-top: 30px;
+            box-sizing: border-box;
+            margin-right: 24px;
+            cursor: pointer;
+
+            &__invaid {
+                opacity: .5;
+            }
+        }
+
+        &__header {
+            display: flex;
+
+            &__step {
+                background: #FFFFFF;
+                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 5px;
+                font-size: 24px;
+                line-height: 30px;
+                text-align: center;
+                color: #7256FD;
+                font-weight: 700;
+                width: 48px;
+                height: 48px;
+                padding: 10px 14px;
+                box-sizing: border-box;
+                cursor: pointer;
+                opacity: .5;
+                margin-right: 12px;
+                flex-wrap: wrap;
+
+                &__is-active {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &__action {
+            // width: 497px;
+            height: 443px;
+            background: #F2F0FF;
+            border-radius: 5px;
+            margin: 48px 24px 0 0;
+
+            &__title {
+                font-weight: 700;
+                font-size: 24px;
+                color: #000000;
+                padding: 24px 0 0 24px
+            }
+
+            &__subtitle {
+                font-weight: 500;
+                font-size: 16px;
+                color: #565656;
+                padding: 20px 0 24px 24px
+            }
+
+            &__comment {
+                font-weight: 700;
+                font-size: 24px;
+                color: #000000;
+                padding: 10px 0 0 24px
+            }
+
+            &__comment-field {
+                margin: -55px 24px 30px -25px;
+                width: 100%;
+            }
+
+            &__evaluate {
+                padding-left: 28px;
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            &__evaluate-field {
+                margin: 20px 70px 0 24px;
+            }
+        }
+
+
+    }
+
+    h1 {
+        font-size: 32px;
+        margin-top: 48px;
+        margin-left: 72px;
+    }
+
+    &__description {
+        margin-top: 48px;
+        margin-left: 72px;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 39px;
+        color: #565656;
+    }
+
+    &__download {
+        font-size: 24px;
+        color: #fff;
+        font-weight: 700;
+        padding: 14px 24px;
+        width: 144px;
+        text-align: center;
+        margin-bottom: 48px;
+        margin-left: 72px;
+        margin-top: 32px;
+        cursor: pointer;
+        background: #7256FD;
+        border-radius: 5px;
+    }
 }
 
-.download {
-  font-size: 24px;
-  color: #7256FD;
-  font-weight: bold;
-  cursor: pointer;
-  display: block;
-}
+
 
 .range {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 /*Chrome*/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-  input[type='range'] {
-    overflow: hidden;
-    width: 100%;
-    height: 20px;
-    -webkit-appearance: none;
-    background-color: #fff;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-  }
+    input[type='range'] {
+        overflow: hidden;
+        width: 100%;
+        height: 20px;
+        -webkit-appearance: none;
+        background-color: #fff;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
 
-  input[type='range']::-webkit-slider-runnable-track {
-    height: 20px;
-    -webkit-appearance: none;
-    color: #13bba4;
-    margin-top: -1px;
-  }
+    input[type='range']::-webkit-slider-runnable-track {
+        height: 20px;
+        -webkit-appearance: none;
+        color: #13bba4;
+        margin-top: -1px;
+    }
 
-  input[type='range']::-webkit-slider-thumb {
-    width: 10px;
-    -webkit-appearance: none;
-    height: 25px;
-    cursor: ew-resize;
-    background: #434343;
-    box-shadow: -3000px 0 0 3000px #17F5B3;
-  }
+    input[type='range']::-webkit-slider-thumb {
+        width: 10px;
+        -webkit-appearance: none;
+        height: 25px;
+        cursor: ew-resize;
+        background: #434343;
+        box-shadow: -3000px 0 0 3000px #17F5B3;
+    }
 
 }
 
 /** FF*/
 input[type="range"]::-moz-range-progress {
-  background-color: #17F5B3;
+    background-color: #17F5B3;
 }
 
 input[type="range"]::-moz-range-track {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 /* IE*/
 input[type="range"]::-ms-fill-lower {
-  background-color: #17F5B3;
+    background-color: #17F5B3;
 }
 
 input[type="range"]::-ms-fill-upper {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 .title {
-  font-size: 24px;
-  margin-top: 30px;
-  margin-bottom: 90px;
+    font-size: 24px;
+    margin-top: 30px;
+    margin-bottom: 90px;
 }
 
 .mark {
-  font-size: 24px;
-  font-weight: 400;
-  margin-bottom: 40px;
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 40px;
 }
 
 .actions {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
 .save {
-  font-size: 24px;
-  color: #7256FD;
-  font-weight: bold;
+    font-size: 24px;
+    color: #7256FD;
+    font-weight: bold;
 }
 
 .change {
-  font-size: 24px;
-  color: #FE5151;
-  font-weight: bold;
+    font-size: 24px;
+    color: #FE5151;
+    font-weight: bold;
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
-  h1 {
-    line-height: 50px;
-  }
+    h1 {
+        line-height: 50px;
+    }
 
-  .title {
-    margin-top: 20px;
-  }
+    .title {
+        margin-top: 20px;
+    }
 
-  .actions {
-    margin-bottom: -20px;
-    display: block;
-    line-height: 40px;
-  }
+    .actions {
+        margin-bottom: -20px;
+        display: block;
+        line-height: 40px;
+    }
 
-  .range {
-    margin-top: 20px
-  }
+    .range {
+        margin-top: 20px
+    }
 
-  .download {
-    margin-top: 10px;
-    margin-bottom: 30px;
-  }
-  
+    .download {
+        margin-top: 10px;
+        margin-bottom: 30px;
+    }
+
 }

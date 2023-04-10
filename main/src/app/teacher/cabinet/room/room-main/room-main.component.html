@@ -1,15 +1,24 @@
 <div class="room-main" *ngIf="room$ | async as room">
     <div class="room-main__header">
         <h1 class="room-main__title">{{room.title}}</h1>
+        <div class="room-main__code">Код комнаты <img (click)="copyRoomCode(room.code)"
+                style="margin-left: 8px; cursor: pointer;" src='assets/icons/copy.svg'> </div>
+        <div class="room-main__description">{{room.description}}</div>
     </div>
 
     <ng-container *ngIf="tasks$ | async as tasks">
-        <div class="room-main__add-task" (click)="createTask()">Добавить задание</div>
-        <div *ngIf="tasks.length" class="room-main__current-task">Текущие задания:</div>
-        <div *ngIf="!tasks.length" class="room-main__current-task">В этой комнате еще нет ни одного задания
+        <div class="room-main__current-task">Текущие задания:</div>
+        <div *ngFor="let task of tasks; let i = index" class="room-main__tasks">
+            <task-item [task]="task" [index]="i" (onDeleted)="taskSuccessHandler()"
+                (onArrowClick)="onArrowClick($event)"></task-item>
         </div>
-        <div *ngFor="let task of tasks; let i = index">
-            <task-item [task]="task" [index]="i" (onDeleted)="taskSuccessHandler()" (onArrowClick)="onArrowClick($event)"></task-item>
+        <div class="room-main__add-task" (click)="createTask()">Добавить задание
+            <span style="display: inline-block; margin-left: 50px;"> 
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 1V13" stroke="#FE7451" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M13 7L1 7" stroke="#FE7451" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
         </div>
     </ng-container>
 </div>
