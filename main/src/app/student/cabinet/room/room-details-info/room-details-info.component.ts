@@ -42,13 +42,17 @@ export class RoomDetailsInfoComponent implements OnInit, OnDestroy {
         modal.InnerComponent.instance.submit.subscribe({
             next: () => {
                 modal.close();
+                this._router.navigate(['cabinet', 'main']);
+                this._modalService.showSuccess('Вы покинули комнату');
+            },
+            error: () => {
+                this._modalService.showError('Не удалось покинуть комнату');
             }
         });
 
         modal.InnerComponent.instance.cancel.subscribe({
             next: () => {
                 modal.close();
-                this._router.navigate(['cabinet', 'main']);
             }
         });
 

@@ -23,6 +23,16 @@ export class MainPageComponent implements OnInit, OnDestroy {
     public filteredGroups: IGroup[] = [];
     public sortDown: boolean = true;
     public notFoundRooms: boolean = false;
+    public filterList: IListItem[] = [
+        {
+            value: 'byAlphabetOrder',
+            text: 'По возрастанию'
+        },
+        {
+            value: 'reverseAlphabetOrder',
+            text: 'По убыванию'
+        },
+    ];
     public buttonList: IListItem[] = [
         {
             value: 'create',
@@ -137,6 +147,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
                     }
                 });
                 modalAddRoomToGroup.open();
+                break;
+            case 'byAlphabetOrder':
+                this.sortDown = true;
+                this.sort();
+                break;
+            case 'reverseAlphabetOrder':
+                this.sortDown = false;
+                this.sort();
                 break;
         }
     }

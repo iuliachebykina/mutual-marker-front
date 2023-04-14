@@ -31,6 +31,7 @@ import { JoinRoomModalComponent } from "./room/join-room-modal/join-room-modal.c
 import { ModalUploadWorkComponent } from "./project/modal-upload-work/modal-upload-work.component";
 import { LeaveRoomComponent } from "./room/leave-room/leave-room.component";
 import { ALL_TAIGA_UI_MODULES } from "src/libraries/all-taiga-modules";
+import { DoneTasksComponent } from "./room/done-tasks/done-tasks.component";
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ALL_TAIGA_UI_MODULES } from "src/libraries/all-taiga-modules";
         RoomAnalyticsComponent,
         JoinRoomModalComponent,
         ModalUploadWorkComponent,
-        LeaveRoomComponent
+        LeaveRoomComponent,
+        DoneTasksComponent
     ],
     imports: [
         CommonModule,

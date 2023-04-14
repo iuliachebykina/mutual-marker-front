@@ -40,6 +40,10 @@
                 text-align: center;
                 margin: 58px auto;
                 cursor: pointer;
+
+                &__invalid {
+                    opacity: .5;
+                }
             }
         }
 

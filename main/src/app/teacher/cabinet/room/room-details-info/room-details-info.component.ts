@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { map, Observable, Subject, switchMap, takeUntil } from "rxjs";
 import { IModalContainer, IModalService } from "src/app/services/modals";
 import { IBasicRoom, ITaskResponse, RoomService } from "src/app/services/room.service";
@@ -20,7 +20,8 @@ export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
     constructor(
         private _activatedRouter: ActivatedRoute,
         private _roomService: RoomService,
-        private _modalService: IModalService
+        private _modalService: IModalService,
+        private _route: Router
     ) { }
 
     public ngOnInit(): void {
@@ -73,6 +74,7 @@ export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
                     next: () => {
                         this._modalService.showSuccess('Комната успешно удалена');
                         modal.close();
+                        this._route.navigate(['account']);
                     },
                     error: () => {
                         this._modalService.showError('Ошибка при удалении комнаты');

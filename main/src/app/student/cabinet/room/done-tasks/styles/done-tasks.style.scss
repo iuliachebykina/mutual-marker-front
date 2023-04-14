@@ -1,0 +1,76 @@
+.main {
+    padding: 48px 24px;
+
+    &__title {
+        font-weight: 700;
+        font-size: 48px;
+        color: #000000;
+        background: #F2F0FF;
+        border-radius: 5px;
+        padding: 58px 0 58px 48px;
+        margin-bottom: 48px;
+    }
+
+    &__feedback {
+        background: #FFFFFF;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        padding: 32px 0 31px 48px;
+        margin-bottom: 24px;
+
+        &__review {
+
+
+            &__block {
+                background: #F2F0FF;
+                border-radius: 5px;
+                margin-bottom: 12px;
+            }
+
+            &__comment {
+                font-weight: 700;
+                font-size: 24px;
+                color: #000000;
+                padding: 24px 0 24px 24px;
+            }
+
+            &__comment-text {
+                padding-left: 24px;
+                padding-bottom: 24px;
+                font-weight: 500;
+                font-size: 16px;
+                color: #565656;
+            }
+
+            &__criteria {
+                font-weight: 700;
+                font-size: 24px;
+                color: #000000;
+                padding: 24px 0 24px 24px;
+            }
+
+            &__criteria-text {
+                padding-left: 24px;
+                padding-bottom: 24px;
+                font-weight: 500;
+                font-size: 16px;
+                color: #565656;
+            }
+
+            &__mark {
+                font-weight: 700;
+                font-size: 24px;
+                color: #000000;
+                padding: 24px 0 24px 24px;
+            }
+
+            &__mark-text {
+                padding-left: 24px;
+                padding-bottom: 24px;
+                font-size: 16px;
+                color: #FE7451;
+
+            }
+        }
+    }
+}
