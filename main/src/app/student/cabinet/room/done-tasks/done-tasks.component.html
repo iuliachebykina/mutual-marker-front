@@ -1,0 +1,34 @@
+<div class="main">
+    <div class="main__title">
+        Отзывы
+    </div>
+
+    <div *ngIf="feedbacks | async as feedback">
+        <div *ngFor="let item of feedback" class="main__feedback">
+            <accordion [title]="'Оценка: '" [isContentVisible]="false">
+                <div class="main__feedback__review" *ngFor="let review of item.feedbacks">
+                    <div *ngFor="let r of review.feedbacks" class="main__feedback__review__block">
+                        <div class="main__feedback__review__criteria">
+                            Критерий
+                        </div>
+                        <div class="main__feedback__review__criteria-text">
+                            {{r?.markStep?.title}}
+                        </div>
+                        <div class="main__feedback__review__comment">
+                            Комментарий
+                        </div> 
+                        <div class="main__feedback__review__comment-text">
+                            {{r.comment}}
+                        </div>
+                        <div class="main__feedback__review__mark">
+                            Оценка
+                        </div> 
+                        <div class="main__feedback__review__mark-text">
+                            {{r.value}}/{{r.markStep.values[r.markStep.values.length - 1]}}
+                        </div> 
+                    </div>
+                </div>
+            </accordion>
+        </div>
+    </div>
+</div>

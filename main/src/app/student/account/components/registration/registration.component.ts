@@ -1,3 +1,4 @@
+import { Location } from "@angular/common";
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -16,15 +17,18 @@ import { IUser } from "../../interfaces/user-registration.interface";
 export class RegistrationComponent extends FormBaseViewModel implements OnDestroy, OnInit {
     @Output()
     public onRegistration: EventEmitter<void> = new EventEmitter<void>();
-
+    
     private _onDestroy$: Subject<void> = new Subject<void>();
+    private _defaultEmail: string = '';
 
     constructor(
         private _userBaseService: UserBaseService,
         private _modalService: IModalService,
         private _route: Router,
+        private _location: Location
     ) {
         super();
+        this._defaultEmail = this._location.getState()['email'] || '';
     }
 
     public ngOnDestroy(): void {
@@ -40,6 +44,8 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
     }
 
     public ngOnInit(): void {
+        this.setFormValue('email', this._defaultEmail);
+
         this.getControl('password').valueChanges.subscribe({
             next: () => {
                 this.getControl('repeatPassword').addValidators(this.checkLimit());

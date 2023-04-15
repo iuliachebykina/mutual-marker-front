@@ -21,7 +21,7 @@ export class LeaveRoomComponent extends ModalBaseComponent {
     public leaveRoom(): void {
         this._roomService.leaveRoomAsStudent(this.roomId).subscribe({
             next: () => {
-                this.cancel.next();
+                this.submit.next(null);
             }
         })
     }

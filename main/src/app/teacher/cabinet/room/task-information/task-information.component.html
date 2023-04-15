@@ -1,11 +1,49 @@
 <div class="room-task" *ngIf="task$ | async as task">
     <div class="room-task__name">
         {{task.title}}
+        <div style="font-size: 16px; color: #767676; font-weight: 500; margin-top: 0px;">
+            Срок сдачи истекает&nbsp;&nbsp;<span style="color: #FE7451; font-weight: 700;">{{task.closeDate | date:
+                'dd.MM.yyyy'}}</span>
+        </div>
+
+    </div>
+    <div class="room-task__description-title">
+        Описание
     </div>
     <div class="room-task__title">
         {{task.description}}
     </div>
-    <div class="room-task__excel" (click)="excel()">
-        Сделать выгрузку задания
+    <div class="room-task__criteria">
+        Критерии оценки
+    </div>
+    <div class="room-task__criteria-list">
+        <ng-container *ngFor="let i of task.markSteps; let in = index">
+            <div>{{in + 1 + '.'}}&nbsp; {{i.title}}</div>
+        </ng-container>
+    </div>
+    <div class="room-task__actions">
+        <div>Выполненные задания</div>
+        <div style="cursor: pointer;" (click)="excel()">Скачать статистику</div>
+    </div>
+
+
+    <div *ngIf="!tasks.length" class="room-task__empty-tasks">
+        Список выполненных заданий пуст
+    </div>
+
+    <div class="room-task__students" *ngIf="tasks.length">
+        <div class="room-task__students__work" *ngFor="let i of tasks">
+            <div class="room-task__students__work__title">{{i.title}}</div>
+            <div style="display: flex;">
+                <div class="room-task__students__work__name" style="margin-right: 60px;">Оценка:&nbsp; <span style="color: #FE7451; font-weight: 700;">
+                    {{task.finalMark}}/100
+                </span></div>
+                <div class="room-task__students__work__name">
+                    Автор:&nbsp; <span style="font-weight: 700;">
+                        {{i.student.lastName}} {{i.student.firstName}} {{i.student.patronymic}}
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

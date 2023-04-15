@@ -74,15 +74,21 @@
                 padding: 0px 0 0 96px;
 
                 &__filter {
-                    background: #FE7451;
-                    border-radius: 5px;
+                    // background: #FE7451;
+                    // border-radius: 5px;
                     margin-left: 48px;
-                    font-weight: 700;
-                    font-size: 24px;
-                    color: #FFFFFF;
-                    box-sizing: border-box;
+                    // font-weight: 700;
+                    // font-size: 24px;
+                    // color: #FFFFFF;
+                    // box-sizing: border-box;
+                    // position: relative;
+                    // padding: 10px 133px 14px 24px;
+                    cursor: pointer;
                     position: relative;
-                    padding: 10px 133px 14px 24px;
+                    &__plus {
+                        margin-left: 30px;
+                        margin-right: 10px;
+                    }
                 }
             }
 
@@ -99,10 +105,10 @@
                 // color: #fff;
                 // padding: 10px 14px 14px 24px;
 
-                // &__plus {
-                //     margin-left: 30px;
-                //     margin-right: 10px;
-                // }
+                &__plus {
+                    margin-left: 30px;
+                    margin-right: 10px;
+                }
             }
         }
     }

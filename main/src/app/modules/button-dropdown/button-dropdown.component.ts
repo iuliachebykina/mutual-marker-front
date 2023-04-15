@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, ElementRef, EventEmitter, HostListener, Input, Output, ViewChild } from "@angular/core";
 
 @Component({
     templateUrl: 'button-dropdown.component.html',
@@ -6,6 +6,9 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
     styleUrls: ['styles/button.style.scss']
 })
 export class ButtonDropdownComponent {
+    isMouseOver = false;
+    isContentMouseOver = false;
+
 
     @Input()
     public textColor: string;
@@ -34,6 +37,43 @@ export class ButtonDropdownComponent {
         this.eventValue.emit(value);
         this.active = false;
     }
+
+    isOpen = false;
+    @ViewChild('dropdown') dropdown: ElementRef;
+
+    toggleDropdown() {
+        this.isOpen = !this.isOpen;
+    }
+
+    onMouseEnter() {
+        this.isOpen = true;
+    }
+
+    onMouseLeave() {
+        this.isOpen = false;
+    }
+
+    onMouseEnterContent() {
+        this.isOpen = true;
+    }
+
+    onMouseLeaveContent() {
+        this.isContentMouseOver = false;
+        if (!this.isMouseOver) {
+            this.isOpen = false;
+        }
+    }
+
+
+
+    @HostListener('document:click', ['$event.target'])
+    onClick(targetElement) {
+        const clickedInside = this.dropdown.nativeElement.contains(targetElement);
+        if (!clickedInside) {
+            this.isOpen = false;
+        }
+    }
+
 }
 
 export interface IListItem {

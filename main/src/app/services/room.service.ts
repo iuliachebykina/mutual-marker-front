@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { IUser } from "../student/account/interfaces/user-registration.interface";
 
 @Injectable()
@@ -24,6 +24,14 @@ export class RoomService {
 
     public getGroups(page: number, size: number): Observable<IGroup[]> {
         return this._httpRequestService.get<any>('api/rooms/all-room-group', { params: { page, size: 100 } })
+    }
+
+    /** получение всех отзывов по комнате студента */
+    public getAllFeedbacks(roomId: string, profileId: number): Observable<any> {
+        return this._httpRequestService.get<any>('api/rooms/get-all-feedbacks', { params: { roomId, profileId } })
+            .pipe(
+                map(response => Array.isArray(response) ? response : [response])
+            );
     }
 
     /**
@@ -92,7 +100,15 @@ export class RoomService {
     }
 
     public getTaskById(task_id: string): Observable<ITaskResponse> {
-        return this._httpRequestService.get<ITaskResponse>('/api/task/' + task_id);
+        return this._httpRequestService.get<ITaskResponse>('/api/task/' + task_id)
+            .pipe(
+                map(i => {
+                    const item = i;
+                    item.finalMark = item.finalMark === "NaN" ? "0" : item.finalMark;
+
+                    return item;
+                })
+            );
     }
 
     public deleteTask(task_id: number): Observable<void> {
@@ -152,6 +168,7 @@ export interface ITaskResponse {
     deleted?: boolean;
     description?: string;
     isBlock?: boolean;
+    finalMark: string;
     id?: number;
     openDate?: string;
     roomId?: number;

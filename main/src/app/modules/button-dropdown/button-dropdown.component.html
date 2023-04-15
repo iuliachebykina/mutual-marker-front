@@ -1,14 +1,6 @@
-<div class="button" style="background: {{backgroundColor}};" (click)="active=!active">
-    <div style="color: {{textColor}}; margin-right: 110px;">
-        {{text}}
-    </div>
-    <ng-content></ng-content>
-</div>
-
-<div class="list" *ngIf="items && items.length && active">
-    <div *ngFor="let element of items">
-        <div (click)="selectValue(element.value)">
-            {{element.text}}
-        </div>
+<div class="dropdown" #dropdown  (mouseleave)="onMouseLeave()" (mouseenter)="onMouseEnterContent()">
+    <button class="dropdown-btn" style="background: {{backgroundColor}};" (click)="toggleDropdown()">{{text}} <ng-content></ng-content></button>
+    <div class="dropdown-content" [hidden]="!isOpen" *ngIf="items && items.length">
+        <div *ngFor="let element of items" (click)="selectValue(element.value)">{{element.text}}</div>
     </div>
 </div>

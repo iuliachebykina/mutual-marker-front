@@ -3,17 +3,20 @@
         <div class="wrapper__main__actions">
             <div class="wrapper__main__actions__menu">
                 <div class="search-container">
-                    <input #text type="text" id="search-bar" placeholder="Найти комнату" (input)="filterItems(text.value)">
+                    <input #text type="text" id="search-bar" placeholder="Найти комнату"
+                        (input)="filterItems(text.value)">
                     <a href="#"><img class="search-icon" src="assets/icons/search.svg"></a>
                 </div>
+                
                 <div class="wrapper__main__actions__menu__filter">
-                    Фильтровать
-                    <span style="position: absolute; top: 10px; right: 20px; cursor: pointer;">
-                        <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 1L7.5 7.5L14 1" stroke="#fff" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </span>
+                    <button-dropdown [text]="'Фильтровать'" [backgroundColor]="'#FE7451'" [textColor]="'#fff'"
+                        [items]="filterList" (eventValue)="selectActionValue($event)">
+                        <img class="wrapper__main__actions__menu__filter__plus" src="assets/icons/arrow-white.svg">
+                        
+                    </button-dropdown>
+                    <!-- <span style="position: absolute; top: 10px; right: 20px; cursor: pointer;">
+                        
+                    </span> -->
                 </div>
             </div>
             <div class="wrapper__main__actions__button">
@@ -28,8 +31,10 @@
             <div main-content class="wrapper__main__content">
 
                 <div *ngIf="filteredGroups.length" class="wrapper__main__content__container">
-                    <div *ngFor="let i of filteredGroups; last as l; let ind = index" class="wrapper__main__content__container__group">
-                        <accordion [title]="i.roomGroupName" [isContentVisible]="false" [empty]="i.rooms.length <= 0" [bold]="true"> 
+                    <div *ngFor="let i of filteredGroups; last as l; let ind = index"
+                        class="wrapper__main__content__container__group">
+                        <accordion [title]="i.roomGroupName" [isContentVisible]="false" [empty]="i.rooms.length <= 0"
+                            [bold]="true">
                             <div class="wrapper__main__content__container__item">
                                 <ng-container *ngIf="i.rooms.length">
                                     <div *ngFor="let room of i.rooms" style="margin-bottom: 12px;">
@@ -56,7 +61,8 @@
 
                 <div *ngIf="notFoundRooms">
                     <div class="not-found">
-                        <svg width="100" height="100" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="100" height="100" viewBox="0 0 62 62" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M55.2778 29.5961C55.2778 28.2154 54.1585 27.0961 52.7778 27.0961C51.3971 27.0961 50.2778 28.2154 50.2778 29.5961H55.2778ZM27.8889 7.5C29.2696 7.5 30.3889 6.38071 30.3889 5C30.3889 3.61929 29.2696 2.5 27.8889 2.5V7.5ZM48.3728 44.9116C47.3225 44.0154 45.7445 44.1402 44.8483 45.1905C43.952 46.2408 44.0769 47.8188 45.1272 48.715L48.3728 44.9116ZM57.3772 59.1684C58.4275 60.0646 60.0055 59.9398 60.9017 58.8895C61.798 57.8392 61.6731 56.2612 60.6228 55.3649L57.3772 59.1684ZM50.2778 29.5961C50.2778 41.7716 40.2819 51.6922 27.8889 51.6922V56.6922C42.9874 56.6922 55.2778 44.5886 55.2778 29.5961H50.2778ZM27.8889 51.6922C15.4959 51.6922 5.5 41.7716 5.5 29.5961H0.5C0.5 44.5886 12.7904 56.6922 27.8889 56.6922V51.6922ZM5.5 29.5961C5.5 17.4206 15.4959 7.5 27.8889 7.5V2.5C12.7904 2.5 0.5 14.6035 0.5 29.5961H5.5ZM45.1272 48.715L57.3772 59.1684L60.6228 55.3649L48.3728 44.9116L45.1272 48.715Z"
                                 fill="#FE7451" />

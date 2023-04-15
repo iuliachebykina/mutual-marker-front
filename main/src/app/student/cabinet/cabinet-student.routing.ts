@@ -1,10 +1,12 @@
 import { Routes } from "@angular/router";
 import { CabinetLayoutHeaderComponent } from "./cabinet-layout-header/cabinet-layout-header.component";
+import { CanActivateCabinet } from "./cabinet-student.guard";
 import { MainPageComponent } from "./main-page/main-page.component";
 import { MyWorksComponent } from "./my-works/my-works.component";
 import { NotFoundErrorComponent } from "./not-found-error/not-found-error.component";
 import { ProfileComponent } from "./profile/components/profile.component";
 import { TaskDetailsComponent } from "./project/project-details/project-details.component";
+import { DoneTasksComponent } from "./room/done-tasks/done-tasks.component";
 import { WorkComponent } from "./room/evaluate-work/components/work.component";
 import { EvaluateWorkComponent } from "./room/evaluate-work/evaluate-work.component";
 import { RoomDetailsInfoComponent } from "./room/room-details-info/room-details-info.component";
@@ -15,7 +17,7 @@ export const routes: Routes = [
     {
         path: '',
         component: CabinetLayoutHeaderComponent,
-        // canActivate: [CanActivateCabinet],
+        canActivate: [CanActivateCabinet],
         children: [
             {
                 path: '',
@@ -65,6 +67,11 @@ export const routes: Routes = [
                         path: 'work/:workId',
                         component: WorkComponent,
                         data: { breadcrumb: 'Оценка работы' }
+                    },
+                    {
+                        path: 'done',
+                        component: DoneTasksComponent,
+                        data: { breadcrumb: 'Выполненные задания' }
                     }
                 ]
             },

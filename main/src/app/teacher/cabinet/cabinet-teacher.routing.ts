@@ -39,12 +39,19 @@ export const routes: Routes = [
                 children: [
                     {
                         path: 'info',
-                        component: TaskInformationComponent
+                        component: TaskInformationComponent,
+                        data: { breadcrumb: 'Информация о задании' },
                     },
                     {
                         path: 'works',
-                        component: TaskStudentWorksInfoComponent
-                    }
+                        component: TaskStudentWorksInfoComponent,
+                        data: { breadcrumb: 'Работы участников' }
+                    },
+                    {
+                        path: 'statistic',
+                        component: RoomStatisticComponent,
+                        data: { breadcrumb: 'Статистика' }
+                    },
                 ]
             },
             {
@@ -64,11 +71,6 @@ export const routes: Routes = [
                         path: 'create-task',
                         component: AddTaskComponent,
                         data: { breadcrumb: 'Добавление задания' }
-                    },
-                    {
-                        path: 'statistic',
-                        component: RoomStatisticComponent,
-                        data: { breadcrumb: 'Статистика' }
                     },
                     {
                         path: 'member',

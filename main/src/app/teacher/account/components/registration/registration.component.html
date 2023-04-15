@@ -75,7 +75,7 @@
                 </tui-input>
             </div>
 
-            <div class="wrapper__main__registration" (click)="submitForm()">
+            <div class="wrapper__main__registration" (click)="submitForm()" [ngClass]="{'wrapper__main__registration__invalid' : !controlsGroup.valid}">
                 Регистрация
             </div>
         </div>

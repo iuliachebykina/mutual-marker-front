@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
+import { IListItem } from "src/app/modules/button-dropdown/button-dropdown.component";
 import { IModalContainer, IModalService } from "src/app/services/modals";
 import { IBasicRoom, RoomService } from "src/app/services/room.service";
 import { FormBaseViewModel } from "src/libraries/form-base-view-model";
@@ -17,6 +18,17 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
     public notFoundRooms: boolean = false;
     private _subjectDestroy$: Subject<void> = new Subject<void>();
     public loading: boolean = true;
+    public sortDown: boolean = true;
+    public filterList: IListItem[] = [
+        {
+            value: 'byAlphabetOrder',
+            text: 'По возрастанию'
+        },
+        {
+            value: 'reverseAlphabetOrder',
+            text: 'По убыванию'
+        },
+    ];
     constructor(
         private _roomService: RoomService,
         private _router: Router,
@@ -71,6 +83,34 @@ export class MainPageComponent extends FormBaseViewModel implements OnInit, OnDe
                     this.loading = false;
                 }
             })
+    }
+
+    public selectActionValue(value: string): void {
+        switch (value) {
+            case 'byAlphabetOrder':
+                this.sortDown = true;
+                this.sort();
+                break;
+            case 'reverseAlphabetOrder':
+                this.sortDown = false;
+                this.sort();
+                break;
+        }
+    }
+
+
+    public sort(): void {
+        this.sortDown = !this.sortDown;
+
+        if (this.sortDown) {
+            this.filteredRooms.sort((a: IBasicRoom, b: IBasicRoom): number => {
+                return a.title.toLowerCase() > b.title.toLowerCase() ? -1 : 1;
+            });
+        } else {
+            this.filteredRooms.sort((a: IBasicRoom, b: IBasicRoom): number => {
+                return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
+            });
+        }
     }
 
     public joinNewRoom(): void {

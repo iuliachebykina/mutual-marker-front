@@ -8,6 +8,7 @@ import { IUser } from "../../interfaces/user-registration.interface";
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import { Router } from "@angular/router";
 import { IModalService } from "src/app/services/modals";
+import { Location } from "@angular/common";
 @Component({
     selector: 'registration-component',
     templateUrl: './registration.component.html',
@@ -18,13 +19,16 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
     public onRegistration: EventEmitter<void> = new EventEmitter<void>();
 
     private _onDestroy$: Subject<void> = new Subject<void>();
+    private _defaultEmail: string = '';
 
     constructor(
         private _userBaseService: UserBaseService,
         private _modalService: IModalService,
-        private _route: Router
+        private _route: Router,
+        private _location: Location
     ) {
         super();
+        this._defaultEmail = this._location.getState()['email'] || '';
     }
 
     public ngOnDestroy(): void {
@@ -40,6 +44,8 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
     }
 
     public ngOnInit(): void {
+        this.setFormValue('email', this._defaultEmail);
+
         this.getControl('password').valueChanges.subscribe({
             next: () => {
                 this.getControl('repeatPassword').addValidators(this.checkLimit());
@@ -54,6 +60,10 @@ export class RegistrationComponent extends FormBaseViewModel implements OnDestro
     }
 
     public submitForm(): void {
+        if (!this.controlsGroup.valid) {
+            return;
+        }
+        
         const data: IUser = {
             firstName: this.getFormValue('username').split(' ')[1],
             lastName: this.getFormValue('username').split(' ')[0],

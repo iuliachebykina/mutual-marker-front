@@ -9,25 +9,35 @@ import { ITaskResponse, RoomService } from "src/app/services/room.service";
     styleUrls: ['./style/room-statistic.style.scss']
 })
 export class RoomStatisticComponent {
-    public roomId: string;
     public statistic: IStatistic[] = [];
+    private _taskId: string;
     constructor(
         private _activatedRouter: ActivatedRoute,
         private _roomService: RoomService,
         private _markService: MarksService
-    ) { }
+    ) {
+        _activatedRouter.parent.params.subscribe({
+            next: (e) => {
+                // console.log(e);
+            }
+        })
+    }
 
     public ngOnInit(): void {
-        this._activatedRouter.parent.params.subscribe({
-            next: (params) => {
-                this.roomId = params['id'];
-            }
-        });
-
-        //1 шаг получаем все таски данной комнаты
-        this._roomService.getTasks(parseInt(this.roomId))
+        this._activatedRouter.parent.params
             .pipe(
+                switchMap((params) => {
+                    this._taskId = params['id'];
+
+                    return this._roomService.getTaskById(params['id']);
+                }),
+                map(room => room.roomId),
+                switchMap(roomId => {
+                    return this._roomService.getTasks(roomId)
+                }),
                 map((tasks: ITaskResponse[]): number[] => {
+                    tasks = tasks.filter(i => i.id === parseInt(this._taskId));
+                    
                     return tasks.map(item => item.id)
                 }),
                 switchMap((ids: number[]): Observable<IStatistic[][]> => {

@@ -50,7 +50,7 @@ import { TaskStudentWorksInfoComponent } from "./room/task-student-works-info/ta
         RoomGroupDeleteComponent,
         AddRoomComponent,
         DeleteRoomsComponent,
-        AddRoomToGroupComponents
+        AddRoomToGroupComponents,
     ],
     imports: [
         CommonModule,
