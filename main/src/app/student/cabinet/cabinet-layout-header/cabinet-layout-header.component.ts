@@ -1,6 +1,7 @@
 import { Component, isDevMode, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
+import { AuthService } from "src/app/services/auth.service";
 import { UserBaseService } from "src/app/services/user.base.service";
 import { IUser } from "src/app/student/account/interfaces/user-registration.interface";
 
@@ -18,8 +19,9 @@ export class CabinetLayoutHeaderComponent implements OnInit {
     constructor(
         private _userBaseService: UserBaseService,
         private _router: Router,
+        private _authService: AuthService
     ) {
-        this.user$ = this._userBaseService.getUser();
+        this.user$ = this._userBaseService.getUserProfile();
     }
 
     public showActions(): void {
@@ -44,15 +46,7 @@ export class CabinetLayoutHeaderComponent implements OnInit {
     }
 
     public exit(): void {
-        if (isDevMode()) {
-            console.log('выход из аккаунта');
-            console.log('cookie cleared');
-            console.log('localstorage cleared');
-            console.log('local user removed');
-        };
-
-        localStorage.clear();
-        this._userBaseService.setUser(null);
+        this._authService.logout();
         this._router.navigate(['student']);
     }
 

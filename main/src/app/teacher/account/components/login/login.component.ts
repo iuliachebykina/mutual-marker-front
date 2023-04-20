@@ -34,25 +34,18 @@ export class LoginComponent extends FormBaseViewModel {
     public switchTeacher(): void {
         this._route.navigate(['teacher']);
     }
-    
+
     public submitForm(): void {
         const user: IUser = {
             username: this.getFormValue('email'),
             password: this.getFormValue('passwordValue')
         };
 
-        this._userBaseService.login(user, 'ROLE_TEACHER\\' + user.username)
+        this._userBaseService.login(user, 'ROLE_TEACHER')
             .subscribe({
-                next: (success: IUser): void => {
-                    if (success.role) {
-                        localStorage.setItem(
-                            'user',
-                            JSON.stringify({ username: this.getFormValue('email'), password: this.getFormValue('passwordValue'), role: success.role })
-                        );
-
-                        this._modalService.showSuccess('Успешный вход в аккаунт');
-                        this._route.navigate(['account', 'main']);
-                    }
+                next: (): void => {
+                    this._modalService.showSuccess('Успешный вход в аккаунт');
+                    this._route.navigate(['account', 'main']);
                 },
                 error: (error: HttpErrorResponse): void => {
                     this._modalService.showError('Ошибка при входе в аккаунт');

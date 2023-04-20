@@ -111,4 +111,42 @@
     }
 }
 
-@media (min-width: 320px) and (max-width: 767px) {}
+@media (min-width: 320px) and (max-width: 767px) {
+    .layout {
+        .wrapper {
+            &__header {
+                display: block;
+
+                &__logo {
+                    display: none;
+                }
+
+                &__actions {
+                    display: flex;
+                    justify-content: space-around;
+
+                    &__entrance {
+                        margin-left: 0;
+                    }
+
+                    &__registration {
+                        margin-left: 0;
+                    }
+
+                    &__student {
+                        display: none;
+                    }
+                }
+            }
+
+            &__main {
+                width: auto;
+                margin: 72px 0 30px 0;
+
+                &__registration {
+                    width: auto;
+                }
+            }
+        }
+    }
+}

@@ -18,11 +18,17 @@ export class DoneTasksComponent implements OnInit {
     ) { }
 
     public ngOnInit(): void {
-        this.feedbacks = this._activatedRoute.parent.params
-            .pipe(
-                switchMap((id) => {
-                    return this._roomService.getAllFeedbacks(id['id'], this._userService.getUserId())
-                })
-            )
+        this._userService.getUserProfile().subscribe({
+            next: (profile) => {
+                this.feedbacks = this._activatedRoute.parent.params
+                .pipe(
+                    switchMap((id) => {
+                        return this._roomService.getAllFeedbacks(id['id'], profile.id)
+                    })
+                )
+            }
+        });
+
+        
     }
 }

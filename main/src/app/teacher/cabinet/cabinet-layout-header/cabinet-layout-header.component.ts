@@ -17,9 +17,8 @@ export class CabinetLayoutHeaderComponent implements OnInit {
         private _userBaseService: UserBaseService,
         private _router: Router
     ) {
-        this.user$ = this._userBaseService.getUser();
+        this.user$ = this._userBaseService.getUserProfile();
     }
-
 
     public showActions(): void {
         this.showActionsProfile = !this.showActionsProfile;

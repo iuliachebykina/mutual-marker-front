@@ -1,5 +1,6 @@
 import { Component, ElementRef, isDevMode, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthService } from "src/app/services/auth.service";
 import { UserBaseService } from "src/app/services/user.base.service";
 import { IUser } from "src/app/student/account/interfaces/user-registration.interface";
 
@@ -26,7 +27,8 @@ export class ProfileComponent implements OnInit {
 
     constructor(
         private _userService: UserBaseService,
-        private _router: Router
+        private _router: Router,
+        private _authService: AuthService
     ) { }
 
     public ngOnInit(): void {
@@ -97,15 +99,7 @@ export class ProfileComponent implements OnInit {
     }
 
     public exit(): void {
-        if (isDevMode()) {
-            console.log('выход из аккаунта');
-            console.log('cookie cleared');
-            console.log('localstorage cleared');
-            console.log('local user removed');
-        };
-
-        localStorage.clear();
-        this._userService.setUser(null);
-        this._router.navigate(['login', 'student']);
+        this._authService.logout();
+        this._router.navigate(['student']);
     }
 }

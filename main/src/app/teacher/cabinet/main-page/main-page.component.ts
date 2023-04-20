@@ -163,7 +163,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
         this.getRooms();
     }
 
-
     public ngOnDestroy(): void {
         this._subjectDestroy$.next();
     }

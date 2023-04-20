@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AngularFaviconService } from 'angular-favicon';
 import { Subject, takeUntil } from 'rxjs';
 import { DefaultMessageWebComponent } from './modules/dialogs/message.web.component';
+import { AuthService } from './services/auth.service';
 import { GlobalNotificationService, INotificationOptions } from './services/global-notification.service';
 import { IHasModal, IModalService } from './services/modals';
 import { ContainerDirective } from './services/modals/container.directive';
@@ -28,48 +29,27 @@ export class AppComponent implements OnDestroy, OnInit, IHasModal {
         private _router: Router,
         private _globalNotificationService: GlobalNotificationService,
         private ngxFavicon: AngularFaviconService,
-        private _modalService: IModalService
+        private _modalService: IModalService,
+        private _authService: AuthService
     ) {
-        if (localStorage.getItem('user')) {
-            const user: IUser = JSON.parse(localStorage.getItem('user'));
-            this._userBaseService.login(user, `${user.role}\\` + user.username)
-                .pipe(
-                    takeUntil(this._onDestroyEvent$),
-                )
-                .subscribe((success: IUser): void => {
-                    this.loading = false;
-                    if (!success.role) {
-                        this._router.navigate(['student']);
-                    } else if (this._router.url === '/') {
-                        if (success.role === 'ROLE_TEACHER') {
-                            this._router.navigate(['account', 'main']);
-                        } else if (success.role === 'ROLE_STUDENT') {
-                            this._router.navigate(['cabinet', 'main']);
-                        }
-                    }
-                });
+        if (this._authService.loggedIn) {
+            this._authService.refreshToken().subscribe();
+            const role: string = localStorage.getItem('role');
+            if (role === 'ROLE_TEACHER') {
+                this._router.navigate(['account', 'main']);
+            } else if (role === 'ROLE_STUDENT') {
+                this._router.navigate(['cabinet', 'main']);
+            }
         } else {
-            this.loading = false;
-            // this._router.navigate(['student']);
+            // if (this._router.url === '/') {
+            //     this._router.navigate(['student']);
+            // }
         }
     }
 
     public ngOnInit(): void {
         this._modalService.initialize(DefaultMessageWebComponent, null, this);
         this.ngxFavicon.setFavicon('/assets/icons/favicon.ico');
-        this._globalNotificationService.subject$
-            .pipe(
-                takeUntil(this._onDestroyEvent$)
-            )
-            .subscribe((options: INotificationOptions): void => {
-                this.showNotification = true;
-                this.notificationOptions = options;
-
-                setTimeout(() => {
-                    this.showNotification = false;
-                    this.notificationOptions = null;
-                }, 115000);
-            });
     }
 
     public ngOnDestroy(): void {

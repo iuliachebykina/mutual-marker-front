@@ -42,18 +42,11 @@ export class LoginComponent extends FormBaseViewModel {
             password: this.getFormValue('passwordValue')
         };
 
-        this._userBaseService.login(user, 'ROLE_STUDENT\\' + user.username)
+        this._userBaseService.login(user, 'ROLE_STUDENT')
             .subscribe({
                 next: (success: IUser): void => {
-                    if (success.role) {
                         this._route.navigate(['cabinet', 'main']);
-                        localStorage.setItem(
-                            'user',
-                            JSON.stringify({ username: this.getFormValue('email'), password: this.getFormValue('passwordValue'), role: success.role })
-                        );
-
                         this._modalService.showSuccess('Успешный вход в аккаунт');
-                    }
                 },
                 error: (error: HttpErrorResponse) => {
                     this._modalService.showError('Ошибка при входе в аккаунт');

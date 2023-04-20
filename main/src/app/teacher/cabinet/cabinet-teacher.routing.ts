@@ -17,7 +17,6 @@ export const routes: Routes = [
     {
         path: '',
         component: CabinetLayoutHeaderComponent,
-        canActivate: [CanActivateCabinet],
         children: [
             {
                 path: '',
