@@ -43,5 +43,20 @@ button[data-size='l']:last-child {
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
+    button[data-size='l']:first-child {
+        font-size: 19px;
+    }
     
+    
+    button[data-size='l']:last-child {
+        color: #FE5151;
+        font-size: 19px;
+    }
+
+    .create-room {
+        width: 320px;
+        height: 100%;
+
+        
+    }
 }

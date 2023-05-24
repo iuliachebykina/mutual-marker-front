@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { TuiDay, TUI_DATE_FORMAT, TUI_DATE_SEPARATOR } from '@taiga-ui/cdk';
-import { Subject, takeUntil } from "rxjs";
-import { GlobalNotificationService } from "src/app/services/global-notification.service";
+import { TuiDay, TuiTime } from '@taiga-ui/cdk';
+import { min, Subject, takeUntil } from "rxjs";
 import { IModalService } from "src/app/services/modals";
 import { RoomService } from "src/app/services/room.service";
 import { ValidationService } from "src/app/services/validation.service";
@@ -12,10 +11,6 @@ import { ValidationService } from "src/app/services/validation.service";
     selector: 'add-task',
     templateUrl: './add-task.component.html',
     styleUrls: ['./styles/add-task.style.scss'],
-    providers: [
-        { provide: TUI_DATE_FORMAT, useValue: 'YMD' },
-        { provide: TUI_DATE_SEPARATOR, useValue: '-' },
-    ],
 })
 export class AddTaskComponent implements OnDestroy, OnInit {
     public id: string;
@@ -34,14 +29,14 @@ export class AddTaskComponent implements OnDestroy, OnInit {
     ngOnInit() {
         this._activatedRoute.parent.params.subscribe({
             next: (params) => {
-                this.id = params['id'];
+                this.id = params['roomId'];
             }
         });
 
         this.myForm = this.fb.group({
             title: ['', Validators.required],
             description: ['', Validators.required],
-            closeDate: [[TuiDay.fromLocalNativeDate(new Date())], [
+            closeDate: [[TuiDay.fromLocalNativeDate(new Date()), new TuiTime(12, 30)], [
                 Validators.required,
                 ValidationService.checkDeadline
             ]],
@@ -108,14 +103,22 @@ export class AddTaskComponent implements OnDestroy, OnInit {
         const date: {
             year: number,
             month: number,
-            day: number
+            day: number,
         } = this.myForm.get('closeDate').value[0];
 
-        var dateString = new Date(`${date.year}-${date.month + 1}-${date.day}`);
+        const minutes: {
+            hours: number,
+            minutes: number
+        } = this.myForm.get('closeDate').value[1];
+        console.log(this.myForm.get('closeDate').value);
+
+        var dateString = new Date(`${date.year}-${date.month + 1}-${date.day} ${minutes.hours}:${minutes.minutes}`);
         var year = dateString.getFullYear(); // получаем год
         var month = (dateString.getMonth() + 1).toString().padStart(2, '0'); // получаем месяц и добавляем нули
         var day = dateString.getDate().toString().padStart(2, '0'); // получаем день и добавляем нули
-        var formattedDate = `${year}-${month}-${day}`; // форматируем дату в нужный вид
+        var minut = dateString.getMinutes();
+        var hours = dateString.getHours();
+        var formattedDate = `${year}-${month}-${day} ${hours}:${minut}`; // форматируем дату в нужный вид
 
         this._roomService.createTask(
             Object.assign(updatedFormValue, {
@@ -133,6 +136,9 @@ export class AddTaskComponent implements OnDestroy, OnInit {
                 next: () => {
                     this._modalService.showSuccess('Задание успешно создано');
                     this._router.navigate(['account', 'room', this.id, 'info']);
+                },
+                error: (e) => {
+                    this._modalService.showError(e.error);
                 }
             });
     }

@@ -1,12 +1,34 @@
-
-
-// .error {
-//     font-size: 18px;
-//     margin-left: 30px;
-// }
-
 .room-statistic {
-    padding-top:20px;
+    padding-top: 20px;
+
+    &__pagination {
+        margin: 50px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            width: 50px;
+            height: 40px;
+            margin-right: 10px;
+            font-size: 18px;
+            // background-color: #fff;
+            outline: none;
+            border: none;
+            border-radius: 10px;
+            color: #000;
+        }
+
+        button:hover {
+            background-color: #ebefff;
+            color: #526ed3;
+        }
+
+        &__is-active {
+            // background: red;
+            outline: none;
+        }
+    }
 
     &__table {
         width: 100%;
@@ -36,7 +58,7 @@
         line-height: 21px;
         color: #767676;
         word-break: break-all;
-        border: 1px solid  rgba(118, 118, 118, 0.25);
+        border: 1px solid rgba(118, 118, 118, 0.25);
         border-top: none;
         border-left: none;
 

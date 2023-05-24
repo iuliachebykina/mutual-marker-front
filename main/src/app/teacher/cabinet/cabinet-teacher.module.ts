@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { PdfViewerModule } from "ng2-pdf-viewer";
 import { ModulesModule } from "src/app/modules/modules.module";
 import { MarksService } from "src/app/services/marks.service";
 import { ProjectFileManagerService } from "src/app/services/project-file-manager.service";
@@ -28,6 +29,7 @@ import { TaskDetailsInfoComponent } from "./room/task-details-info/task-details-
 import { TaskInformationComponent } from "./room/task-information/task-information.component";
 import { TaskItemComponent } from "./room/task-item/task-item.component";
 import { TaskStudentWorksInfoComponent } from "./room/task-student-works-info/task-student-works-info.component";
+import { TaskWorkDetailsComponent } from "./room/task-work-details/task-work-details.component";
 
 @NgModule({
     declarations: [
@@ -51,12 +53,14 @@ import { TaskStudentWorksInfoComponent } from "./room/task-student-works-info/ta
         AddRoomComponent,
         DeleteRoomsComponent,
         AddRoomToGroupComponents,
+        TaskWorkDetailsComponent
     ],
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
         ReactiveFormsModule,
         ModulesModule,
+        PdfViewerModule,
         ALL_TAIGA_UI_MODULES
     ],
     exports: [],

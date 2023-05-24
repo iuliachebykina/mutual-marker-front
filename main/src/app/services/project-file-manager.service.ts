@@ -69,6 +69,13 @@ export class ProjectFileManagerService {
             );
     }
 
+    public getProjectById(projectId: string): Observable<any> {
+        return this._httpRequestService.get<any>(`/api/task/project-for-teacher/` + projectId)
+            .pipe(
+                map(response => response)
+            );
+    }
+
     public updateProject(project: IAttachment): any {
         return this._httpRequestService.put<any>(`/api/task/${project.id}/project/self`, project)
             .pipe(
@@ -77,7 +84,17 @@ export class ProjectFileManagerService {
     }
 
     public getProjectsByTask(task_id: number): Observable<any> {
-        return this._httpRequestService.get<any>('/api/task/' + task_id + '/projects');
+        return this._httpRequestService.get<any>('/api/task/' + task_id + '/projects')
+            .pipe(
+                map(i => {
+                    let item = i;
+                    item.forEach((elem, index) => {
+                        item[index].finalMark = elem.finalMark === "NaN" ? 0 : parseInt(elem.finalMark);
+                    })
+
+                    return item;
+                })
+            );
     }
 
     public deleteAttachment(projectId: number, fileName: string): Observable<void> {
@@ -86,6 +103,10 @@ export class ProjectFileManagerService {
 
     public excelStatistic(id: number): Observable<any> {
         return this._httpRequestService.get('/api/statistics/excel', { responseType: 'blob', params: { taskId: id } });
+    }
+
+    public excelStatistic2(id: number): Observable<any> {
+        return this._httpRequestService.get('/api/statistics/excelProject', { responseType: 'blob', params: { projectId: id } });
     }
 }
 

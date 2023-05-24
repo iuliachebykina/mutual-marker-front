@@ -32,11 +32,11 @@
     </div>
 
     <div class="room-task__students" *ngIf="tasks.length">
-        <div class="room-task__students__work" *ngFor="let i of tasks">
+        <div class="room-task__students__work" *ngFor="let i of tasks" [ngClass]="{'great': i.finalMark >= 80, 'bad': i.finalMark < 40, 'dence': i.finalMark >= 40 && i.finalMark < 80}" (click)="redirectToDetails(i)">
             <div class="room-task__students__work__title">{{i.title}}</div>
             <div style="display: flex;">
                 <div class="room-task__students__work__name" style="margin-right: 60px;">Оценка:&nbsp; <span style="color: #FE7451; font-weight: 700;">
-                    {{task.finalMark}}/100
+                    {{i.finalMark}}/100
                 </span></div>
                 <div class="room-task__students__work__name">
                     Автор:&nbsp; <span style="font-weight: 700;">

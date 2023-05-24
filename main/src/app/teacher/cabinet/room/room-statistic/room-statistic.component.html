@@ -1,7 +1,7 @@
-<div  class="room-statistic">
+<div class="room-statistic">
     <table class="room-statistic__table">
         <thead class="room-statistic__table-head">
-            <tr class="room-statistic__row">
+            <tr class="room-statistic__row" style="overflow-x:auto;">
                 <th class="room-statistic__cell">Имя</th>
                 <th class="room-statistic__cell">Группа</th>
                 <th class="room-statistic__cell">Задание</th>
@@ -12,9 +12,10 @@
             <tr class="room-statistic__cell room-statistic__cell_empty" *ngIf="!statistic.length">
                 Пока что никто не загрузил работу
             </tr>
-            <ng-container *ngFor="let student of statistic; let last = last">
+            <ng-container *ngFor="let student of items; let last = last">
                 <tr class="room-statistic__row" [ngClass]="{'is-last': last}">
-                    <td class="room-statistic__cell">{{student.studentName.firstName}} {{student.studentName.lastName}} {{student.studentName.patronymic}}</td>
+                    <td class="room-statistic__cell">{{student.studentName.firstName}} {{student.studentName.lastName}}
+                        {{student.studentName.patronymic}}</td>
                     <td class="room-statistic__cell">{{student.group}}</td>
                     <td class="room-statistic__cell">{{student.projectTitle}}</td>
                     <td class="room-statistic__cell">{{student.finalMark}}/100</td>
@@ -22,4 +23,14 @@
             </ng-container>
         </tbody>
     </table>
+    <div class="room-statistic__pagination" *ngIf="pageCount > 1">
+        <button [disabled]="currentPage === 1" (click)="setCurrentPage(currentPage - 1)">
+            <svg _ngcontent-tui-demo-c93="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-tui-demo-c93="" xlink:href="assets/taiga-ui/icons/tuiIconChevronLeft.svg?v=3.28.0#tuiIconChevronLeft"></use></svg>
+        </button>
+        <button *ngFor="let page of pages" [disabled]="currentPage === page" [ngClass]="{'room-statistic__pagination__is-active': currentPage === page}" (click)="setCurrentPage(page)">{{ page
+            }}</button>
+        <button [disabled]="currentPage === pageCount" (click)="setCurrentPage(currentPage + 1)">
+            <svg _ngcontent-tui-demo-c93="" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" width="100%" height="100%" class="t-svg ng-star-inserted"><use _ngcontent-tui-demo-c93="" xlink:href="assets/taiga-ui/icons/tuiIconChevronRight.svg?v=3.28.0#tuiIconChevronRight"></use></svg>
+        </button>
+    </div>
 </div>

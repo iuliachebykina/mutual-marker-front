@@ -9,6 +9,7 @@ import { ALL_TAIGA_UI_MODULES } from 'src/libraries/all-taiga-modules';
 import { AppComponent } from './app.component';
 import { routes } from "./app.routing";
 import { AuthGuard } from './auth.guard';
+import { LoginGuard } from './login.guard';
 import { AuthService } from './services/auth.service';
 import { Breadcrumb } from './services/breadcrumb';
 import { BreadcrumbsService } from './services/breadcrumb.service';
@@ -39,7 +40,8 @@ import { UserBaseService } from './services/user.base.service';
         Breadcrumb,
         { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, // добавляем интерсептор в провайдеры
         AuthGuard,
-        AuthService
+        AuthService,
+        LoginGuard
 
     ],
     bootstrap: [AppComponent]

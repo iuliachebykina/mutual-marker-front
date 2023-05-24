@@ -12,6 +12,7 @@ import { RoomStatisticComponent } from "./room/room-statistic/room-statistic.com
 import { TaskDetailsInfoComponent } from "./room/task-details-info/task-details-info.component";
 import { TaskInformationComponent } from "./room/task-information/task-information.component";
 import { TaskStudentWorksInfoComponent } from "./room/task-student-works-info/task-student-works-info.component";
+import { TaskWorkDetailsComponent } from "./room/task-work-details/task-work-details.component";
 
 export const routes: Routes = [
     {
@@ -51,10 +52,15 @@ export const routes: Routes = [
                         component: RoomStatisticComponent,
                         data: { breadcrumb: 'Статистика' }
                     },
+                    {
+                        path: 'work/:workId',
+                        component: TaskWorkDetailsComponent,
+                        data: { breadcrumb: 'Работа' }
+                    }
                 ]
             },
             {
-                path: 'room/:id',
+                path: 'room/:roomId',
                 component: RoomDetailsInfoComponent,
                 children: [
                     {
@@ -75,6 +81,11 @@ export const routes: Routes = [
                         path: 'member',
                         component: RoomMembersComponent,
                         data: { breadcrumb: 'Участники' }
+                    },
+                    {
+                        path: 'statistic',
+                        component: RoomStatisticComponent,
+                        data: { breadcrumb: 'Статистика' }
                     }
                 ]
             },

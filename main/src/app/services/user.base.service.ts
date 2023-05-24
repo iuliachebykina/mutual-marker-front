@@ -27,15 +27,7 @@ export class UserBaseService {
     }
 
     public getUserId(): number {
-        let id: number;
-
-        this._getUser$.subscribe({
-            next: (user) => {
-                id = parseInt(user.id);
-            }
-        });
-
-        return id;
+        return parseInt(localStorage.getItem('id'));
     }
 
     /**

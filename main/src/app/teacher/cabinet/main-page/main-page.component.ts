@@ -167,6 +167,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
         this._subjectDestroy$.next();
     }
 
+    public onDelete(): void {
+        this.getRooms();
+    }
+
     public sort(): void {
         this.sortDown = !this.sortDown;
 

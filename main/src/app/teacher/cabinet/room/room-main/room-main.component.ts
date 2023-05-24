@@ -36,7 +36,7 @@ export class RoomMainComponent {
     public ngOnInit(): void {
         this._activatedRouter.parent.params.subscribe({
             next: (param) => {
-                this.roomId = param['id'];
+                this.roomId = param['roomId'];
             }
         })
         this.room$ = this._roomService.getRoomById(parseInt(this.roomId))

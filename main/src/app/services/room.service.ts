@@ -40,8 +40,8 @@ export class RoomService {
      * @param teacherId 
      * @returns 
      */
-    public createRoom(title: string, teacherId: number, description: string): Observable<void> {
-        return this._httpRequestService.post<void>('api/rooms/room', { title, teacherId, description });
+    public createRoom(title: string, description: string): Observable<void> {
+        return this._httpRequestService.post<void>('api/rooms/room', { title, description });
     }
 
     public createGroup(name: string): Observable<IGroup> {
@@ -104,7 +104,7 @@ export class RoomService {
             .pipe(
                 map(i => {
                     const item = i;
-                    item.finalMark = item.finalMark === "NaN" ? "0" : item.finalMark;
+                    item.finalMark = item.finalMark === "NaN" ? 0 : parseInt(item.finalMark);
 
                     return item;
                 })
@@ -168,7 +168,7 @@ export interface ITaskResponse {
     deleted?: boolean;
     description?: string;
     isBlock?: boolean;
-    finalMark: string;
+    finalMark: any;
     id?: number;
     openDate?: string;
     roomId?: number;

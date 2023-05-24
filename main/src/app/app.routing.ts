@@ -1,10 +1,12 @@
 import { Routes } from "@angular/router";
 import { AuthGuard } from "./auth.guard";
+import { LoginGuard } from "./login.guard";
 
 export const routes: Routes = [
     {
         path: 'student',
         loadChildren: () => import('./student/account/account.module').then(m => m.StudentAccountModule),
+        canActivate: [LoginGuard]
     },
     {
         path: 'cabinet',
@@ -21,5 +23,6 @@ export const routes: Routes = [
     {
         path: 'teacher',
         loadChildren: () => import('./teacher/account/account.module').then(m => m.TeacherAccountModule),
+        canActivate: [LoginGuard]
     }
 ];

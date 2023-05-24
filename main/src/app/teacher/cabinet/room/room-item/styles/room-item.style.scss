@@ -40,14 +40,18 @@
 
 @media (min-width: 320px) and (max-width: 767px) {
     .room-item {
+
+        &__menu {
+            display: none;
+        }
         padding: 20px;
+
         &__title {
             width: auto;
         }
 
-        &__arrow {
-            top: 20px;
-            right: 20px;
+        &__block {
+            margin: 0;
         }
     }
 }
