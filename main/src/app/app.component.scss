@@ -1,8 +1,35 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('/assets/fonts/Gilroy-Regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('/assets/fonts/Gilroy-Black.ttf') format('truetype');
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('/assets/fonts/Gilroy-Medium.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('/assets/fonts/Gilroy-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Gilroy';
 }
+
+
 
 tui-root {
     position: relative;

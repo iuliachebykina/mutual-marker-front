@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AngularFaviconService } from 'angular-favicon';
 import { Subject } from 'rxjs';
 import { DefaultMessageWebComponent } from './modules/dialogs/message.web.component';
@@ -26,11 +26,15 @@ export class AppComponent implements OnDestroy, OnInit, IHasModal {
     constructor(
         private _userBaseService: UserBaseService,
         private _router: Router,
+        private _route: ActivatedRoute,
         private _globalNotificationService: GlobalNotificationService,
         private ngxFavicon: AngularFaviconService,
         private _modalService: IModalService,
         private _authService: AuthService
     ) {
+
+       
+          
         if (this._authService.loggedIn) {
             this._authService.refreshToken().subscribe();
         } else {
@@ -51,7 +55,6 @@ export class AppComponent implements OnDestroy, OnInit, IHasModal {
                 }
             }
         });
-
     }
 
     public ngOnDestroy(): void {

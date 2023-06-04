@@ -34,6 +34,30 @@ export class MainComponent extends FormBaseViewModel {
         this._route.navigate(['teacher', 'registration'], { state: { email: this.getFormValue('email') } });
     }
 
+    public ngOnInit(): void {
+        const target = document.querySelector('.cloud');
+        const targetPosition = target.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight;
+
+        window.addEventListener('scroll', function () {
+            const currentPosition = window.scrollY;
+            if (currentPosition >= targetPosition - screenPosition) {
+                const cloud = document.querySelector('.cloud');
+                const process = document.querySelector('.cloud-processing');
+
+                process.classList.add('process');
+
+                setInterval(() => {
+                    process.classList.remove('process');
+                    setTimeout(() => {
+                        process.classList.add('process');
+                    }, 1000)
+                }, 8000)
+            }
+        });
+
+    }
+    
     protected override getControls(): FormGroup {
         return new FormGroup({
             email: new FormControl('', [
