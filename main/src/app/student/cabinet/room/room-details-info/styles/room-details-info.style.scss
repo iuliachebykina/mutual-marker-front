@@ -88,12 +88,50 @@
     }
 }
 
-@media (min-width: 1440px) and (max-width: 1920px) {}
+@media (min-width: 320px) and (max-width: 767px) {
+    .routing {
+        display: none;
+    }
 
-@media (min-width: 1280px) and (max-width: 1439px) {}
+  
+    .menu {
+        display: block;
 
-@media (min-width: 1024px) and (max-width: 1279px) {}
+        ul {
+            display: flex;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            height: 98px;
+            background: #FFF1EE;
+            overflow-x: auto;
+            padding-left: 30px;
 
-@media (min-width: 768px) and (max-width: 1023px) {}
+            li {
+                margin-right: 45px;
+                width: 200px;
+                font-size: 24px;
+                line-height: 20px;
+                margin-top: 40px;
+            }
+        }
+    }
 
-@media (min-width: 320px) and (max-width: 767px) {}
+    .room-details-info {
+        display: none;
+    }
+
+    .wrapper {
+        margin-top: 40px;
+
+        &__main {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+    }
+
+    .info {
+        margin: 10px;
+        width: 100%;
+    }
+}

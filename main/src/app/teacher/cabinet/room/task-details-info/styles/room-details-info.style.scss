@@ -165,3 +165,48 @@
 //         }
 //     }
 // }
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .routing {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+
+        ul {
+            display: flex;
+            margin-top: 50px;
+            margin-bottom: 20px;
+            height: 98px;
+            background: #FFF1EE;
+            overflow-x: auto;
+            padding-left: 30px;
+
+            li {
+                margin-right: 45px;
+                width: 200px;
+                font-size: 24px;
+                line-height: 20px;
+                margin-top: 40px;
+            }
+        }
+    }
+
+    .room-details-info {
+        display: none;
+    }
+
+    .wrapper {
+        &__main {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+    }
+
+    .info {
+        margin: 10px;
+        width: 100%;
+    }
+}

@@ -32,9 +32,6 @@ export class AppComponent implements OnDestroy, OnInit, IHasModal {
         private _modalService: IModalService,
         private _authService: AuthService
     ) {
-
-       
-          
         if (this._authService.loggedIn) {
             this._authService.refreshToken().subscribe();
         } else {
