@@ -56,3 +56,23 @@
 .block {
     cursor: default;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .room {
+        padding: 20px;
+
+        &__title {
+            width: auto;
+        }
+
+        &__arrow {
+            display: none;
+        }
+    }
+
+    .popup {
+        position: absolute;
+        top: 0;
+        right: -25px;
+    }
+}

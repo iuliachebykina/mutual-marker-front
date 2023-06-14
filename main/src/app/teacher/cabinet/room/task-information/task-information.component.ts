@@ -38,6 +38,10 @@ export class TaskInformationComponent implements OnInit {
             });
     }
 
+    public redirectToDetails(i): void {
+        this._router.navigate(['account/task/' + this._taskId + '/work/', i.id]);
+    }
+
     public excel(): void {
         this._fileService.excelStatistic(this._taskId)
             .subscribe({
@@ -48,7 +52,5 @@ export class TaskInformationComponent implements OnInit {
                     link.click();
                 }
             });
-
-
     }
 }

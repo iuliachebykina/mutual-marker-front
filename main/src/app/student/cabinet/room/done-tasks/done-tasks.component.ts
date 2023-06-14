@@ -28,7 +28,9 @@ export class DoneTasksComponent implements OnInit {
                 )
             }
         });
+    }
 
-        
+    public getMarkValue(item): string {
+        return item.taskInfo.finalMark?.toString();
     }
 }

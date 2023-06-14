@@ -10,17 +10,37 @@ import { ITaskResponse, RoomService } from "src/app/services/room.service";
 })
 export class RoomStatisticComponent {
     public statistic: IStatistic[] = [];
+    public pageSize = 10;
+    public currentPage = 1;
     private _taskId: string;
+    private _roomId: string;
+
     constructor(
         private _activatedRouter: ActivatedRoute,
         private _roomService: RoomService,
         private _markService: MarksService
     ) {
-        _activatedRouter.parent.params.subscribe({
-            next: (e) => {
-                // console.log(e);
-            }
-        })
+    }
+
+    public get items(): IStatistic[] {
+        const startIndex = (this.currentPage - 1) * this.pageSize;
+        return this.statistic.slice(startIndex, startIndex + this.pageSize);
+    }
+
+    public get pageCount(): number {
+        return Math.ceil(this.statistic.length / this.pageSize);
+    }
+
+    public get pages(): number[] {
+        const pages = [];
+        for (let i = 1; i <= this.pageCount; i++) {
+            pages.push(i);
+        }
+        return pages;
+    }
+
+    public setCurrentPage(page: number): void {
+        this.currentPage = page;
     }
 
     public ngOnInit(): void {
@@ -28,16 +48,19 @@ export class RoomStatisticComponent {
             .pipe(
                 switchMap((params) => {
                     this._taskId = params['id'];
+                    this._roomId = params['roomId'];
 
-                    return this._roomService.getTaskById(params['id']);
+                    return this._taskId ? this._roomService.getTaskById(params['id']) : this._roomService.getTasks(parseInt(this._roomId));
                 }),
-                map(room => room.roomId),
+                map(room => !Array.isArray(room) ? room?.roomId : parseInt(this._roomId)),
                 switchMap(roomId => {
                     return this._roomService.getTasks(roomId)
                 }),
                 map((tasks: ITaskResponse[]): number[] => {
-                    tasks = tasks.filter(i => i.id === parseInt(this._taskId));
-                    
+                    if (this._taskId) {
+                        tasks = tasks.filter(i => i.id === parseInt(this._taskId));
+                    }
+
                     return tasks.map(item => item.id)
                 }),
                 switchMap((ids: number[]): Observable<IStatistic[][]> => {

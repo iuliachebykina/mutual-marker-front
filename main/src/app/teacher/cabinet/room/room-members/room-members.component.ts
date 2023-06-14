@@ -24,11 +24,11 @@ export class RoomMembersComponent implements OnInit {
     public ngOnInit(): void {
         this._activatedRoute.parent.params.subscribe({
             next: (param) => {
-                this.roomId = param['id'];
+                this.roomId = param['roomId'];
             }
         });
 
-        this.user$ = this._userBaseService.getUser();
+        this.user$ = this._userBaseService.getUserProfile();
         this._roomService.getStudentsByRoomId(this.roomId, 0, 1000)
             .subscribe({
                 next: (s) => {

@@ -38,5 +38,32 @@
 }
 
 @media (min-width: 320px) and (max-width: 767px) {
-    
+    .room-information {
+
+        &__head {
+            &__title {
+                font-size: 36px;
+                line-height: 40px;
+            }
+        }
+
+        &__header {
+            margin-bottom: 34px;
+        }
+
+        
+
+        &__code {
+            display: none;
+        }
+
+        &__subtitle {
+            margin-left: 30px;
+        }
+
+        &__current-task {
+            font-size: 24px;
+            margin-left: 30px;
+        }
+    }
 }

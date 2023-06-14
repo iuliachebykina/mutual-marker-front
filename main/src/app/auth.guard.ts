@@ -6,7 +6,7 @@ import { AuthService } from './services/auth.service';
 export class AuthGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router) { }
 
-    canActivate(): boolean {
+    public canActivate(): boolean {
         if (!this.authService.loggedIn) { // проверяем, авторизован ли пользователь
             this.router.navigate(['/student']); // перенаправляем на главную страницу
             return false;

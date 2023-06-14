@@ -117,7 +117,7 @@
                     margin-top: 36px;
                     text-align: right;
                     font-weight: 500;
-                    
+
                     div {
                         margin-bottom: 12px;
                         cursor: pointer;
@@ -126,6 +126,7 @@
                     div:nth-child(1) {
                         position: relative;
                         margin-right: 15px;
+
                         img {
                             position: absolute;
                             right: -16px;
@@ -135,6 +136,7 @@
                     div:nth-child(2) {
                         position: relative;
                         margin-right: 15px;
+
                         img {
                             position: absolute;
                             right: -18px;
@@ -202,22 +204,35 @@
 
 }
 
-@media (min-width: 1291px) and (max-width: 1440px) {
-    .layout {}
-}
 
-@media (min-width: 1024px) and (max-width: 1290px) {
-    .layout {}
-}
-
-@media (min-width: 320px) and (max-width: 1023px) {
+@media (min-width: 320px) and (max-width: 767px) {
     .layout {
-        display: block;
+        width: 100%;
+        min-height: 100vh;
+        background-color: #fff;
 
+        .wrapper {
+            &__header {
+                &__menu {
+
+                    padding: 90px 0 0 30px;
+
+                    img {
+                        display: none;
+                    }
+
+                    &__rooms {
+                        margin: 0;
+                    }
+                }
+
+                &__name {
+                    margin: 0;
+                }
+            }
+        }
     }
 }
-
-@media (min-width: 320px) and (max-width: 767px) {}
 
 .search-container {
     width: 480px;

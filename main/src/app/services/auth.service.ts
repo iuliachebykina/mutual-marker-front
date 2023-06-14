@@ -29,7 +29,7 @@ export class AuthService {
     }
 
     public get loggedIn(): boolean {
-        return (localStorage.getItem('access_token') !== null); // проверяем, есть ли токен в локальном хранилище
+        return !(localStorage.getItem('access_token') + '' === 'null'); // проверяем, есть ли токен в локальном хранилище
     }
 
     private setSession(authResult: any) {

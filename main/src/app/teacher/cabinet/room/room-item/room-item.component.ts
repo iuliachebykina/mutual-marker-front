@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
-import { forkJoin, map, Subject, takeUntil } from "rxjs";
+import { Router } from "@angular/router";
+import { forkJoin, map, Subject, switchMap, takeUntil } from "rxjs";
+import { IModalService } from "src/app/services/modals";
 import { RoomService } from "src/app/services/room.service";
 
 @Component({
@@ -15,6 +17,9 @@ export class RoomItemComponent implements OnInit, OnDestroy {
     @Output()
     public onArrowClick: EventEmitter<void> = new EventEmitter<void>();
 
+    @Output()
+    public onDelete: EventEmitter<void> = new EventEmitter<void>();
+
     @Input()
     public title: string;
 
@@ -29,7 +34,9 @@ export class RoomItemComponent implements OnInit, OnDestroy {
     private _onDestroy$: Subject<void> = new Subject<void>();
 
     constructor(
-        private _roomService: RoomService
+        private _roomService: RoomService,
+        private _modalService: IModalService,
+        private _router: Router
     ) { }
 
     public ngOnDestroy(): void {
@@ -54,6 +61,25 @@ export class RoomItemComponent implements OnInit, OnDestroy {
             .subscribe({
                 next: (count: number): void => {
                     this.allCount = count;
+                }
+            });
+    }
+
+    public delete(event): void {
+        event.preventDefault();
+        event.stopPropagation();
+
+        this._roomService.getRoomById(this.roomId)
+            .pipe(
+                switchMap(room => this._roomService.deleteRoom(room.code))
+            )
+            .subscribe({
+                next: () => {
+                    this._modalService.showSuccess('Комната успешно удалена');
+                    this.onDelete.emit();
+                },
+                error: () => {
+                    this._modalService.showError('Ошибка при удалении комнаты');
                 }
             });
     }

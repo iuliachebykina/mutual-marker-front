@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
-import { GlobalNotificationService } from "src/app/services/global-notification.service";
 import { IModalService, ModalBaseComponent } from "src/app/services/modals";
 import { RoomService } from "src/app/services/room.service";
 import { UserBaseService } from "src/app/services/user.base.service";
@@ -37,23 +36,21 @@ export class CreateRoomComponent extends ModalBaseComponent implements OnDestroy
     }
 
     public createRoom(): void {
-        this._userBaseService.getUser().subscribe(user => {
-            this._roomService.createRoom(this.form.controls['projectName']?.value?.toString(), parseFloat(user.id), this.form.controls['projectDescription']?.value?.toString())
-                .pipe(
-                    takeUntil(this._onDestroy$)
-                )
-                .subscribe({
-                    next: () => {
-                        this._modalService.showSuccess('Комната успешно создана');
-                        this.submit.next(null);
-                        this._router.navigate(['account', 'main']);
-                    },
-                    error: () => {
-                        this._modalService.showError('Ошибка при создании комнаты');  
-                        this.submit.next(null);
-                    }
-                });
-        });
+        this._roomService.createRoom(this.form.controls['projectName']?.value?.toString(), this.form.controls['projectDescription']?.value?.toString())
+            .pipe(
+                takeUntil(this._onDestroy$)
+            )
+            .subscribe({
+                next: () => {
+                    this._modalService.showSuccess('Комната успешно создана');
+                    this.submit.next(null);
+                    this._router.navigate(['account', 'main']);
+                },
+                error: () => {
+                    this._modalService.showError('Ошибка при создании комнаты');
+                    this.submit.next(null);
+                }
+            });
     }
 
     public ngOnDestroy(): void {

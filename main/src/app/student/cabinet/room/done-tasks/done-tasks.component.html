@@ -5,7 +5,7 @@
 
     <div *ngIf="feedbacks | async as feedback">
         <div *ngFor="let item of feedback" class="main__feedback">
-            <accordion [title]="'Оценка: '" [isContentVisible]="false">
+            <accordion [title]="'Оценка: ' + getMarkValue(item)" [isContentVisible]="false">
                 <div class="main__feedback__review" *ngFor="let review of item.feedbacks">
                     <div *ngFor="let r of review.feedbacks" class="main__feedback__review__block">
                         <div class="main__feedback__review__criteria">

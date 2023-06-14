@@ -12,6 +12,9 @@
                     <li class="room-details-info__item" (click)="toRoom()">
                         Комната
                     </li>
+                    <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['info']">
+                        Задание
+                    </li>
                     <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['works']">
                         Работы участников</li>
                     <li class="room-details-info__item" [routerLink]="['statistic']"  routerLinkActive="is-active">

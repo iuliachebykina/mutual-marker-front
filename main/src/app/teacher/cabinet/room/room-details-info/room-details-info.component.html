@@ -2,6 +2,25 @@
     <app-breadcrumbs></app-breadcrumbs>
 </div>
 
+<div class="menu">
+    <ul>
+        <li [routerLink]="['info']" routerLinkActive="is-active">
+            Комната
+        </li>
+        <li routerLinkActive="is-active" [routerLink]="['member']">
+            Участники</li>
+        <li routerLinkActive="is-active" [routerLink]="['statistic']">
+            Статистика
+        </li>
+        <li routerLinkActive="is-active" [routerLink]="['create-task']">
+            Добавить задание
+        </li>
+        <li routerLinkActive="is-active" (click)="deleteRoom()">
+            Удалить комнату
+        </li>
+    </ul>
+</div>
+
 
 <div class="wrapper">
     <div class="wrapper__main">
@@ -13,13 +32,16 @@
                     </li>
                     <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['member']">
                         Участники комнаты</li>
-                    <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['create-task']" style="margin-top: 100px; color: #FE7451;">
+                    <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['create-task']"
+                        style="margin-top: 100px; color: #FE7451;">
                         Добавить задание
                     </li>
-                    <!-- <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['statistic']" style="color: #FE7451;">
+                    <li class="room-details-info__item" routerLinkActive="is-active" [routerLink]="['statistic']"
+                        style="color: #FE7451;">
                         Просмотр статистики
-                    </li> -->
-                    <li class="room-details-info__item" routerLinkActive="is-active" style="color: #FE7451;" (click)="deleteRoom()">
+                    </li>
+                    <li class="room-details-info__item" routerLinkActive="is-active" style="color: #FE7451;"
+                        (click)="deleteRoom()">
                         Удалить комнату
                     </li>
                 </ul>

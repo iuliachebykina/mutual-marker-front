@@ -1,0 +1,120 @@
+.room-members {
+    &__title {
+        background: #FFF1EE;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 59px;
+        color: #000000;
+        padding: 48px 0 20px 48px;
+        margin: 48px 24px 18px 24px;
+    }
+
+    &__mark {
+        background: #FFF1EE;
+        border-radius: 5px;
+        padding: 32px 0 32px 48px;
+        margin: 48px 24px 18px 24px;
+        display: flex;
+        justify-content: space-between;
+
+        &__value {
+            color: #565656;
+            font-size: 32px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        &__statistic {
+            width: 276px;
+            height: 48px;
+            background: #FFFFFF;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 24px;
+            text-align: center;
+            color: #FE7451;
+            margin-right: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        &__review {
+            width: 276px;
+            height: 48px;
+            background: #FFFFFF;
+            font-weight: 700;
+            font-size: 24px;
+            text-align: center;
+            vertical-align: middle;
+            color: #FE7451;
+            border-radius: 5px;
+            margin-right: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+    &__content {
+        &__criteria {
+            margin-top: 96px;
+            font-weight: 700;
+            font-size: 32px;
+            color: #000000;
+            margin-left: 72px;
+            margin-bottom: 32px;
+        }
+
+        &__download {
+            background: #FE7451;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 24px;
+            color: #FFFFFF;
+            width: 144px;
+            padding: 14px 24px;
+            margin-left: 72px;
+            margin-bottom: -40px;
+            text-align: center;
+        }
+
+        &__title {
+            margin-top: 60px;
+            margin-left: 72px;
+            font-size: 24px;
+        }
+
+        &__description-title {
+            font-size: 32px;
+            margin-left: 72px;
+            font-weight: 700;
+            margin-top: 96px;
+        }
+
+        &__description {
+            margin-top: 60px;
+            margin-left: 72px;
+            font-size: 24px;
+            margin-bottom: 40px;
+        }
+
+        &__criteria-list {
+            margin-left: 72px;
+            color: #565656;
+            font-size: 24px;
+            margin-bottom: 96px;
+
+            div {
+                margin-bottom: 20px;
+            }
+        }
+
+    }
+}

@@ -25,7 +25,7 @@ export class RoomDetailsInfoComponent implements OnDestroy, OnInit {
     ) { }
 
     public ngOnInit(): void {
-        this.roomId = this._activatedRouter.snapshot.paramMap.get('id');
+        this.roomId = this._activatedRouter.snapshot.paramMap.get('roomId');
 
         this.room$ = this._roomService.getRoomById(parseInt(this.roomId))
             .pipe(

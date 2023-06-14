@@ -2,17 +2,37 @@
     <div class="wrapper__main">
         <div class="wrapper__main__actions">
             <div class="wrapper__main__actions__menu">
+                <div class="wrapper__main__actions__menu__scroll">
+                    <div (click)="selectActionValue('create')">
+                        Создать комнату
+                    </div>
+                    <div (click)="selectActionValue('delete')">
+                        Удалить комнату
+                    </div>
+                    <div (click)="selectActionValue('addRoom')">
+                        Добавить комнату по коду
+                    </div>
+                    <div (click)="selectActionValue('addRoomToGroup')">
+                        Добавить комнату в группу
+                    </div>
+                    <div>
+                        Новая группа комнат
+                    </div>
+                    <div>
+                        Удалить группу комнат
+                    </div>
+                </div>
                 <div class="search-container">
                     <input #text type="text" id="search-bar" placeholder="Найти комнату"
                         (input)="filterItems(text.value)">
                     <a href="#"><img class="search-icon" src="assets/icons/search.svg"></a>
                 </div>
-                
+
                 <div class="wrapper__main__actions__menu__filter">
                     <button-dropdown [text]="'Фильтровать'" [backgroundColor]="'#FE7451'" [textColor]="'#fff'"
                         [items]="filterList" (eventValue)="selectActionValue($event)">
                         <img class="wrapper__main__actions__menu__filter__plus" src="assets/icons/arrow-white.svg">
-                        
+
                     </button-dropdown>
                     <!-- <span style="position: absolute; top: 10px; right: 20px; cursor: pointer;">
                         
@@ -39,7 +59,7 @@
                                 <ng-container *ngIf="i.rooms.length">
                                     <div *ngFor="let room of i.rooms" style="margin-bottom: 12px;">
                                         <room-item [roomId]="room.id" [title]="room.title" [fromGroup]="true"
-                                            (onArrowClick)="navigateToRoom(room.id)">
+                                            (onArrowClick)="navigateToRoom(room.id)" (onDelete)="onDelete()">
                                         </room-item>
                                     </div>
                                 </ng-container>
@@ -53,7 +73,7 @@
                     <div *ngFor="let i of filteredRooms; last as l; let ind = index">
                         <div class="wrapper__main__content__container__item" [ngClass]="{room__item__last: l}">
                             <room-item [roomId]="i.id" [roomCount]="ind + 1" [title]="i.title"
-                                (onArrowClick)="navigateToRoom(i.id)">
+                                (onArrowClick)="navigateToRoom(i.id)" (onDelete)="onDelete()">
                             </room-item>
                         </div>
                     </div>

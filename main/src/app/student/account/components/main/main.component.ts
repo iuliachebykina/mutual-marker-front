@@ -14,6 +14,30 @@ export class MainComponent extends FormBaseViewModel {
         super();
     }
 
+    public ngOnInit(): void {
+        const target = document.querySelector('.cloud');
+        const targetPosition = target.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight;
+
+        window.addEventListener('scroll', function () {
+            const currentPosition = window.scrollY;
+            if (currentPosition >= targetPosition - screenPosition) {
+                const cloud = document.querySelector('.cloud');
+                const process = document.querySelector('.cloud-processing');
+
+                process.classList.add('process');
+
+                setInterval(() => {
+                    process.classList.remove('process');
+                    setTimeout(() => {
+                        process.classList.add('process');
+                    }, 1000)
+                }, 8000)
+            }
+        });
+
+    }
+
     public toRegistration(): void {
         this._route.navigate(['student', 'registration']);
     }

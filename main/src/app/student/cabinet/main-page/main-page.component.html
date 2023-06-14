@@ -2,6 +2,17 @@
     <div class="wrapper__main">
         <div class="wrapper__main__actions">
             <div class="wrapper__main__actions__menu">
+                <div class="wrapper__main__actions__menu__scroll">
+                    <div (click)="joinNewRoom()">
+                        Присоединиться
+                    </div>
+                    <div (click)="selectActionValue('byAlphabetOrder')">
+                        Фильтр по возрастанию
+                    </div>
+                    <div (click)="selectActionValue('reverseAlphabetOrder')">
+                        Фильтр по убыванию
+                    </div>
+                </div>
                 <div class="search-container">
                     <input #text type="text" id="search-bar" placeholder="Найти комнату"
                         (input)="filterItems(text.value)">

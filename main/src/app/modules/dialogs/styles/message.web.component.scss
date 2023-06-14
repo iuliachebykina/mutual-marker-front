@@ -133,3 +133,9 @@ x
     margin: 30px 0 0 0;
     justify-content: center;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .dialog {
+        width: 290px;
+    }
+}

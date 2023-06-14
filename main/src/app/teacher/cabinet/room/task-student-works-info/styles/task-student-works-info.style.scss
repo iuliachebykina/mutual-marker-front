@@ -1,47 +1,12 @@
-.student {
-
-    margin: 75px 0 0 30px;
-
-    &__work {
-        font-size: 20px;
-        height: 100px;
-        background: #FFFFFF;
-        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
-        padding: 30px;
-        margin-bottom: 20px;
-
-        &__title {
-            color: #767676;
-            font-size: 18px;
-            margin-top: -10px;
-            margin-bottom: 17px;
-        }
-    }
-    
-}
-
-@media (min-width: 320px) and (max-width: 767px) {
-    .student {
-        margin: 0;
-        margin-top: 20px;
-    
-        &__work {
-            font-size: 20px;
-            height: auto;
-            background: #FFFFFF;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            box-sizing: border-box;
-            padding: 30px;
-            margin-bottom: 20px;
-    
-            &__title {
-                color: #767676;
-                font-size: 18px;
-                margin-top: -10px;
-                margin-bottom: 17px;
-            }
-        }
-        
+.room-members {
+    &__title {
+        background: #FFF1EE;
+        border-radius: 5px;
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 59px;
+        color: #000000;
+        padding: 48px 0 48px 48px;
+        margin: 48px 24px 96px 24px;
     }
 }
